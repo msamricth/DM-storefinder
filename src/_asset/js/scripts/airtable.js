@@ -19,63 +19,7 @@ const observer = new MutationObserver((mutations) => {
   }
 });
 observer.observe(app, { attributes: true });
-
-function startApp(){
-  var Airtable = require('airtable');
-  var base = new Airtable({apiKey: 'patH2pzfuG2mbHzqd.18833d9077176b68bdf8f7c436376fc5d4962b4df98e82ffb1cf0ed3cedd64e5'}).base('app7o6tSJG6UICys8');
-  
-  base('Stores').select({
-      // Selecting the first 3 records in Grid view:
-      maxRecords: 3,
-      view: "Grid view"
-  }).eachPage(function page(records, fetchNextPage) {
-      // This function (`page`) will get called for each page of records.
-  
-      records.forEach(function(record) {
-          console.log('Retrieved', record.get('Number'));
-      });
-  
-      // To fetch the next page of records, call `fetchNextPage`.
-      // If there are more records, `page` will get called again.
-      // If there are no more records, `done` will get called.
-      fetchNextPage();
-  
-  }, function done(err) {
-      if (err) { console.error(err); return; }
-  });
-
-}
-
-function startApp1(){
-    const { createApp } = Vue
-    var settings = {
-      "url": "https://api.airtable.com/v0/app7o6tSJG6UICys8/Stores?view=API",
-      "method": "GET",
-      "timeout": 0,
-      "headers": {
-        "Authorization": "Bearer patH2pzfuG2mbHzqd.18833d9077176b68bdf8f7c436376fc5d4962b4df98e82ffb1cf0ed3cedd64e5",
-        "Cookie": "brw=brwaoMYe7aEFiKynU; AWSALB=IsfWQUsV1MwhumCr9Tb/4WPjsgJ5591A10gPTIYovuWll2HlrC9XqWZ8ZsLR6ZepqkjOMrRWOt1RJfYAnxjEUJ1AxVeaXRCP7dsf5LybIAqwzN3IQjT53xllUWYn; AWSALBCORS=IsfWQUsV1MwhumCr9Tb/4WPjsgJ5591A10gPTIYovuWll2HlrC9XqWZ8ZsLR6ZepqkjOMrRWOt1RJfYAnxjEUJ1AxVeaXRCP7dsf5LybIAqwzN3IQjT53xllUWYn"
-      },
-    };
-    
-    $.ajax(settings).done(function (response) {
-      
-      this.rfields = response.data;
-      var fields = this.rfields;
-      console.log(fields);
-    
-  const { createApp } = Vue
-                 
-      createApp({
-          data() {
-            return {
-              message: fields.Name
-            }
-          }
-        }).mount('#app');
-        console.log('airtable');
-    });
-}
+var map;
 function startApp2(){
   
   observer.disconnect();
@@ -122,7 +66,7 @@ function startApp2(){
               /**
                * Add the map to the page
                */
-              const map = new mapboxgl.Map({
+              map = new mapboxgl.Map({
                 container: 'map',
                 style: 'mapbox://styles/mapbox/light-v11',
                 center: [-77.034084142948, 38.909671288923],
@@ -135,7 +79,6 @@ function startApp2(){
               
               
               for( var i = 0; i < theRecords.length; i++ ) {
-                console.log(theRecords[i].fields.Name);
                 if(current_day_of_week = 0) {
                   closing_time = convert24timeToSeconds(theRecords[i].fields.Sunday);
   
@@ -210,8 +153,6 @@ function startApp2(){
                 });
               }
               
-              
-              console.log(stores)
               stores.features.forEach((store, i) => {
                 store.properties.id = i;
               });
@@ -224,19 +165,149 @@ function startApp2(){
                  * This is where your '.addLayer()' used to be, instead
                  * add only the source without styling a layer
                  */
+                map.loadImage(
+                  'http://localhost:3000/Location-Icon.png',
+                  (error, image) => {
+                  if (error) throw error;
+                   
+                  // Add the image to the map style.
+                  map.addImage('pin', image);
                 map.addSource('places', {
                   'type': 'geojson',
-                  'data': stores
+                  'data': stores,
+                  cluster: true,
+                  clusterMaxZoom: 4, // Max zoom to cluster points on
+                  clusterRadius: 50 // Radius of each cluster when clustering points (defaults to 50)
                 });
-        
+                map.addLayer({
+                  id: 'clusters',
+                  type: 'circle',
+                  source: 'places',
+                  filter: ['has', 'point_count'],
+                  paint: {
+                  // Use step expressions (https://docs.mapbox.com/mapbox-gl-js/style-spec/#expressions-step)
+                  // with three steps to implement three types of circles:
+                  //   * Blue, 20px circles when point count is less than 100
+                  //   * Yellow, 30px circles when point count is between 100 and 750
+                  //   * Pink, 40px circles when point count is greater than or equal to 750
+                  'circle-color': [
+                  'step',
+                  ['get', 'point_count'],
+                  '#FFE512',
+                  100,
+                  '#FFE512',
+                  750,
+                  '#FFE512'
+                  ],
+                  'circle-radius': [
+                  'step',
+                  ['get', 'point_count'],
+                  20,
+                  100,
+                  30,
+                  750,
+                  40
+                  ]
+                  }
+                  });
+                   
+                  map.addLayer({
+                  id: 'cluster-count',
+                  type: 'symbol',
+                  source: 'places',
+                  filter: ['has', 'point_count'],
+                  layout: {
+                  'text-field': ['get', 'point_count_abbreviated'],
+                  'text-font': ['DIN Offc Pro Medium', 'Arial Unicode MS Bold'],
+                  'text-size': 12
+                  }
+                  });
+                  map.addLayer({
+                    id: 'unclustered-point',
+                    source: 'places',
+                    filter: ['!', ['has', 'point_count']],
+                    type: 'symbol',
+                    layout: {
+                      'icon-image': 'pin', // reference the image
+                      'icon-size': 0.75
+                      }
+                    });
+                  
+                   
                 /**
                  * Add all the things to the page:
                  * - The location listings on the side of the page
                  * - The markers onto the map
                  */
+                // inspect a cluster on click
+                map.on('click', 'clusters', (e) => {
+                  const features = map.queryRenderedFeatures(e.point, {
+                  layers: ['clusters']
+                  });
+                  const clusterId = features[0].properties.cluster_id;
+                  map.getSource('earthquakes').getClusterExpansionZoom(
+                  clusterId,
+                  (err, zoom) => {
+                  if (err) return;
+                  
+                  map.easeTo({
+                  center: features[0].geometry.coordinates,
+                  zoom: zoom
+                  });
+                  }
+                  );
+                  });
+                  
+                  // When a click event occurs on a feature in
+                  // the unclustered-point layer, open a popup at
+                  // the location of the feature, with
+                  // description HTML from its properties.
+                  map.on('click', 'unclustered-point', (e) => {
+                  const coordinates = e.features[0].geometry.coordinates.slice();
+           
+                  
+                  // Ensure that if the map is zoomed out such that
+                  // multiple copies of the feature are visible, the
+                  // popup appears over the copy being pointed to.
+                  while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+                  coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+                  }
+
+
+
+
+                  
+                  flyToStore(e.features[0]);
+                  /* Close all other popups and display popup for clicked store */
+                  createPopUp(e.features[0]);
+                  /* Highlight listing in sidebar */
+                  const activeItem = document.getElementsByClassName('active');
+                  e.stopPropagation();
+                  if (activeItem[0]) {
+                    activeItem[0].classList.remove('active');
+                  }
+                  const listing = document.getElementById(
+                    `listing-${e.features[0].properties.id}`
+                  );
+                  listing.classList.add('active');
+                  });
+                  
+                  map.on('mouseenter', 'clusters', () => {
+                  map.getCanvas().style.cursor = 'pointer';
+                  });
+                  map.on('mouseenter', 'unclustered-point', () => {
+                    map.getCanvas().style.cursor = 'pointer';
+                  });
+                  map.on('mouseleave', 'clusters', () => {
+                  map.getCanvas().style.cursor = '';
+                  });
+                  map.on('mouseleave', 'unclustered-point', () => {
+                    map.getCanvas().style.cursor = '';
+                  });
                 buildLocationList(stores);
-                addMarkers();
+               // addMarkers();
               });
+            });
         
               /**
                * Add a marker to the map for every store listing.
@@ -255,7 +326,7 @@ function startApp2(){
                    * Create a marker using the div element
                    * defined above and add it to the map.
                    **/
-                  new mapboxgl.Marker(el, { offset: [0, -23] })
+                  new mapboxgl.Marker(el, { offset: [0, -23],"minzoom": 14 })
                     .setLngLat(marker.geometry.coordinates)
                     .addTo(map);
         
@@ -359,8 +430,9 @@ function startApp2(){
                   )
                   .addTo(map);
               }
-            
-      
+              map.on('zoom', () => {
+               // markerCheck(map.getZoom());
+              });
           })
           .catch(error => {
           console.log(error)
@@ -369,4 +441,30 @@ function startApp2(){
           .finally(() => this.loading = false)
       }
   });
+  
+setTimeout(
+  function() {
+  //  markerCheck(5);
+}, 1400);
+  
+
+
+}
+function markerCheck(zoomLvl){
+  if (zoomLvl < 14) {
+    toggle('marker', 'hide'); // hides
+  } else {
+    
+    toggle('marker', 'show'); // Shows
+  }
+}
+function toggle(className, displayState){
+  var elements = document.getElementsByClassName(className)
+  for (var i = 0; i < elements.length; i++){
+    if(displayState == "hide"){
+      elements[i].classList.add("hide-marker");
+    } else{
+      elements[i].classList = 'marker'
+    }
+  }
 }

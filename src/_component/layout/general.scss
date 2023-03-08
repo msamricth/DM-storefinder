@@ -41,7 +41,9 @@ body {
   width: 56px;
   background-image: url(https://docs.mapbox.com/help/demos/building-a-store-locator/marker.png);
 }
-
+.hide-marker {
+  opacity: 0 !important;
+}
 /* Marker tweaks */
 .mapboxgl-popup {
   padding-bottom: 50px;
