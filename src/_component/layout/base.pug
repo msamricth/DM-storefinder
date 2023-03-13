@@ -1,19 +1,43 @@
 doctype html
 html(lang="en")
-  head
-    title Welcome to Pug Starter
-    meta(content="Simple pug (jade) starter aimed to quickly deliver HTML & CSS projects" name="description")
-    //- this checks to see the the "embed" property is set to "true"
-    //- in the package.json file
-    if config.entry.css.embed
-      link(rel="stylesheet" href=`${embedPath}` embed)
-  body
-    .content
-      include ../top-menu/top-menu
-      block content
-    //- The style.css is at the bottom so it doesn't
-    //- block the loading of assets
-    if config.entry.css.external
-      link(rel="stylesheet", href=`${baseUrl}style.css`)
+	head
+		meta(http-equiv="Content-Type", content="text/html;charset=UTF-8")
+		meta(name="viewport", content="width=device-width, initial-scale=1.0")
+		title Dr. Martens Store Locator
 
-    script(src='bundle.js')
+		link(rel="preconnect" href="https://fonts.googleapis.com")
+		link(rel="preconnect" href="https://fonts.gstatic.com" crossorigin)
+		link(href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500&family=Overpass&display=swap" rel="stylesheet")
+		link(rel="preload" as="style" href="https://www.drmartens.com/wro/extra_responsive_dm.css?v=1662495964581")
+		link(rel="preload" as="style" href="https://www.drmartens.com/wro/new_addons_responsive.css?v=1662495964581")
+		style.
+			html { box-sizing: border-box; font-size: 16px; } 
+			*, *:before, *:after { box-sizing: border-box; text-decoration: none; } 
+			body, h1, h2, h3, h4, h5, h6, p, ol, ul { margin: 0; padding: 0; font-weight: normal; } 
+			ol, ul { list-style: none; } 
+			.footer-top {
+				margin-top: 60px;
+			}
+			@media screen and (max-width: 768px) {
+				.footer-top {
+					margin-top: 90px;
+				}
+			}
+		if config.entry.css.embed
+			link(rel="stylesheet" href=`${embedPath}` embed)
+	body.dm-main 
+		div(style="background:#191b1d;height:35px;")
+		div(style="background:#000 url('https://www.drmartens.com/_ui/responsive/theme-dm/images/drm-logo-mobile.svg');background-size:80px 57px;background-position:center;background-repeat:no-repeat;height:79px;")
+
+		block content
+
+		div.footer-top(style="background:#191b1d;height:107px;")
+		div(style="background:#24272a;height:414px;")
+		div(style="background:#191b1d;height:60px;") 
+		if config.entry.css.external
+			link(rel="stylesheet", href=`${baseUrl}style.css`)
+
+		script(src='bundle.js')
+
+
+
