@@ -3,5 +3,5 @@ version: "3.8"
 services:
   pug-starter:
     build: ./
-    container_name: pug-starter
+    container_name: dm-storefinder
     # network_mode: host
