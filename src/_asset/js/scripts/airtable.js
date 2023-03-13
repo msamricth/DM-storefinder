@@ -276,20 +276,7 @@ function startApp2() {
               listing.classList.add("active");
             });
 
-            map.on("mouseenter", ".mapCluster", () => {
-              map.getCanvas().style.cursor = "pointer";
-            });
-            map.on("mouseenter", "unclustered-point", () => {
-              map.getCanvas().style.cursor = "pointer";
-            });
-            map.on("mouseleave", "clusters", () => {
-              map.getCanvas().style.cursor = "";
-            });
-            map.on("mouseleave", "unclustered-point", () => {
-              map.getCanvas().style.cursor = "";
-            });
-            buildLocationList(stores);
-            // addMarkers();
+           
 
             const markers = {};
             let markersOnScreen = {};
@@ -339,6 +326,48 @@ function startApp2() {
               }
               markersOnScreen = newMarkers;
             }
+            const geocoder = new MapboxGeocoder({
+              accessToken: mapboxgl.accessToken, // Set the access token
+              mapboxgl: mapboxgl, // Set the mapbox-gl instance
+              marker: true, // Use the geocoder's default marker style
+              //bbox: [-77.210763, 38.803367, -76.853675, 39.052643] // Set the bounding box coordinates
+            });
+            
+            geocoder.on('result', (event) => {
+              const searchResult = event.result.geometry;
+              const options = { units: 'miles' };
+              for (const store of stores.features) {
+                store.properties.distance = turf.distance(
+                  searchResult,
+                  store.geometry,
+                  options
+                );
+              }
+              stores.features.sort((a, b) => {
+                if (a.properties.distance > b.properties.distance) {
+                  return 1;
+                }
+                if (a.properties.distance < b.properties.distance) {
+                  return -1;
+                }
+                return 0; // a must be equal to b
+              });
+              const listings = document.getElementById('listings');
+              while (listings.firstChild) {
+                listings.removeChild(listings.firstChild);
+              }
+              buildLocationList(stores);
+              const activeListing = document.getElementById(
+                `listing-${stores.features[0].properties.id}`
+              );
+              activeListing.classList.add('active');
+           
+
+              createPopUp(stores.features[0]);
+            });
+
+
+            
             map.on("render", () => {
               if (!map.isSourceLoaded("places")) return;
               updateMarkers();
@@ -347,6 +376,14 @@ function startApp2() {
               //updateMarkers();
               markerCheck(map.getZoom());
             });
+            map.on("mouseenter", "unclustered-point", () => {
+              map.getCanvas().style.cursor = "pointer";
+            });
+            map.on("mouseleave", "unclustered-point", () => {
+              map.getCanvas().style.cursor = "";
+            });
+            map.addControl(geocoder, 'top-right');
+            buildLocationList(stores);
           });
 
           /**
@@ -387,6 +424,10 @@ function startApp2() {
                * 3. Close all other popups and display popup for clicked store
                * 4. Highlight listing in sidebar (and remove highlight for all other listings)
                **/
+              if (store.properties.distance) {
+                const roundedDistance = Math.round(store.properties.distance * 100) / 100;
+                details.innerHTML += `<div><strong>${roundedDistance} miles away</strong></div>`;
+              }
               link.addEventListener("click", function () {
                 for (const feature of stores.features) {
                   if (this.id === `link-${feature.properties.id}`) {
@@ -413,7 +454,38 @@ function startApp2() {
               zoom: 15
             });
           }
-
+          function getBbox(sortedStores, storeIdentifier, searchResult) {
+            const lats = [
+              sortedStores.features[storeIdentifier].geometry.coordinates[1],
+              searchResult.coordinates[1]
+            ];
+            const lons = [
+              sortedStores.features[storeIdentifier].geometry.coordinates[0],
+              searchResult.coordinates[0]
+            ];
+            const sortedLons = lons.sort((a, b) => {
+              if (a > b) {
+                return 1;
+              }
+              if (a.distance < b.distance) {
+                return -1;
+              }
+              return 0;
+            });
+            const sortedLats = lats.sort((a, b) => {
+              if (a > b) {
+                return 1;
+              }
+              if (a.distance < b.distance) {
+                return -1;
+              }
+              return 0;
+            });
+            return [
+              [sortedLons[0], sortedLats[0]],
+              [sortedLons[1], sortedLats[1]]
+            ];
+          }
           /**
            * Create a Mapbox GL JS `Popup`.
            **/

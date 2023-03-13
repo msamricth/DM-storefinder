@@ -44,4 +44,7 @@ include('https://code.jquery.com/jquery-3.6.1.min.js','jquery', true,'anonymous'
 include('https://api.tiles.mapbox.com/mapbox-gl-js/v2.13.0/mapbox-gl.js', 'mapbox');
 include('https://kit.fontawesome.com/8b0174b394.js','fontawesome', true, 'anonymous');
 
+includeCSS('https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.css', 'mapbox-gl-geocoder');
+include('https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.min.js', 'mapbox-gl-geocoder');
 
+include('https://npmcdn.com/@turf/turf/turf.min.js', 'TurfJS');
