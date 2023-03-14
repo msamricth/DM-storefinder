@@ -3,13 +3,17 @@
     width: 33.3333%;
     height: 100%;
     top: 0;
+    padding-top: 45px;
     left: 66.6666%;
+    z-index: 1;
     overflow: hidden;
     border-right: 1px solid rgba(0, 0, 0, 0.25);
+    background-color: white;
   }
   .mapboxgl-ctrl-geocoder {
     border: 0;
     position: absolute;
+    z-index: 9;
     border-radius: 0;
     top: 0;
     width: 800px;

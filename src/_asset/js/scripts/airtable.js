@@ -53,7 +53,7 @@ function startApp2() {
         .then((response) => {
           //this.siteTag = response.data.records[0].fields.TagLine;
           this.markerIMG = response.data.records[0].fields.marker_image[0].url;
-          // markerIMG = this.markerIMG;
+          markerIMG = this.markerIMG;
 
           // html stuff document.getElementById("siteTitle").innerHTML = this.siteTitle;
           //  $('#siteTitle').removeClass('placeholder');
@@ -67,7 +67,7 @@ function startApp2() {
         .finally(() => (this.loading = false));
     }
   });
-  var markerIMG =
+ // var markerIMG =
     "https://v5.airtableusercontent.com/v1/15/15/1678752000000/GZBaKTeElwmasRQ6gVfAGA/5XuZIYfNl6e2ytyY2fwiH8YefDRgf0Fba7zFksnen7ak_fqwV7qzvfmmJ7N76Wj--QvUBKvAlOC3CAN4z0Fcp6G-VFmebz5R6zccXua7aMo/QX6GKZ1SBK0plpmhLjGmKqZlR4C_j1GH-HfgbWZ1SU0";
   var stores = new Vue({
     el: "#app",
@@ -241,7 +241,7 @@ function startApp2() {
                 type: "symbol",
                 layout: {
                   "icon-image": "pin", // reference the image
-                  "icon-size": 0.75
+                  "icon-size": 0.25
                 }
               });
             });
@@ -369,7 +369,6 @@ function startApp2() {
 
             
             map.on("render", () => {
-              if (!map.isSourceLoaded("places")) return;
               updateMarkers();
             });
             map.on("zoom", () => {
