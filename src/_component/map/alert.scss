@@ -1,0 +1,31 @@
+
+.map-alert {
+    position: sticky;
+    top: calc(100% - 58px - 40px);
+    width: 320px;
+    height: 80px;
+    background: black;
+    left: 40px;
+    padding: 12px 30px 12px 12px;
+    z-index: 999;
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.25s ease opacity;
+    &.show {
+        opacity: 1;
+        visibility: visible;
+    }
+    .close-alert {
+        box-sizing: content-box;
+        width: 1em;
+        height: 1em;
+        padding: 0.25em 0.25em;
+        color: white;
+        background-color: transparent;
+        border: 0;
+        cursor: pointer;
+        position: absolute;
+        top: 12px;
+        right: 12px;
+    }
+}

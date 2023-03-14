@@ -332,8 +332,19 @@ function startApp2() {
               marker: true, // Use the geocoder's default marker style
               //bbox: [-77.210763, 38.803367, -76.853675, 39.052643] // Set the bounding box coordinates
             });
-            
-            geocoder.on('result', (event) => {
+            // Add geolocate control to the map.
+              map.addControl(
+                new mapboxgl.GeolocateControl({
+                  positionOptions: {
+                 // enableHighAccuracy: true
+                  },
+                  // When active the map will receive updates to the device's location as it changes.
+                  //trackUserLocation: true,
+                  // Draw an arrow next to the location dot to indicate which direction the device is heading.
+                //  showUserHeading: true
+                })
+              );
+              geocoder.on('result', (event) => {
               const searchResult = event.result.geometry;
               const options = { units: 'miles' };
               for (const store of stores.features) {
@@ -365,6 +376,67 @@ function startApp2() {
 
               createPopUp(stores.features[0]);
             });
+            
+            
+            function geoFindMe() {
+              const status = document.querySelector("#geolocatorstatus");
+              
+            
+              function success(position) {
+                status.textContent = "";
+                
+                var usrCoordinates = {
+                  type: "Point",
+                  coordinates: [
+                    position.coords.longitude,
+                    position.coords.latitude
+                  ]
+                };
+                const searchResult = usrCoordinates;
+                const options = { units: 'miles' };
+                for (const store of stores.features) {
+                  store.properties.distance = turf.distance(
+                    searchResult,
+                    store.geometry,
+                    options
+                  );
+                }
+                stores.features.sort((a, b) => {
+                  if (a.properties.distance > b.properties.distance) {
+                    return 1;
+                  }
+                  if (a.properties.distance < b.properties.distance) {
+                    return -1;
+                  }
+                  return 0; // a must be equal to b
+                });
+                const listings = document.getElementById('listings');
+                while (listings.firstChild) {
+                  listings.removeChild(listings.firstChild);
+                }
+                buildLocationList(stores);
+                const activeListing = document.getElementById(
+                  `listing-${stores.features[0].properties.id}`
+                );
+                activeListing.classList.add('active');
+             
+            
+                createPopUp(stores.features[0]);
+              }
+            
+              function error() {
+                status.textContent = "Unable to retrieve your location";
+              }
+            
+              if (!navigator.geolocation) {
+                status.textContent = "Geolocation is not supported by your browser";
+              } else {
+                status.textContent = "Locating…";
+                navigator.geolocation.getCurrentPosition(success, error);
+              }
+            }
+            
+            document.querySelector("#find-me").addEventListener("click", geoFindMe);
 
 
             
@@ -528,3 +600,10 @@ function toggle(className, displayState) {
     }
   }
 }
+
+
+
+
+
+
+
