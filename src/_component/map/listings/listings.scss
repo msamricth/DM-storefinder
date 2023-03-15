@@ -1,26 +1,92 @@
-.sidebar {
+#app {
+  .sidebar {
     position: relative;
     width: 33.3333%;
     height: 100%;
-    top: 60px;
+    top: 0;
     padding-top: 0px;
     z-index: 1;
     overflow: hidden;
     border-right: 1px solid rgba(0, 0, 0, 0.25);
-    background-color: white;
+    background-color: white; 
+  @media screen and (min-width: 1024px) {
+  } 
+    .listings {
+        .item {
+          position:relative;
+          min-height: 118px;
+          display: flex;
+          align-items: center;
+          border-top: 1px solid rgba(215, 215, 215, 0.3);
+          &:hover {
+            background-color: rgba(215, 215, 215, 0.3);
+          }
+          a {
+            color: black;
+            font-weight: 700;
+            font-size: 10px;
+            &::after {
+              position: absolute;
+              top: 0;
+              right: 0;
+              bottom: 0;
+              left: 0;
+              z-index: 1;
+              content: "";
+            }
+          }  
+      .listing-details {
+        padding: 10px;
+        font-size: 10px;
+          small {
+            font-size: 10px;
+            display:block;
+          }
+          
+        }
+      }
+    }
   }
   .mapboxgl-ctrl-geocoder {
     border: 0;
-    position: absolute;
+    //position: absolute;
     z-index: 9;
-    left: calc(100% + 25px);
+    //left: calc(100% + 25px);
     border-radius: 0;
     top: 0;
-    width: 800px;
+    width: 100%;
+    max-width: 100%;
     margin-top: 0;
+    &> div {
+      min-width: 100%;
+      margin-left: 0;
+    }
+    .mapboxgl-ctrl-geocoder--input {
+        font-family: $mainfont;
+        height: 50px;
+    }
+    .mapboxgl-ctrl-geocoder--icon {
+        top: 14px;
+    }
+    .suggestions-wrapper {
+      height: 100%;
+      .suggestions {
+        border-radius: 0;
+        padding: 10px 0;
+        top: 100%;
+        &> li > a {
+            padding: 0 24px;
+        }
+        .mapboxgl-ctrl-geocoder--suggestion {
+            font-family: $mainfont;
+            font-size: 10px;
+            display: flex;  
+            .mapboxgl-ctrl-geocoder--suggestion-title {
+                padding-right: 6px;
+            }
+        }
+      }
+    }
   }
   
-  .mapboxgl-ctrl-geocoder > div {
-    min-width: 100%;
-    margin-left: 0;
-  }
+}

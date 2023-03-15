@@ -1,5 +1,5 @@
 const app = document.getElementById('app');
-var isVueLoaded,isAxiosLoaded,isAirtableLoaded,isJqueryLoaded;
+var isVueLoaded,isAxiosLoaded,isAirtableLoaded,isJqueryLoaded,isMapboxLoaded;
 const observer = new MutationObserver((mutations) => {
   if (mutations[0].attributeName === 'class') { 
     
@@ -7,11 +7,16 @@ const observer = new MutationObserver((mutations) => {
     isAxiosLoaded = app.classList.contains('axios-loaded');
     isAirtableLoaded = app.classList.contains('airtable-loaded');
     isJqueryLoaded = app.classList.contains('jquery-loaded');
+    isMapboxLoaded = app.classList.contains('mapbox-loaded');
+
+    
     if(isVueLoaded){
       if(isAxiosLoaded){
         if(isAirtableLoaded){
           if(isJqueryLoaded){ 
-            startApp2();
+            if(isMapboxLoaded){
+              startApp2();
+            }
           }
         }
       }
@@ -110,7 +115,8 @@ function startApp2() {
             container: "map",
             style: "mapbox://styles/mapbox/light-v11",
             center: [-98.034084142948, 38.909671288923],
-            zoom: 3
+            zoom: 3.5,
+            maxZoomOut: 3.5
           });
           var stores = {
             type: "FeatureCollection",
@@ -326,25 +332,45 @@ function startApp2() {
               }
               markersOnScreen = newMarkers;
             }
+            function forwardGeocoder(query) {
+              const matchingFeatures = [];
+             // const features = map.querySourceFeatures("places");
+
+              // for every cluster on the screen, create an HTML marker for it (if we didn't yet),
+              // and add it to the map if it's not there already
+              for (const feature of stores.features) {
+              // Handle queries with different capitalization
+                // than the source data by calling toLowerCase().
+                
+                const storeName = '<i class="fa-solid fa-store"></i> '+`${feature.properties.name}`+', '+`${feature.properties.address}`;
+                if (
+                  feature.properties.name
+                  .toLowerCase()
+                  .includes(query.toLowerCase())
+                ) {
+                  // Add a tree emoji as a prefix for custom
+                  // data results using carmen geojson format:
+                  // https://github.com/mapbox/carmen/blob/master/carmen-geojson.md
+                  feature['place_name'] = storeName;
+                  feature['center'] = feature.geometry.coordinates;
+                  feature['place_type'] = ['store'];
+                  matchingFeatures.push(feature);
+                }
+              }
+              return matchingFeatures;
+            }
             const geocoder = new MapboxGeocoder({
               accessToken: mapboxgl.accessToken, // Set the access token
               mapboxgl: mapboxgl, // Set the mapbox-gl instance
-              marker: true, // Use the geocoder's default marker style
+              marker: false, // Use the geocoder's default marker style
+              localGeocoder: forwardGeocoder,
+              types: 'place',
+              countries: 'US'
               //bbox: [-77.210763, 38.803367, -76.853675, 39.052643] // Set the bounding box coordinates
             });
-            // Add geolocate control to the map.
-              map.addControl(
-                new mapboxgl.GeolocateControl({
-                  positionOptions: {
-                 // enableHighAccuracy: true
-                  },
-                  // When active the map will receive updates to the device's location as it changes.
-                  //trackUserLocation: true,
-                  // Draw an arrow next to the location dot to indicate which direction the device is heading.
-                //  showUserHeading: true
-                })
-              );
+            geocoder.addTo('#geocoder-container');
               geocoder.on('result', (event) => {
+               document.querySelector('.mapboxgl-ctrl-geocoder--input') .value = ''; 
               const searchResult = event.result.geometry;
               const options = { units: 'miles' };
               for (const store of stores.features) {
@@ -374,6 +400,7 @@ function startApp2() {
               activeListing.classList.add('active');
            
 
+              flyToStore(stores.features[0])
               createPopUp(stores.features[0]);
             });
             
@@ -420,7 +447,7 @@ function startApp2() {
                 );
                 activeListing.classList.add('active');
              
-            
+                flyToStore(stores.features[0])
                 createPopUp(stores.features[0]);
               }
             
@@ -453,7 +480,7 @@ function startApp2() {
             map.on("mouseleave", "unclustered-point", () => {
               map.getCanvas().style.cursor = "";
             });
-            map.addControl(geocoder, 'top-right');
+           // map.addControl(geocoder, 'top-right');
             buildLocationList(stores);
           });
 
@@ -471,22 +498,21 @@ function startApp2() {
               listing.id = `listing-${store.properties.id}`;
               /* Assign the `item` class to each listing for styling. */
               listing.className = "item";
-
-              /* Add the link to the individual listing created above. */
               const link = listing.appendChild(document.createElement("a"));
               link.href = "#";
               link.className = "title";
               link.id = `link-${store.properties.id}`;
-              link.innerHTML = `${store.properties.address}`;
-
               /* Add details to the individual listing. */
               const details = listing.appendChild(
                 document.createElement("div")
               );
-              details.innerHTML = "<h5>" + `${store.properties.name}` + "</h5>";
-              details.innerHTML += `${store.properties.address}`;
-              details.innerHTML += ` &middot; ${store.properties.phoneFormatted}`;
-              details.innerHTML += ` &middot; ${store.properties.hours}`;
+              details.className = 'listing-details';
+              /* Add the link to the individual listing created above. */
+
+              details.innerHTML = "<h3>" + `${store.properties.name}` + "</h3>";
+              details.innerHTML += "<small>" + `${store.properties.address}` + "</small>";
+              details.innerHTML += "<strong>" + `${store.properties.hours}` + "</strong>";
+             
 
               /**
                * Listen to the element and when it is clicked, do four things:
@@ -499,7 +525,8 @@ function startApp2() {
                 const roundedDistance = Math.round(store.properties.distance * 100) / 100;
                 details.innerHTML += `<div><strong>${roundedDistance} miles away</strong></div>`;
               }
-              link.addEventListener("click", function () {
+              link.addEventListener("click", function (event) {
+                event.preventDefault();
                 for (const feature of stores.features) {
                   if (this.id === `link-${feature.properties.id}`) {
                     flyToStore(feature);
@@ -522,7 +549,7 @@ function startApp2() {
           function flyToStore(currentFeature) {
             map.flyTo({
               center: currentFeature.geometry.coordinates,
-              zoom: 15
+              zoom: 10
             });
           }
           function getBbox(sortedStores, storeIdentifier, searchResult) {
