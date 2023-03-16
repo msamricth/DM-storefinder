@@ -217,7 +217,7 @@ function startApp2() {
                 phoneFormatted: theRecords[i].fields.Phone,
                 name: theRecords[i].fields.Name,
                 address: theRecords[i].fields.full_address,
-                slug: "/" + theRecords[i].fields.Slug,
+                slug: "?" + theRecords[i].fields.Slug,
                 hours: closing_time_display
               }
             });
@@ -545,7 +545,7 @@ function startApp2() {
                 event.preventDefault();
                 for (const feature of stores.features) {
                   if (this.id === `link-${feature.properties.id}`) {
-                    flyToStore(feature);
+                    flyToStoreAndChange(feature);
                     createPopUp(feature);
                   }
                 }
@@ -569,6 +569,19 @@ function startApp2() {
               center: currentFeature.geometry.coordinates,
               zoom: 10
             });
+          }
+          function flyToStoreAndChange(currentFeature) {
+            map.flyTo({
+              center: currentFeature.geometry.coordinates,
+              zoom: 10
+            });
+            var storeLandingURL = window.location.href;
+            if (storeLandingURL.indexOf("?") > -1) {
+              storeLandingURL = storeLandingURL.split('?')[0];
+            }
+
+            window.location.href = storeLandingURL + currentFeature.properties.slug;
+
           }
           function getBbox(sortedStores, storeIdentifier, searchResult) {
             const lats = [
@@ -613,7 +626,7 @@ function startApp2() {
               .setHTML(
                 `<h3>${currentFeature.properties.name}</h3><h4>${currentFeature.properties.address}</h4>`
               )
-              .addTo(map);
+              .window.location.href = addTo(map);
           }
 
           
