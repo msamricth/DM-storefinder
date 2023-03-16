@@ -15,7 +15,9 @@ const observer = new MutationObserver((mutations) => {
         if(isAirtableLoaded){
           if(isJqueryLoaded){ 
             if(isMapboxLoaded){
-              startApp2();
+              if (!app.classList.contains("store-page")) {
+                startApp2();
+              }
             }
           }
         }
@@ -25,7 +27,7 @@ const observer = new MutationObserver((mutations) => {
 });
 observer.observe(app, { attributes: true });
 
-var map, markerIMG;
+var map, markerIMG, page_title;
 
 function startApp2() {
   observer.disconnect();
@@ -39,7 +41,8 @@ function startApp2() {
         rfields: [],
         markerIMG: null,
         defaultStoreIMG: null,
-        Sfields: []
+        Sfields: [],
+        page_title: null
       };
     },
     filters: {
@@ -63,6 +66,8 @@ function startApp2() {
           this.markerIMG = response.data.records[0].fields.marker_image[0].url;
           markerIMG = this.markerIMG;
 
+          page_title = response.data.records[0].fields.page_title;
+          document.title = page_title;
           // html stuff document.getElementById("siteTitle").innerHTML = this.siteTitle;
           //  $('#siteTitle').removeClass('placeholder');
           //  document.getElementById("tagline").innerHTML = this.siteTag;
@@ -519,7 +524,6 @@ function startApp2() {
                     details.innerHTML += "<strong>" + `${store.properties.hours}` + "</strong>";
                   }
                 
-
                   /**
                    * Listen to the element and when it is clicked, do four things:
                    * 1. Update the `currentFeature` to the store associated with the clicked link

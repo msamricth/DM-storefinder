@@ -1,0 +1,100 @@
+.store-page-container {
+    .store-page-header {
+        height: 180px;
+        overflow: hidden;
+        @media screen and (min-width: 768px) {
+            height: 320px;
+        }
+        @media screen and (min-width: 1440px) {
+            height: 540px;
+        }
+        .store-image {
+            max-width: 100%;
+        }
+    }
+    
+    .store-page-details {
+        padding: 20px 10px;
+        
+        @media screen and (min-width: 1024px) {
+            display: flex;
+            justify-content: space-between;
+        }
+            
+        @media screen and (min-width: 768px) {
+            padding: 45px 40px;
+            .mobile-address-label {display: none;}
+        }
+        h1 {
+            margin-bottom: 10px;
+        }
+        .closing-time {
+            width: 152px;
+            height: 32px;
+            background: #FFE512;
+            font-family: 'Oswald';
+            font-style: normal;
+            font-weight: 600;
+            font-size: 16px;
+            line-height: 24px;
+            margin-bottom: 10px;
+        /* identical to box height */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-transform: uppercase;
+        }
+        .store-page-details-header {
+            margin-bottom: 10px;
+            @media screen and (min-width: 768px) {
+                margin-bottom: 30px;
+            }
+            .mobile-address-label {
+                padding-bottom: 10px;
+            }
+        }
+        .store-page-details-inner {
+            display: flex;
+            font-size: 16px;
+            margin-bottom: 20px;
+            align-items: center;
+            @media screen and (max-width: 768px) {
+                .address-label {display: none;}
+            }
+            div {
+                max-width: 300px;
+                margin-right: 40px;
+                h3 {
+                    margin-bottom: 10px;
+                }
+            }
+            div:last-of-type {
+                margin-bottom: 0;
+            }
+        }
+    }
+    .store-btn {
+        background-color: rgb(255, 230, 0);
+        color: #000;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 60px;
+        &:hover{
+            background-color: rgb(205, 185, 3);
+        }
+        svg {
+            margin-right: 10px;
+            overflow: visible;
+            position: relative;
+            top: 1px;
+        }
+        span {
+            color: #000; 
+            font-family: "Oswald", "Trade Gothic Bold", sans-serif;
+            font-size: 18px;
+            letter-spacing: 0.05em; 
+        }
+    }
+    
+}

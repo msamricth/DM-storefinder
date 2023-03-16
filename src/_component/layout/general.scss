@@ -48,6 +48,20 @@ body {
 }
 #app {
   position: relative;
+  background-color: #fff;
+  color: #000;
+  h1 {
+	font-family: 'Oswald';
+	font-style: normal;
+	font-weight: 600;
+	font-size: 58px;
+  }
+  h3 {
+	  font-family: 'Oswald';
+	  text-transform: uppercase;
+	  font-weight: 700;
+	  font-size: 18px;
+  }
 }
 .fade {
     visibility: hidden;
