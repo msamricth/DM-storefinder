@@ -17,9 +17,8 @@ if (pageURL.indexOf("?") > -1) {
           if(isAxiosLoaded){
             if(isAirtableLoaded){
               if(isJqueryLoaded){ 
-                if(isMapboxLoaded){
                   startApp2();
-                }
+                
               }
             }
           }
@@ -93,9 +92,9 @@ if (pageURL.indexOf("?") > -1) {
                           
                           details.innerHTML = "<h3>" + theRecords[i].fields.Name; + "</h3>";
                           details.innerHTML += "<small>"+theRecords[i].fields.full_address+ "</small>";
-                          if(store.properties.hours){
+                   
                             details.innerHTML += "<strong>" +theRecords[i].fields.Hours+ "</strong>";
-                          }
+                          
                     } 
                 }
 

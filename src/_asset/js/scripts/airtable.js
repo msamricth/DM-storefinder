@@ -105,14 +105,18 @@ function startApp2() {
                 SMMZoom = 1.6;
                   //map.setZoom(2); //set map zoom level for mobile size
               };
-              map = new mapboxgl.Map({
-                container: "map",
-                style: "mapbox://styles/mapbox/light-v11",
-                center: [-98.034084142948, 38.909671288923],
-                zoom: SMZoom,
-                minZoom: SMMZoom
-                //maxBounds: bounds
-              });
+              const mapContainr = document.getElementById('map');
+              var map;
+              if(mapContainr){
+                map = new mapboxgl.Map({
+                  container: "map",
+                  style: "mapbox://styles/mapbox/light-v11",
+                  center: [-98.034084142948, 38.909671288923],
+                  zoom: SMZoom,
+                  minZoom: SMMZoom
+                  //maxBounds: bounds
+                });
+              }
               var stores = {
                 type: "FeatureCollection",
                 features: []
@@ -211,209 +215,163 @@ function startApp2() {
               /**
                * Wait until the map loads to make changes to the map.
                */
-              map.on("load", () => {
-                map.loadImage(markerIMG, (error, image) => {
-                  if (error) throw error;
+              
+              if(mapContainr){
+                map.on("load", () => {
+                  map.loadImage(markerIMG, (error, image) => {
+                    if (error) throw error;
 
-                  // Add the image to the map style.
-                  map.addImage("pin", image);
+                    // Add the image to the map style.
+                    map.addImage("pin", image);
+                    /**
+                     * This is where your '.addLayer()' used to be, instead
+                     * add only the source without styling a layer
+                     */
+
+                    map.addSource("places", {
+                      type: "geojson",
+                      data: stores,
+                      cluster: true,
+                      clusterMaxZoom: 4, // Max zoom to cluster points on
+                      clusterRadius: 50 // Radius of each cluster when clustering points (defaults to 50)
+                    });
+                    map.addLayer({
+                      id: "clusters",
+                      type: "circle",
+                      source: "places",
+                      filter: ["has", "point_count"]
+                    });
+                    map.addLayer({
+                      id: "unclustered-point",
+                      source: "places",
+                      filter: ["!", ["has", "point_count"]],
+                      type: "symbol",
+                      layout: {
+                        "icon-image": "pin", // reference the image
+                        "icon-size": 0.25
+                      }
+                    });
+                  });
                   /**
-                   * This is where your '.addLayer()' used to be, instead
-                   * add only the source without styling a layer
+                   * Add all the things to the page:
+                   * - The location listings on the side of the page
+                   * - The markers onto the map
                    */
 
-                  map.addSource("places", {
-                    type: "geojson",
-                    data: stores,
-                    cluster: true,
-                    clusterMaxZoom: 4, // Max zoom to cluster points on
-                    clusterRadius: 50 // Radius of each cluster when clustering points (defaults to 50)
-                  });
-                  map.addLayer({
-                    id: "clusters",
-                    type: "circle",
-                    source: "places",
-                    filter: ["has", "point_count"]
-                  });
-                  map.addLayer({
-                    id: "unclustered-point",
-                    source: "places",
-                    filter: ["!", ["has", "point_count"]],
-                    type: "symbol",
-                    layout: {
-                      "icon-image": "pin", // reference the image
-                      "icon-size": 0.25
+                  map.on("click", "unclustered-point", (e) => {
+                    const coordinates = e.features[0].geometry.coordinates.slice();
+
+                    // Ensure that if the map is zoomed out such that
+                    // multiple copies of the feature are visible, the
+                    // popup appears over the copy being pointed to.
+                    while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+                      coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
                     }
-                  });
-                });
-                /**
-                 * Add all the things to the page:
-                 * - The location listings on the side of the page
-                 * - The markers onto the map
-                 */
 
-                map.on("click", "unclustered-point", (e) => {
-                  const coordinates = e.features[0].geometry.coordinates.slice();
-
-                  // Ensure that if the map is zoomed out such that
-                  // multiple copies of the feature are visible, the
-                  // popup appears over the copy being pointed to.
-                  while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
-                    coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
-                  }
-
-                  flyToStoreAndChange(e.features[0]);
-                  /* Close all other popups and display popup for clicked store */
-                  /* Highlight listing in sidebar */
-                  const activeItem = document.getElementsByClassName("active");
-                  // e.stopPropagation();
-                  if (activeItem[0]) {
-                    activeItem[0].classList.remove("active");
-                  }
-                  const listing = document.getElementById(
-                    `listing-${e.features[0].properties.id}`
-                  );
-                  listing.classList.add("active");
-                });
-
-              
-
-                const markers = {};
-                let markersOnScreen = {};
-
-                function updateMarkers() {
-                  const newMarkers = {};
-                  const features = map.querySourceFeatures("places");
-
-                  // for every cluster on the screen, create an HTML marker for it (if we didn't yet),
-                  // and add it to the map if it's not there already
-                  for (const feature of features) {
-                    const coords = feature.geometry.coordinates;
-                    const props = feature.properties;
-                    if (!props.cluster) continue;
-                    const id = props.cluster_id;
-                    let marker = markers[id];
-                    if (!marker) {
-                      var el = document.createElement("div");
-                      el.classList.add("mapCluster");
-                      el.innerText = props.point_count;
-                      marker = markers[id] = new mapboxgl.Marker({
-                        element: el
-                      }).setLngLat(coords);
-
-                      el.addEventListener("click", (e) => {
-                        
-                        const clusterId = feature.properties.cluster_id;
-                        map
-                          .getSource("places")
-                          .getClusterExpansionZoom(clusterId, (err, zoom) => {
-                            if (err) return;
-
-                            map.easeTo({
-                              center: feature.geometry.coordinates,
-                              zoom: zoom
-                            });
-                          });
-                      });
+                    flyToStoreAndChange(e.features[0]);
+                    /* Close all other popups and display popup for clicked store */
+                    /* Highlight listing in sidebar */
+                    const activeItem = document.getElementsByClassName("active");
+                    // e.stopPropagation();
+                    if (activeItem[0]) {
+                      activeItem[0].classList.remove("active");
                     }
-                    newMarkers[id] = marker;
-
-                    if (!markersOnScreen[id]) marker.addTo(map);
-                  }
-                  // for every marker we've added previously, remove those that are no longer visible
-                  for (const id in markersOnScreen) {
-                    if (!newMarkers[id]) markersOnScreen[id].remove();
-                  }
-                  markersOnScreen = newMarkers;
-                }
-                function forwardGeocoder(query) {
-                  const matchingFeatures = [];
-                // const features = map.querySourceFeatures("places");
-
-                  // for every cluster on the screen, create an HTML marker for it (if we didn't yet),
-                  // and add it to the map if it's not there already
-                  for (const feature of stores.features) {
-                  // Handle queries with different capitalization
-                    // than the source data by calling toLowerCase().
-                    
-                    const storeName = '<i class="fa-solid fa-store"></i> '+`${feature.properties.name}`+', '+`${feature.properties.address}`;
-                    if (
-                      feature.properties.name
-                      .toLowerCase()
-                      .includes(query.toLowerCase())
-                    ) {
-                      // Add a tree emoji as a prefix for custom
-                      // data results using carmen geojson format:
-                      // https://github.com/mapbox/carmen/blob/master/carmen-geojson.md
-                      feature['place_name'] = storeName;
-                      feature['center'] = feature.geometry.coordinates;
-                      feature['place_type'] = ['store'];
-                      matchingFeatures.push(feature);
-                    }
-                  }
-                  return matchingFeatures;
-                }
-                const geocoder = new MapboxGeocoder({
-                  accessToken: mapboxgl.accessToken, // Set the access token
-                  mapboxgl: mapboxgl, // Set the mapbox-gl instance
-                  marker: false, // Use the geocoder's default marker style
-                  localGeocoder: forwardGeocoder,
-                  types: 'place',
-                  countries: 'US'
-                  //bbox: [-77.210763, 38.803367, -76.853675, 39.052643] // Set the bounding box coordinates
-                });
-                geocoder.addTo('#geocoder-container');
-                  geocoder.on('result', (event) => {
-                  document.querySelector('.mapboxgl-ctrl-geocoder--input').value = ''; 
-                  const searchResult = event.result.geometry;
-                  const options = { units: 'miles' };
-                  for (const store of stores.features) {
-                    store.properties.distance = turf.distance(
-                      searchResult,
-                      store.geometry,
-                      options
+                    const listing = document.getElementById(
+                      `listing-${e.features[0].properties.id}`
                     );
-                  }
-                  stores.features.sort((a, b) => {
-                    if (a.properties.distance > b.properties.distance) {
-                      return 1;
-                    }
-                    if (a.properties.distance < b.properties.distance) {
-                      return -1;
-                    }
-                    return 0; // a must be equal to b
+                    listing.classList.add("active");
                   });
-                  const listings = document.getElementById('listings');
-                  while (listings.firstChild) {
-                    listings.removeChild(listings.firstChild);
-                  }
-                  buildLocationList(stores);
-                  const activeListing = document.getElementById(
-                    `listing-${stores.features[0].properties.id}`
-                  );
-                  activeListing.classList.add('active');
-              
 
-                  flyToStore(stores.features[0])
-                  createPopUp(stores.features[0]);
-                });
                 
-                
-                function geoFindMe() {
-                  const status = document.querySelector("#geolocatorstatus");
-                  
-                
-                  function success(position) {
-                    status.textContent = "";
-                    
-                    var usrCoordinates = {
-                      type: "Point",
-                      coordinates: [
-                        position.coords.longitude,
-                        position.coords.latitude
-                      ]
-                    };
-                    const searchResult = usrCoordinates;
+
+                  const markers = {};
+                  let markersOnScreen = {};
+
+                  function updateMarkers() {
+                    const newMarkers = {};
+                    const features = map.querySourceFeatures("places");
+
+                    // for every cluster on the screen, create an HTML marker for it (if we didn't yet),
+                    // and add it to the map if it's not there already
+                    for (const feature of features) {
+                      const coords = feature.geometry.coordinates;
+                      const props = feature.properties;
+                      if (!props.cluster) continue;
+                      const id = props.cluster_id;
+                      let marker = markers[id];
+                      if (!marker) {
+                        var el = document.createElement("div");
+                        el.classList.add("mapCluster");
+                        el.innerText = props.point_count;
+                        marker = markers[id] = new mapboxgl.Marker({
+                          element: el
+                        }).setLngLat(coords);
+
+                        el.addEventListener("click", (e) => {
+                          
+                          const clusterId = feature.properties.cluster_id;
+                          map
+                            .getSource("places")
+                            .getClusterExpansionZoom(clusterId, (err, zoom) => {
+                              if (err) return;
+
+                              map.easeTo({
+                                center: feature.geometry.coordinates,
+                                zoom: zoom
+                              });
+                            });
+                        });
+                      }
+                      newMarkers[id] = marker;
+
+                      if (!markersOnScreen[id]) marker.addTo(map);
+                    }
+                    // for every marker we've added previously, remove those that are no longer visible
+                    for (const id in markersOnScreen) {
+                      if (!newMarkers[id]) markersOnScreen[id].remove();
+                    }
+                    markersOnScreen = newMarkers;
+                  }
+                  function forwardGeocoder(query) {
+                    const matchingFeatures = [];
+                  // const features = map.querySourceFeatures("places");
+
+                    // for every cluster on the screen, create an HTML marker for it (if we didn't yet),
+                    // and add it to the map if it's not there already
+                    for (const feature of stores.features) {
+                    // Handle queries with different capitalization
+                      // than the source data by calling toLowerCase().
+                      
+                      const storeName = '<i class="fa-solid fa-store"></i> '+`${feature.properties.name}`+', '+`${feature.properties.address}`;
+                      if (
+                        feature.properties.name
+                        .toLowerCase()
+                        .includes(query.toLowerCase())
+                      ) {
+                        // Add a tree emoji as a prefix for custom
+                        // data results using carmen geojson format:
+                        // https://github.com/mapbox/carmen/blob/master/carmen-geojson.md
+                        feature['place_name'] = storeName;
+                        feature['center'] = feature.geometry.coordinates;
+                        feature['place_type'] = ['store'];
+                        matchingFeatures.push(feature);
+                      }
+                    }
+                    return matchingFeatures;
+                  }
+                  const geocoder = new MapboxGeocoder({
+                    accessToken: mapboxgl.accessToken, // Set the access token
+                    mapboxgl: mapboxgl, // Set the mapbox-gl instance
+                    marker: false, // Use the geocoder's default marker style
+                    localGeocoder: forwardGeocoder,
+                    types: 'place',
+                    countries: 'US'
+                    //bbox: [-77.210763, 38.803367, -76.853675, 39.052643] // Set the bounding box coordinates
+                  });
+                  geocoder.addTo('#geocoder-container');
+                    geocoder.on('result', (event) => {
+                    document.querySelector('.mapboxgl-ctrl-geocoder--input').value = ''; 
+                    const searchResult = event.result.geometry;
                     const options = { units: 'miles' };
                     for (const store of stores.features) {
                       store.properties.distance = turf.distance(
@@ -441,43 +399,91 @@ function startApp2() {
                     );
                     activeListing.classList.add('active');
                 
+
                     flyToStore(stores.features[0])
                     createPopUp(stores.features[0]);
+                  });
+                  
+                  
+                  function geoFindMe() {
+                    const status = document.querySelector("#geolocatorstatus");
+                    
+                  
+                    function success(position) {
+                      status.textContent = "";
+                      
+                      var usrCoordinates = {
+                        type: "Point",
+                        coordinates: [
+                          position.coords.longitude,
+                          position.coords.latitude
+                        ]
+                      };
+                      const searchResult = usrCoordinates;
+                      const options = { units: 'miles' };
+                      for (const store of stores.features) {
+                        store.properties.distance = turf.distance(
+                          searchResult,
+                          store.geometry,
+                          options
+                        );
+                      }
+                      stores.features.sort((a, b) => {
+                        if (a.properties.distance > b.properties.distance) {
+                          return 1;
+                        }
+                        if (a.properties.distance < b.properties.distance) {
+                          return -1;
+                        }
+                        return 0; // a must be equal to b
+                      });
+                      const listings = document.getElementById('listings');
+                      while (listings.firstChild) {
+                        listings.removeChild(listings.firstChild);
+                      }
+                      buildLocationList(stores);
+                      const activeListing = document.getElementById(
+                        `listing-${stores.features[0].properties.id}`
+                      );
+                      activeListing.classList.add('active');
+                  
+                      flyToStore(stores.features[0])
+                      createPopUp(stores.features[0]);
+                    }
+                  
+                    function error() {
+                      status.textContent = "Unable to retrieve your location";
+                    }
+                  
+                    if (!navigator.geolocation) {
+                      status.textContent = "Geolocation is not supported by your browser";
+                    } else {
+                      status.textContent = "Locating…";
+                      navigator.geolocation.getCurrentPosition(success, error);
+                    }
                   }
-                
-                  function error() {
-                    status.textContent = "Unable to retrieve your location";
-                  }
-                
-                  if (!navigator.geolocation) {
-                    status.textContent = "Geolocation is not supported by your browser";
-                  } else {
-                    status.textContent = "Locating…";
-                    navigator.geolocation.getCurrentPosition(success, error);
-                  }
-                }
-                
-                document.querySelector("#find-me").addEventListener("click", geoFindMe);
-      
-                map.on("render", () => {
-                  updateMarkers();
-                });
-                map.on("zoom", () => {
-                  //updateMarkers();
-                  markerCheck(map.getZoom());
-                });
-                map.on("mouseenter", "unclustered-point", () => {
-                  map.getCanvas().style.cursor = "pointer";
-                });
-                map.on("mouseleave", "unclustered-point", () => {
-                  map.getCanvas().style.cursor = "";
-                });
-              // map.addControl(geocoder, 'top-right');
-                buildLocationList(stores);
+                  
+                  document.querySelector("#find-me").addEventListener("click", geoFindMe);
+        
+                  map.on("render", () => {
+                    updateMarkers();
+                  });
+                  map.on("zoom", () => {
+                    //updateMarkers();
+                    markerCheck(map.getZoom());
+                  });
+                  map.on("mouseenter", "unclustered-point", () => {
+                    map.getCanvas().style.cursor = "pointer";
+                  });
+                  map.on("mouseleave", "unclustered-point", () => {
+                    map.getCanvas().style.cursor = "";
+                  });
+                // map.addControl(geocoder, 'top-right');
+                  buildLocationList(stores);
 
-              
-              });
-
+                
+                });
+              }
               /**
                * Add a listing for each store to the sidebar.
                **/
@@ -562,6 +568,10 @@ function startApp2() {
                 if (storeLandingURL.indexOf("?") > -1) {
                   storeLandingURL = storeLandingURL.split('?')[0];
                 }
+                if (storeLandingURL.indexOf("#") > -1) {
+                  storeLandingURL = window.location.href.split('#')[0]
+                }
+                
 
                 window.location.href = storeLandingURL + currentFeature.properties.slug;
 
