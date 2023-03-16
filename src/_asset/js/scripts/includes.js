@@ -37,7 +37,7 @@ function includeCSS(file, name) {
 
 includeCSS('https://api.tiles.mapbox.com/mapbox-gl-js/v2.13.0/mapbox-gl.css', 'mapbox')
 /* Include Many js files */
-include('https://cdn.jsdelivr.net/npm/vue/dist/vue.js', 'vue');
+include('https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js', 'vue');
 include('https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js', 'axios');
 include('https://cdn.jsdelivr.net/npm/airtable@0.11.6/lib/airtable.umd.min.js', 'airtable');
 include('https://code.jquery.com/jquery-3.6.1.min.js','jquery', '','anonymous',"sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=");
