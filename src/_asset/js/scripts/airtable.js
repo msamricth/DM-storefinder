@@ -25,7 +25,6 @@ const observer = new MutationObserver((mutations) => {
 });
 observer.observe(app, { attributes: true });
 
-
 var map, markerIMG;
 
 function startApp2() {
@@ -385,7 +384,7 @@ function startApp2() {
             });
             geocoder.addTo('#geocoder-container');
               geocoder.on('result', (event) => {
-               document.querySelector('.mapboxgl-ctrl-geocoder--input') .value = ''; 
+               document.querySelector('.mapboxgl-ctrl-geocoder--input').value = ''; 
               const searchResult = event.result.geometry;
               const options = { units: 'miles' };
               for (const store of stores.features) {
@@ -557,6 +556,8 @@ function startApp2() {
                 this.parentNode.classList.add("active");
               });
             }
+            
+            app.classList.add("listings-completed");
           }
 
           /**
@@ -618,6 +619,8 @@ function startApp2() {
           
           setTimeout(function () {
             fadeElementsIn();
+            
+            app.classList.add("app2-completed");
           }, 1400);
         })
         .catch((error) => {
