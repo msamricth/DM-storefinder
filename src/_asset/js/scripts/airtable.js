@@ -281,9 +281,8 @@ function startApp2() {
                 coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
               }
 
-              flyToStore(e.features[0]);
+              flyToStoreAndChange(e.features[0]);
               /* Close all other popups and display popup for clicked store */
-              createPopUp(e.features[0]);
               /* Highlight listing in sidebar */
               const activeItem = document.getElementsByClassName("active");
               // e.stopPropagation();
@@ -575,6 +574,9 @@ function startApp2() {
               center: currentFeature.geometry.coordinates,
               zoom: 10
             });
+            goToStorePage(currentFeature);
+          }
+          function goToStorePage(currentFeature){
             var storeLandingURL = window.location.href;
             if (storeLandingURL.indexOf("?") > -1) {
               storeLandingURL = storeLandingURL.split('?')[0];
