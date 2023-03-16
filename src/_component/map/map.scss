@@ -1,17 +1,26 @@
 .map-container {
     position: relative;
-    display: flex;
     width: 100%;
     background-color: white;
     color:black;
+    @media screen and (min-width: 1024px) {
+        display: flex;
+    }
     .map {
-        position: sticky;
-        width: 66.6666%;
-        left:0;
-        top: 0;
-        bottom: 0;
-        height:100vh;
+        height:150px;
+        width: 100%;
         overflow: hidden;
+        @media screen and (min-width: 768px) {
+            height: 300px;
+        }
+        @media screen and (min-width: 1024px) {
+            position: sticky;
+            width: 66.6666%;
+            left:0;
+            top: 0;
+            bottom: 0;
+            height:100vh;
+        }
     }
     .marker {
         border: none;
@@ -69,18 +78,30 @@
     }
     .mapCluster {
         font-family: 'Oswald';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 36px;
+        font-style: normal;
+        font-weight: 400;
         color:black;
         background-color:#FFE512;
         border-radius:90px;
-        padding:30px 0;
-        min-height:84px;
-        min-width:84px;
+        min-height:19.46px;
+        min-width:19.46px;
+        font-size: 9px;
         text-align:center;
         z-index: 0;
         filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.05));
+        
+        @media screen and (min-width: 768px) {
+            font-size: 18px;
+            min-height: 38.92px;
+            min-width: 38.92px;
+            padding: 8px 0;
+        }
+        @media screen and (min-width: 1024px) {
+            padding:30px 0;
+            min-height:84px;
+            min-width:84px;
+            font-size: 36px;
+        }
     }
     
 }

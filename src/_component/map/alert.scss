@@ -1,16 +1,28 @@
 
 .map-alert {
     position: sticky;
-    top: calc(100% - 58px - 40px);
-    width: 320px;
+    top: calc(100% - 58px - 15px);
+    left:0;
     height: 80px;
     background: black;
-    left: 40px;
-    padding: 12px 30px 12px 12px;
+    padding: 12px 48px 12px 12px;
     z-index: 999;
     visibility: hidden;
     opacity: 0;
+    font-size: 12px;
     transition: 0.25s ease opacity;
+    
+    @media screen and (min-width: 768px) {
+        @media screen and (max-width: 1023.9px) { 
+            position: absolute;
+        }
+        top: 200px;
+        left: 40px;
+        width: 320px;
+    }
+    @media screen and (min-width: 1024px) {
+        top: calc(100% - 58px - 40px);
+    }
     &.show {
         opacity: 1;
         visibility: visible;
@@ -27,5 +39,11 @@
         position: absolute;
         top: 12px;
         right: 12px;
+    }
+    .share-location {
+        display: block;
+        font-size: 10px;
+        color: #FFE600;
+        padding: 10px 0 0;
     }
 }

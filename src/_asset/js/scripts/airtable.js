@@ -110,13 +110,28 @@ function startApp2() {
 
           /**
            * Add the map to the page
-           */
+           */          const bounds = [
+            [-125.97881615167792, 29.487440618804314], // Southwest coordinates
+            [-39.11807460657073, 48.86784324437724] // Northeast coordinates
+          ];
+          
+          var mq = window.matchMedia( "(min-width: 420px)" ), SMZoom, SMMZoom;
+          if (mq.matches){
+              SMZoom = 3.5,
+              SMMZoom = 3.2;
+              //map.setZoom(14.34); //set map zoom level for desktop size
+          } else {
+            SMZoom = 2,
+            SMMZoom = 1.6;
+              //map.setZoom(2); //set map zoom level for mobile size
+          };
           map = new mapboxgl.Map({
             container: "map",
             style: "mapbox://styles/mapbox/light-v11",
             center: [-98.034084142948, 38.909671288923],
-            zoom: 3.5,
-            maxZoomOut: 3.5
+            zoom: SMZoom,
+            minZoom: SMMZoom
+            //maxBounds: bounds
           });
           var stores = {
             type: "FeatureCollection",
@@ -464,9 +479,7 @@ function startApp2() {
             }
             
             document.querySelector("#find-me").addEventListener("click", geoFindMe);
-
-
-            
+  
             map.on("render", () => {
               updateMarkers();
             });
@@ -482,6 +495,8 @@ function startApp2() {
             });
            // map.addControl(geocoder, 'top-right');
             buildLocationList(stores);
+
+          
           });
 
           /**
@@ -511,7 +526,9 @@ function startApp2() {
 
               details.innerHTML = "<h3>" + `${store.properties.name}` + "</h3>";
               details.innerHTML += "<small>" + `${store.properties.address}` + "</small>";
-              details.innerHTML += "<strong>" + `${store.properties.hours}` + "</strong>";
+              if(store.properties.hours){
+                details.innerHTML += "<strong>" + `${store.properties.hours}` + "</strong>";
+              }
              
 
               /**
