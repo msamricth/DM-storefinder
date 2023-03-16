@@ -522,9 +522,13 @@ function startApp2() {
               );
               details.className = 'listing-details';
               /* Add the link to the individual listing created above. */
-
+              var storeDistance = '';
+              if (store.properties.distance) {
+                const roundedDistance = Math.round(store.properties.distance * 100) / 100;
+                storeDistance = ` <strong>${roundedDistance} miles away</strong> - `;
+              }
               details.innerHTML = "<h3>" + `${store.properties.name}` + "</h3>";
-              details.innerHTML += "<small>" + `${store.properties.address}` + "</small>";
+              details.innerHTML += "<small>" + storeDistance +`${store.properties.address}`+ "</small>";
               if(store.properties.hours){
                 details.innerHTML += "<strong>" + `${store.properties.hours}` + "</strong>";
               }
@@ -537,10 +541,6 @@ function startApp2() {
                * 3. Close all other popups and display popup for clicked store
                * 4. Highlight listing in sidebar (and remove highlight for all other listings)
                **/
-              if (store.properties.distance) {
-                const roundedDistance = Math.round(store.properties.distance * 100) / 100;
-                details.innerHTML += `<div><strong>${roundedDistance} miles away</strong></div>`;
-              }
               link.addEventListener("click", function (event) {
                 event.preventDefault();
                 for (const feature of stores.features) {
