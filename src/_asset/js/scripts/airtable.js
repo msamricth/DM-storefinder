@@ -614,6 +614,11 @@ function startApp2() {
               )
               .addTo(map);
           }
+
+          
+          setTimeout(function () {
+            fadeElementsIn();
+          }, 1400);
         })
         .catch((error) => {
           console.log(error);
@@ -622,10 +627,6 @@ function startApp2() {
         .finally(() => (this.loading = false));
     }
   });
-
-  setTimeout(function () {
-    //  markerCheck(5);
-  }, 1400);
 }
 function markerCheck(zoomLvl) {
   if (zoomLvl < 14) {
@@ -644,8 +645,12 @@ function toggle(className, displayState) {
     }
   }
 }
-
-
+function fadeElementsIn(){
+  var elements = document.getElementsByClassName('fade-map-elements');
+  for (var i = 0; i < elements.length; i++) {
+    elements[i].classList.add("show");
+  }
+}
 
 
 

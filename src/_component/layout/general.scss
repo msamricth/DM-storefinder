@@ -49,3 +49,8 @@ body {
 #app {
   position: relative;
 }
+.fade {
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.25s ease opacity;
+}

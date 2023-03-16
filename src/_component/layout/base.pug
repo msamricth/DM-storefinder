@@ -5,6 +5,9 @@ html(lang="en")
 		meta(name="viewport", content="width=device-width, initial-scale=1.0")
 		title Dr. Martens Store Locator
 
+		if config.entry.css.external
+			link(rel="stylesheet", href=`${baseUrl}style.css`)
+
 		link(rel="preconnect" href="https://fonts.googleapis.com")
 		link(rel="preconnect" href="https://fonts.gstatic.com" crossorigin)
 		link(href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500&family=Overpass&display=swap" rel="stylesheet")
@@ -23,6 +26,10 @@ html(lang="en")
 					margin-top: 90px;
 				}
 			}
+			.fade-map-elements {
+				visibility: hidden;
+				opacity: 0;
+			}
 		if config.entry.css.embed
 			link(rel="stylesheet" href=`${embedPath}` embed)
 	body.dm-main 
@@ -34,9 +41,6 @@ html(lang="en")
 		div.footer-top(style="background:#191b1d;height:107px;")
 		div(style="background:#24272a;height:414px;")
 		div(style="background:#191b1d;height:60px;") 
-		if config.entry.css.external
-			link(rel="stylesheet", href=`${baseUrl}style.css`)
-
 		script(src='bundle.js')
 
 
