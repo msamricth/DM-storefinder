@@ -88,7 +88,9 @@ if (pageURL.indexOf("?") > -1) {
                 .then((response) => {
                     this.rfields = response.data.records;
                     var theRecords = this.rfields,
-                    CR_slug,store_name,store_image,hours,closes_at,address,phone,mapLink,mapCoords =[];
+                    CR_slug,store_name,store_image,hours,closes_at,address,phone,mapLink,geoLat,geoLong,mapCoords =[];
+                    var storepageVars = {
+                    };
                     for (var i = 0; i < theRecords.length; i++) {
                         CR_slug = theRecords[i].fields.Slug;
                         if(CR_slug == SP_slug){
@@ -154,7 +156,6 @@ if (pageURL.indexOf("?") > -1) {
                                 closing_time_display = "Closes at " + closing_time;
                             } 
                             } 
-                            
                             store_image = default_image
                             hours = storeFields.Hours;
                             store_name = storeFields.Name;
@@ -162,7 +163,8 @@ if (pageURL.indexOf("?") > -1) {
                             phone = storeFields.Phone;
                             mapLink = "https://www.google.com/maps/dir/?api=1&destination="+address;
                            // default_image,hours,closes_at,address,phone,mapLink,mapCoords =[];
-                            
+                            geoLat = storeFields.lat;
+                            geoLong = storeFields.lon;
                             var storeLandingURL = window.location.href;
                             if (storeLandingURL.indexOf("?") > -1) {
                             storeLandingURL = storeLandingURL.split('?')[0];
@@ -215,6 +217,16 @@ if (pageURL.indexOf("?") > -1) {
                             detailsInner.innerHTML += "<div class='address-label'><h3>Address</h3>"+address+ "</div>";
                             detailsInner.innerHTML += "<div><h3>Hours</h3>"+hours+ "</div>";
                             detailsInner.innerHTML += "<div><h3>Phone</h3>"+phone+ "</div>";
+
+                            const eventContainer = storePage.appendChild(
+                                document.createElement("div")
+                            );
+                            
+                            eventContainer.className = "store-page-events-container";
+                            app.classList.add("event-container-added");
+                            eventContainer.setAttribute('data-lon', storeFields.lon);
+                            eventContainer.setAttribute('data-lat', storeFields.lat);
+                            eventContainer.setAttribute('data-name', storeFields.Name);
 
                             const link = storePage.appendChild(document.createElement("a"));
                             link.href = storeLandingURL;

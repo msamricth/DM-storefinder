@@ -1,0 +1,187 @@
+.store-page-events-container {
+	margin-bottom: 75px;
+} 
+.store-page-events-container h2 {
+	margin-bottom: 40px;
+}
+.store-page-events-container .eb-event .event-image {
+	padding-bottom: 20px;
+}
+.store-page-events-container .eb-event .event-image img {
+    max-width: 100%;
+}
+.store-page-events-container .eb-event {
+    width: 100%;
+	line-height: 1;
+}
+.store-page-events-container .eb-event .event-content h3 {
+	font-size: 20px;
+	line-height: 1.875;
+	margin-top:0;
+}
+.store-page-events-container .eb-event .event-meta {
+    flex-basis: 20%;
+	line-height: 1;
+	padding-left: 10px;
+}
+.store-page-events-container .eb-event .event-meta h3 {
+	font-weight: 900;
+	margin:0;
+}
+.store-page-events-container .eb-event .event-meta h1 {
+	margin-bottom: 12px;
+}
+.store-page-events-container .eb-event .event-content p {
+	font-size: 15px;
+	line-height: 1.467;
+}
+.store-page-events-container .eb-event .event-content .desc {
+	margin-bottom: 10px;
+}
+.store-page-events-container .eb-event .event-content p, .store-page-events-container .eb-event .event-meta span{
+    margin-bottom: 12px;
+}
+.store-page-events-container .eb-event .event-meta span{
+    font-size: 12px;
+    line-height: 1.67;
+    color: #a8a8a8;
+}
+.store-page-events-container .eb-event + hr {
+    margin: 20px 0 40px;
+    border: none;
+    border-top: 1px solid #191c1d;
+}
+.store-page-events-container .eb-event .event-cta {
+    position: relative;
+    color: #ffe512;
+    line-height: 1.33;
+    transition: color 0.15s ease;
+	font-family: "Oswald", "Trade Gothic Bold", sans-serif; 
+	text-transform: uppercase;
+	border-bottom:1px solid;
+}
+.store-page-events-container .eb-event .event-cta:after {
+    content: "";
+    background-image: url(https://dm-us-imgs.s3.us-west-2.amazonaws.com/AW21/L/DMPresents/S3E1/caret.png);
+    background-size: 10px 16px;
+    border: none;
+    width: 10px;
+    height: 16px;
+    display: inline-block;
+    position: absolute;
+    top: 5px;
+    right: -14px;
+}
+.store-page-events-container .eb-event a.event-cta:hover,.store-page-events-container .eb-event a.event-cta:active,.store-page-events-container .eb-event a.event-cta:focus {
+    color: white;
+}
+.store-page-events-container .eb-event a.event-cta:hover:after,.store-page-events-container .eb-event a.event-cta:active:after,.store-page-events-container .eb-event a.event-cta:focus:after {
+    background-image: url(https://dm-us-imgs.s3.us-west-2.amazonaws.com/bhm/d1/icon-arrow.png);
+}
+.eb-hidden {
+	display: none !important;
+}
+.eb-shown.eb-hidden {
+	display: block !important;
+}
+.store-page-events-container a.fm-hero-play {
+    margin-left: auto;
+    width: fit-content;
+    margin-right: auto;
+}
+span.mobile-date {
+    font-size: 17px;
+    margin-bottom: 12px;
+    display: inline-block;
+}
+@media screen and (min-width: 480px) {
+
+	.fm-episodes h2, .fm-episodes h3{
+		margin-bottom: 30px;
+	}
+
+	.fm-episodes-header {
+		display: flex;
+		align-items: baseline;
+		margin-bottom: 20px;
+	}
+	
+	.fm-episodes-header h2 {
+		margin-right: 48px;
+	}
+	.store-page-events-container {
+		margin-bottom: 100px;
+	}
+	.fm-episodes-header .fm-episodes-selector h3 {
+		line-height: 2;
+	}
+	.fm-message {
+		margin-bottom: 100px;
+	}
+}
+@media screen and (min-width: 768px) {
+	.store-page-events-container .eb-event .event-content h3 {
+		margin-bottom: 12px;
+	}
+	span.mobile-date {
+		display: none;
+	}
+	.store-page-events-container .eb-event .event-content {
+		flex-basis: 80%;
+		padding-right: 10px;
+	}
+	.fm-episodes-header {
+		margin-bottom: 25px;
+	}
+
+	.store-page-events-container {
+		margin-bottom: 125px;
+	}
+}
+@media screen and (min-width: 1024px) {
+
+	.store-page-events-container {
+		margin-bottom: 150px;
+	}
+	.fm-message {
+		margin-left: auto;
+		margin-right: auto;
+		padding-left: 0;
+		padding-right: 0;
+		width: 524px;
+	}
+	.store-page-events-container .eb-event + hr {
+		margin-bottom: 22px;
+	}
+    .store-page-events-container .eb-event {
+        display:flex;
+    }
+    .store-page-events-container .eb-event .event-image {
+        padding-right: 23px;
+		padding-bottom: 0px;
+		flex-basis:45%;
+    }
+    .store-page-events-container .eb-event .event-details {
+        flex-basis: 77%;
+    }
+}
+@media screen and (min-width: 1290px) {
+	.event-content p {
+		max-width: 360px;
+	}
+    .store-page-events-container .eb-event .event-image {
+		flex-basis:33%;
+    }
+}
+
+@media screen and (min-width: 1440px) {
+} 
+@media screen and (max-width: 768px) {
+	.store-page-events-container .eb-event .event-meta {
+		display: none;
+	}
+}
+ 
+.event-details {
+	display: flex;
+}
