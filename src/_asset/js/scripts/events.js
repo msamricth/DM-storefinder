@@ -32,7 +32,8 @@ if (pageURL.indexOf("?") > -1) {
       observer.disconnect();
       
         const eventContainer = document.querySelector('.store-page-events-container');
-        var containerName = eventContainer.getAttribute('data-Name');
+        var containerName = eventContainer.getAttribute('data-Name'),
+        containerAddress = eventContainer.getAttribute('data-address');
         if(containerName){
             
             upcomingEvnts = eventContainer.appendChild(
@@ -91,7 +92,7 @@ if (pageURL.indexOf("?") > -1) {
               if (eImage == null){
                 var eImage = "https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F352792589%2F233619576249%2F1%2Foriginal.20220912-182657?w=800&auto=format%2Ccompress&q=75&sharp=10&rect=0%2C0%2C640%2C320&s=1413b1b9d22715a61f9d3ee1963cd33d";
               }
-              if (venueName.indexOf(containerName) > -1)
+              if (containerAddress.indexOf(address) > -1)
               {
                 
             
@@ -104,12 +105,18 @@ if (pageURL.indexOf("?") > -1) {
                 "<p>" + address + " &bull; "+ title +"</p>" +
                 "<a class='event-cta' href='"+url+"' target='_blank'>RSVP</a></div>"+
                 "<div class='event-meta text-center'>" + edate + "</div>" +
-                "</div></div><hr />";
+                "</div></div>";
+                var singleE = tr_str;
+                tr_str += "<hr />";
               } else {
                 var tr_str = '';
               }
               if(i < 6){
-                var container = tr_str;
+                if(i < 2){
+                  var container = singleE;
+                } else {
+                  var container = tr_str;
+                }
               } else {
                 var container = "<div class='eb-hidden eb-pagination' id='eb-"+i+"'>"+tr_str+"</div>";
               }

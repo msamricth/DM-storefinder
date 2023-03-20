@@ -231,6 +231,7 @@ if (pageURL.indexOf("?") > -1) {
                             
                             mapContainer.setAttribute('data-lon', storeFields.lon);
                             mapContainer.setAttribute('data-lat', storeFields.lat);
+                            mapContainer.setAttribute('data-address', storeFields.full_address);
                             mapContainer.className = "store-page-map-container";
                             app.classList.add("map-container-added");
                             const eventContainer = storePage.appendChild(
@@ -241,6 +242,7 @@ if (pageURL.indexOf("?") > -1) {
                             app.classList.add("event-container-added");
                             eventContainer.setAttribute('data-name', storeFields.Name);
 
+                            eventContainer.setAttribute('data-address', storeFields.full_address);
                             const link = storePage.appendChild(document.createElement("a"));
                             link.href = storeLandingURL;
                             link.className = "store-btn";

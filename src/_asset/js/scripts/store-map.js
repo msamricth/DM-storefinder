@@ -35,13 +35,26 @@ if (pageURL.indexOf("?") > -1) {
         const mapContainer = document.querySelector('.store-page-map-container');
         var containerLon = mapContainer.getAttribute('data-lon'),
         containerLat = mapContainer.getAttribute('data-lat'),
+        containerAddress = mapContainer.getAttribute('data-address'),
         map,markerIMG, Sfields, ctaIcon;
+        if(containerAddress){
+            containerAddress = encodeURIComponent(containerAddress);
+        }
 
         map = mapContainer.appendChild(
             document.createElement("div")
         );
         map.id = "map";
         map.className = "map";
+
+        const directions = map.appendChild(
+            document.createElement("a")
+        );
+        directions.className = "map-btn";
+        directions.href = "https://www.google.com/maps/dir/?api=1&destination="+containerAddress;
+        directions.innerHTML = "get directions";
+
+
         var storeMap = new Vue({
             el: "#map",
             name:"store-page-map",
@@ -87,10 +100,10 @@ if (pageURL.indexOf("?") > -1) {
                     
                     style.type = 'text/css';
                     if (style.styleSheet){
-                    // This is required for IE8 and below.
-                    style.styleSheet.cssText = css;
+                        // This is required for IE8 and below.
+                        style.styleSheet.cssText = css;
                     } else {
-                    style.appendChild(document.createTextNode(css));
+                        style.appendChild(document.createTextNode(css));
                     }
 
 
@@ -145,6 +158,7 @@ if (pageURL.indexOf("?") > -1) {
                         }
                         );
                     });
+                    map.scrollZoom.disable();
                 })
                 .catch((error) => {
                 console.log(error);

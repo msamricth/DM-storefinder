@@ -66,9 +66,13 @@ body {
 		font-family: 'Oswald';
 		font-style: normal;
 		font-weight: 700;
-		font-size: 18px;
-		margin-bottom: 26px;
+		font-size: 14px;
+		margin-bottom: 12px;
 		line-height: 16px;
+		@media screen and (min-width: 768px) {
+			margin-bottom: 26px;
+			font-size: 18px;
+		}
 	}
 	.mapboxgl-ctrl-bottom-right, .mapboxgl-ctrl-bottom-left {
 		display: none;

@@ -125,5 +125,30 @@
         @media screen and (min-width: 768px) {
             height: 488px;
         }
+        .map-btn {
+            position: absolute;
+            z-index: 99999;
+            font-family: 'Oswald';
+            font-weight: 600;
+            font-size: 12px;
+            line-height: 18px;
+            text-transform: uppercase;
+            //min-width: 130px;
+            //height: 32px;
+            left: 50%;
+            top: 70%;
+            background: #FFE512;
+            color: black;
+            padding: 7px 26px;
+            transform: translate(-50%, 0%);
+            @media screen and (min-width: 768px) {
+                top: 58%;
+            }
+            
+            @media screen and (min-width: 1024px) {
+                font-size: 18px;
+                line-height: 27px;
+            }
+        }
     }
 }
