@@ -27,7 +27,7 @@ const observer = new MutationObserver((mutations) => {
 });
 observer.observe(app, { attributes: true });
 
-var map, markerIMG, page_title;
+var map, Sfields, markerIMG, page_title, directionIcon, phoneIcon, ctaIcon, search_storeIcon, search_markerIcon;
 
 function startApp2() {
   observer.disconnect();
@@ -63,8 +63,14 @@ function startApp2() {
         )
         .then((response) => {
           //this.siteTag = response.data.records[0].fields.TagLine;
-          this.markerIMG = response.data.records[0].fields.marker_image[0].url;
-          markerIMG = this.markerIMG;
+          Sfields = response.data.records[0].fields;
+          markerIMG = Sfields.marker_image[0].url;
+          directionIcon = Sfields.direction[0].url;
+          phoneIcon = Sfields.phone[0].url;
+          search_storeIcon = Sfields.search_store[0].url;
+          ctaIcon = Sfields.cta[0].url;
+          search_markerIcon = Sfields.search_marker[0].url;
+        
 
           page_title = response.data.records[0].fields.page_title;
           document.title = page_title;
@@ -107,7 +113,7 @@ function startApp2() {
                   //map.setZoom(14.34); //set map zoom level for desktop size
               } else {
                 SMZoom = 2,
-                SMMZoom = 1.6;
+                SMMZoom = 0;
                   //map.setZoom(2); //set map zoom level for mobile size
               };
               const mapContainr = document.getElementById('map');
@@ -347,7 +353,7 @@ function startApp2() {
                     // Handle queries with different capitalization
                       // than the source data by calling toLowerCase().
                       
-                      const storeName = '<i class="fa-solid fa-store"></i> '+`${feature.properties.name}`+', '+`${feature.properties.address}`;
+                      const storeName = '<img class="results-icon" src="'+search_storeIcon+'"/> '+`${feature.properties.name}`+', '+`${feature.properties.address}`;
                       if (
                         feature.properties.name
                         .toLowerCase()
@@ -508,11 +514,17 @@ function startApp2() {
                   link.className = "title";
                   link.id = `link-${store.properties.id}`;
                   /* Add details to the individual listing. */
-                  const details = listing.appendChild(
+                  const detailsContainer = listing.appendChild(
                     document.createElement("div")
                   );
-                  details.className = 'listing-details';
+                  detailsContainer.className = 'listing-content';
                   /* Add the link to the individual listing created above. */
+                  
+                  const details = detailsContainer.appendChild(
+                    document.createElement("div")
+                  );
+                  
+                  details.className = 'listing-details';
                   var storeDistance = '';
                   if (store.properties.distance) {
                     const roundedDistance = Math.round(store.properties.distance * 100) / 100;
@@ -524,6 +536,13 @@ function startApp2() {
                     details.innerHTML += "<strong>" + `${store.properties.hours}` + "</strong>";
                   }
                 
+                  const meta = detailsContainer.appendChild(
+                    document.createElement("div")
+                  );
+                  meta.className = 'meta-details';
+                  meta.innerHTML += "<img class='results-icon' src='"+directionIcon+"'/>";
+                  meta.innerHTML += "<img class='results-icon' src='"+phoneIcon+"'/>";
+
                   /**
                    * Listen to the element and when it is clicked, do four things:
                    * 1. Update the `currentFeature` to the store associated with the clicked link
