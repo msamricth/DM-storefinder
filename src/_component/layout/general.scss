@@ -62,6 +62,17 @@ body {
 	  font-weight: 700;
 	  font-size: 18px;
   }
+  h4 {
+		font-family: 'Oswald';
+		font-style: normal;
+		font-weight: 700;
+		font-size: 18px;
+		margin-bottom: 26px;
+		line-height: 16px;
+	}
+	.mapboxgl-ctrl-bottom-right, .mapboxgl-ctrl-bottom-left {
+		display: none;
+	}
 }
 .fade {
     visibility: hidden;

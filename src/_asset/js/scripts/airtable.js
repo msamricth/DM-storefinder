@@ -237,8 +237,8 @@ function startApp2() {
                       type: "geojson",
                       data: stores,
                       cluster: true,
-                      clusterMaxZoom: 4, // Max zoom to cluster points on
-                      clusterRadius: 50 // Radius of each cluster when clustering points (defaults to 50)
+                      clusterMaxZoom: 8, // Max zoom to cluster points on
+                      clusterRadius: 20 // Radius of each cluster when clustering points (defaults to 50)
                     });
                     map.addLayer({
                       id: "clusters",

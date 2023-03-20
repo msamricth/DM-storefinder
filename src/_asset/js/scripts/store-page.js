@@ -157,7 +157,14 @@ if (pageURL.indexOf("?") > -1) {
                             } 
                             } 
                             store_image = default_image
-                            hours = storeFields.Hours;
+                            hours = storeFields.hours_fx;
+                            if(hours){
+                                if (hours.indexOf("[LINEBREAK]") > -1) {
+                                    hours = hours.replaceAll("[LINEBREAK]", "<br>")
+                                }
+                            }
+                            
+
                             store_name = storeFields.Name;
                             address = storeFields.full_address;
                             phone = storeFields.Phone;
@@ -218,14 +225,20 @@ if (pageURL.indexOf("?") > -1) {
                             detailsInner.innerHTML += "<div><h3>Hours</h3>"+hours+ "</div>";
                             detailsInner.innerHTML += "<div><h3>Phone</h3>"+phone+ "</div>";
 
+                            const mapContainer = storePage.appendChild(
+                                document.createElement("div")
+                            );
+                            
+                            mapContainer.setAttribute('data-lon', storeFields.lon);
+                            mapContainer.setAttribute('data-lat', storeFields.lat);
+                            mapContainer.className = "store-page-map-container";
+                            app.classList.add("map-container-added");
                             const eventContainer = storePage.appendChild(
                                 document.createElement("div")
                             );
                             
                             eventContainer.className = "store-page-events-container";
                             app.classList.add("event-container-added");
-                            eventContainer.setAttribute('data-lon', storeFields.lon);
-                            eventContainer.setAttribute('data-lat', storeFields.lat);
                             eventContainer.setAttribute('data-name', storeFields.Name);
 
                             const link = storePage.appendChild(document.createElement("a"));
