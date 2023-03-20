@@ -11,6 +11,22 @@
     overflow: hidden;
     border-right: 1px solid rgba(0, 0, 0, 0.25);
     background-color: white; 
+    &.search-suggestions-displayed:after {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.3);
+        width: 100%;
+    }
+    &:after {
+      transition: .15s ease background-color;
+    }
+    svg.mapboxgl-ctrl-geocoder--icon.mapboxgl-ctrl-geocoder--icon-close {
+        margin-top: 8px;
+    }
     .listings {
         .item {
           position:relative;

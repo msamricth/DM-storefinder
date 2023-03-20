@@ -412,7 +412,8 @@ function startApp2() {
                 
 
                     flyToStore(stores.features[0])
-                    createPopUp(stores.features[0]);
+                    const sidebar = document.querySelector(".sidebar");
+                    sidebar.classList.remove("search-suggestions-displayed");
                   });
                   
                   
@@ -555,7 +556,8 @@ function startApp2() {
                     for (const feature of stores.features) {
                       if (this.id === `link-${feature.properties.id}`) {
                         flyToStoreAndChange(feature);
-                        createPopUp(feature);
+                        const sidebar = document.querySelector(".sidebar");
+                        sidebar.classList.remove("search-suggestions-displayed");
                       }
                     }
                     const activeItem = document.getElementsByClassName("active");

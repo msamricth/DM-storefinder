@@ -4,4 +4,4 @@ import './scripts/events.js';
 import './scripts/airtable.js';
 import './scripts/includes.js';
 import './scripts/close.js';
-//import './scripts/dialoug.js';
+import './scripts/dialoug.js';

@@ -24,6 +24,7 @@
         @media screen and (min-width: 1024px) {
             display: flex;
             justify-content: space-between;
+            align-items: center;
         }
             
         @media screen and (min-width: 768px) {
@@ -62,9 +63,9 @@
         .store-page-details-inner {
             display: flex;
             font-size: 16px;
-            margin-bottom: 20px;
-            align-items: center;
+            align-items: flex-start;
             @media screen and (max-width: 768px) {
+                margin-bottom: 20px;
                 .address-label {display: none;}
             }
             div {
@@ -102,7 +103,12 @@
             letter-spacing: 0.05em; 
         }
     }
-    #map {
-        height: 170px;
+}
+@media screen and (min-width: 768px) {
+    .store-page-map-container, .store-page-events-container, .store-page-details {
+        max-width: 1300px;
+        padding-left: 0 !important;
+        margin: 0 auto;
+        padding-right: 0 !important;
     }
 }

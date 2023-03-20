@@ -63,18 +63,18 @@
 				margin-top: 10px;
 				&:after {
 					content: "";
-					background-image: url(https://dm-us-imgs.s3.us-west-2.amazonaws.com/AW21/L/DMPresents/S3E1/caret.png);
-					background-size: 10px 16px;
+					//background-image: url(https://dm-us-imgs.s3.us-west-2.amazonaws.com/AW21/L/DMPresents/S3E1/caret.png);
+					background-size: 14px;
 					border: none;
-					width: 10px;
-					height: 16px;
+					width: 14px;
+					height: 14px;
 					display: inline-block;
 					position: absolute;
 					top: 3.8px;
 					right: -14px;
 				}
 				&:hover {
-					color: #ffe512;
+					//color: #ffe512;
 				}
 			}
 		}
@@ -88,9 +88,6 @@
 		border-top: 1px solid #191c1d;
 	}
 
-	.store-page-events-container .eb-event a.event-cta:hover:after,.store-page-events-container .eb-event a.event-cta:active:after,.store-page-events-container .eb-event a.event-cta:focus:after {
-		background-image: url(https://dm-us-imgs.s3.us-west-2.amazonaws.com/bhm/d1/icon-arrow.png);
-	}
 	.eb-hidden {
 		display: none !important;
 	}

@@ -35,7 +35,7 @@ if (pageURL.indexOf("?") > -1) {
         const mapContainer = document.querySelector('.store-page-map-container');
         var containerLon = mapContainer.getAttribute('data-lon'),
         containerLat = mapContainer.getAttribute('data-lat'),
-        map,markerIMG;
+        map,markerIMG, Sfields, ctaIcon;
 
         map = mapContainer.appendChild(
             document.createElement("div")
@@ -51,6 +51,7 @@ if (pageURL.indexOf("?") > -1) {
                 markerIMG: null,
                 defaultStoreIMG: null,
                 Sfields: [],
+                ctaIcon: null,
                 page_title: null
               };
             },
@@ -74,7 +75,27 @@ if (pageURL.indexOf("?") > -1) {
                     //this.siteTag = response.data.records[0].fields.TagLine;
                     this.markerIMG = response.data.records[0].fields.marker_image[0].url;
                     markerIMG = this.markerIMG;
+                    Sfields = response.data.records[0].fields;
+                    ctaIcon = Sfields.cta[0].url;
 
+
+                    var css = '#app .store-page-events-container .eb-event .event-cta:after {background-image: url('+ctaIcon+');}',
+                    head = document.head || document.getElementsByTagName('head')[0],
+                    style = document.createElement('style');
+                
+                    head.appendChild(style);
+                    
+                    style.type = 'text/css';
+                    if (style.styleSheet){
+                    // This is required for IE8 and below.
+                    style.styleSheet.cssText = css;
+                    } else {
+                    style.appendChild(document.createTextNode(css));
+                    }
+
+
+
+                    
                     mapboxgl.accessToken =
                     "pk.eyJ1IjoiY2QxNDYwIiwiYSI6ImNsZjJ4NDk1YTBjMXYzeG1sNTI4ZmprdHcifQ.quOK2CY8bs1LsIXE-BsUwg";
                     map = new mapboxgl.Map({
