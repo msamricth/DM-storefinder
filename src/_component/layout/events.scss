@@ -36,7 +36,6 @@
 				}
 			}
 			.event-meta {
-				flex-basis: 25%;
 				line-height: 1;
 				padding-left: 10px;
 				h3 {
@@ -44,15 +43,27 @@
 					font-size: 12px;
 					line-height: 10px;
 					text-align: justify;
+					@media screen and (min-width: 768px) {			
+						font-size: 19px;
+						line-height: 24px;
+					}
 				}
 				h1 {
 					margin-bottom: 12px;
 					font-size: 28px;
+					@media screen and (min-width: 768px) {
+						font-size: 48px;
+						line-height: 24px;
+					}
 				}
 				span{
 					font-size: 10px;
 					line-height: 1;
 					color: #a8a8a8;
+					@media screen and (min-width: 768px) {
+						font-size: 12px;
+						line-height: 24px;
+					}
 				}
 			}
 			.event-cta {
@@ -152,5 +163,6 @@
 	
 	.event-details {
 		display: flex;
+		justify-content: space-between;
 	}
 }
