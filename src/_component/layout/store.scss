@@ -1,4 +1,4 @@
-.store-page-container {
+#app .store-page-container {
     .store-page-header {
         height: 180px;
         overflow: hidden;
@@ -33,21 +33,25 @@
         h1 {
             line-height: 1;
             margin-bottom: 10px;
+            font-size: 32px;
+            @media screen and (min-width: 768px) {
+                font-size: 58px;
+            }
         }
         .closing-time {
-            width: 152px;
-            height: 32px;
+            padding: 3px 6px;
             background: #FFE512;
             font-family: 'Oswald';
             font-style: normal;
             font-weight: 600;
-            font-size: 16px;
-            line-height: 24px;
+            font-size: 10px;
+            display: inline-block;
+            @media screen and (min-width: 768px) {
+                font-size: 16px;
+                padding: 4px 10px;
+            }
+            line-height: 1;
             margin-bottom: 10px;
-        /* identical to box height */
-            display: flex;
-            justify-content: center;
-            align-items: center;
             text-transform: uppercase;
         }
         .store-page-details-header {
@@ -62,6 +66,7 @@
     
             .mobile-address-label {
                 padding-bottom: 10px;
+                font-size: 12px;
             }
         }
         .store-page-details-inner {
@@ -74,14 +79,15 @@
             }
             div {
                 margin-right: 40px;
-                min-width: 200px;
                 
                 @media screen and (min-width: 768px) {
                     max-width: 310px;
+                    min-width: 200px;
 
                 }
                 @media screen and (max-width: 768px) {
-                    width: 50%;
+                    width: calc(50% - 40px);
+                    font-size: 12px;
                 }
                 
                 @media screen and (max-width: 1024px) {
@@ -105,6 +111,8 @@
         justify-content: center;
         align-items: center;
         height: 60px;
+        margin-top: 50px;
+        @media screen and (min-width: 768px) {margin-top: 75px;}
         &:hover{
             background-color: rgb(205, 185, 3);
         }

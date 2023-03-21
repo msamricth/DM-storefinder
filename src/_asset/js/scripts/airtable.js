@@ -106,15 +106,25 @@ function startApp2() {
                 [-39.11807460657073, 48.86784324437724] // Northeast coordinates
               ];
               
-              var mq = window.matchMedia( "(min-width: 420px)" ), SMZoom, SMMZoom;
+              var mq = window.matchMedia( "(max-width: 460px)" );
+              
+              var mq1 = window.matchMedia( "(max-width: 1024px)" );
+              var mq2 = window.matchMedia( "(max-width: 1360px)" );
+              var SMZoom, SMMZoom;
               if (mq.matches){
-                  SMZoom = 3.5,
-                  SMMZoom = 3.2;
-                  //map.setZoom(14.34); //set map zoom level for desktop size
-              } else {
-                SMZoom = 2,
+                SMZoom = 1.5,
                 SMMZoom = 0;
-                  //map.setZoom(2); //set map zoom level for mobile size
+              } else {
+                  if (mq1.matches){ 
+                    SMZoom = 2.4,
+                    SMMZoom = 2;
+                  } else if (mq2.matches){ 
+                    SMZoom = 2.6,
+                    SMMZoom = 2.2;
+                  } else {
+                    SMZoom = 3.5,
+                    SMMZoom = 3.2;
+                  }
               };
               const mapContainr = document.getElementById('map');
               var map;
@@ -123,6 +133,7 @@ function startApp2() {
                   container: "map",
                   style: "mapbox://styles/mapbox/light-v11",
                   center: [-98.034084142948, 38.909671288923],
+                  projection: 'mercator',
                   zoom: SMZoom,
                   minZoom: SMMZoom
                   //maxBounds: bounds
@@ -132,7 +143,7 @@ function startApp2() {
                 type: "FeatureCollection",
                 features: []
               };
-
+              window.addEventListener("resize", matchZoom);
               for (var i = 0; i < theRecords.length; i++) {
                 if ((current_day_of_week = 0)) {
                   closing_time = convert24timeToSeconds(
@@ -269,6 +280,8 @@ function startApp2() {
                    * - The markers onto the map
                    */
 
+
+                  map.addControl(new mapboxgl.NavigationControl());
                   map.on("click", "unclustered-point", (e) => {
                     const coordinates = e.features[0].geometry.coordinates.slice();
 
@@ -292,9 +305,6 @@ function startApp2() {
                     );
                     listing.classList.add("active");
                   });
-
-                
-
                   const markers = {};
                   let markersOnScreen = {};
 
@@ -571,6 +581,30 @@ function startApp2() {
                 app.classList.add("listings-completed");
               }
 
+              function matchZoom(){
+                var mq = window.matchMedia( "(max-width: 460px)" );
+              
+                var mq1 = window.matchMedia( "(max-width: 1024px)" );
+                var mq2 = window.matchMedia( "(max-width: 1360px)" );
+                var SMZoom, SMMZoom;
+                if (mq.matches){
+                  SMZoom = 1.8,
+                  SMMZoom = 0;
+                } else {
+                    if (mq1.matches){ 
+                      SMZoom = 2.6,
+                      SMMZoom = 2.2;
+                    } else if (mq2.matches){ 
+                      SMZoom = 2.6,
+                      SMMZoom = 2.2;
+                    } else {
+                      SMZoom = 3.5,
+                      SMMZoom = 3.2;
+                    }
+                };
+                map.setZoom(SMZoom);
+                map.setMinZoom(SMMZoom);
+              }
               /**
                * Use Mapbox GL JS's `flyTo` to move the camera smoothly
                * a given center point.
