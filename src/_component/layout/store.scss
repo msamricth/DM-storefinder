@@ -73,6 +73,11 @@
             display: flex;
             font-size: 16px;
             align-items: flex-start;
+            
+            @media screen and (min-width: 1290px) {
+                padding-top: 20px;
+            }
+
             @media screen and (max-width: 768px) {
                 margin-bottom: 20px;
                 .address-label {display: none;}
