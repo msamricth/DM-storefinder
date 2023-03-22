@@ -7,17 +7,32 @@
     
     @media screen and (min-width: 768px) {
         margin-top: 0;
+        @media (orientation: landscape) {
+            display: flex;
+            margin-top: -100px;
+        }
     }
     @media screen and (min-width: 1024px) {
         display: flex;
         margin-top: -100px;
     }
+    
     .map {
         height:150px;
         width: 100%;
         overflow: hidden;
         @media screen and (min-width: 460px) {
             height: 300px;
+        }
+        @media screen and (min-width: 768px) {
+            @media (orientation: landscape) {
+                position: sticky;
+                width: 66.6666%;
+                left:0;
+                top: 0;
+                bottom: 0;
+                height:100vh;
+            }
         }
         @media screen and (min-width: 1024px) {
             position: sticky;

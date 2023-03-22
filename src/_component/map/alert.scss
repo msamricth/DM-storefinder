@@ -20,6 +20,11 @@
         top: 200px;
         left: 30px;
         width: 320px;
+        @media (orientation: landscape) {
+            top: calc(100vh - 91px);
+            position: sticky;
+        }
+        
     }
     @media screen and (min-width: 1024px) {
         top: calc(100% - 58px - 40px);

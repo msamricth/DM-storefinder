@@ -56,7 +56,10 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 0 20px;
+        
+        @media screen and (min-width: 1024px) {
+         padding: 0 20px;
+        }
         .listing-details {
           padding: 10px;
           font-size: 10px;
@@ -103,23 +106,31 @@
     .mapboxgl-ctrl-geocoder--input {
         font-family: $mainfont;
         height: 50px;
-        padding: 6px 15px 6px 50px;
+        padding: 6px 15px 6px 35px;
         font-size: 12px;
+         @media screen and (min-width: 1024px) {
+          padding: 6px 15px 6px 50px;
+        }
       }
     .mapboxgl-ctrl-geocoder--icon {
       top: 16px;
-      left: 24px;
+      left: 10px;
       width: 15px;
       height: 15px;
+      @media screen and (min-width: 1024px) {
+        left: 24px;
+      }
     }
     .suggestions-wrapper {
-      height: 100%;
       .suggestions {
         border-radius: 0;
         padding: 10px 0;
         top: 100%;
         &> li > a {
-            padding: 0 24px;
+            padding: 0 10px;
+            @media screen and (min-width: 1024px) {
+              padding: 0 24px;
+            }
         }
         .results-icon {
             vertical-align: middle;
