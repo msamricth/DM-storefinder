@@ -18,7 +18,6 @@ import nodeResolve from "@rollup/plugin-node-resolve"
 import commonjs from "@rollup/plugin-commonjs"
 import sourcemaps from 'gulp-sourcemaps'
 
-var uglify = require('gulp-uglify');
 
 // *Optional* Depends on what JS features you want vs what browsers you need to support
 // *Not needed* for basic ES6 module import syntax support
@@ -100,9 +99,6 @@ const javascript = ({
         })
     );
   });
-
-
-
 };
 
 export default javascript;
