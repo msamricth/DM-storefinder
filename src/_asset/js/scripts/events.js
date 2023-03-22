@@ -103,7 +103,7 @@ if (pageURL.indexOf("?") > -1) {
                 "<div class='event-details'><div class='event-content'><h3 role='heading' aria-level='2'>" + city + ": " + venueName +"</h3>" +
                 "<p class='desc'>" + description + "</p>" +
                 "<p>" + address + " &bull; "+ title +"</p>" +
-                "<a class='event-cta' href='"+url+"' target='_blank'>RSVP</a></div>"+
+                "<span><a class='event-cta' href='"+url+"' target='_blank'>RSVP</a></span></div>"+
                 "<div class='event-meta text-center'>" + edate + "</div>" +
                 "</div></div>";
                 var singleE = tr_str;

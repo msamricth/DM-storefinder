@@ -78,21 +78,21 @@
                 .address-label {display: none;}
             }
             div {
-                margin-right: 40px;
+                margin-right: 60px;
                 
                 @media screen and (min-width: 768px) {
                     max-width: 310px;
-                    min-width: 200px;
+                    //min-width: 200px;
 
                 }
                 @media screen and (max-width: 768px) {
-                    width: calc(50% - 40px);
+                  //  width: calc(50% - 40px);
                     font-size: 12px;
                 }
                 
                 @media screen and (max-width: 1290px) {
                     @media screen and (min-width: 768px) {
-                        width: 33.3%;
+                    //    width: 33.3%;
                     }
                 }
                 h3 {
@@ -101,6 +101,7 @@
             }
             div:last-of-type {
                 margin-bottom: 0;
+                margin-right: 40px;
             }
         }
     }

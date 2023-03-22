@@ -126,6 +126,7 @@
     "gulp-rename": "1.4.0",
     "gulp-sass-variables": "1.2.0",
     "gulp-sourcemaps": "^3.0.0",
+    "gulp-uglify": "^3.0.2",
     "imagemin-gifsicle": "6.0.1",
     "imagemin-jpegtran": "6.0.0",
     "imagemin-optipng": "7.1.0",
