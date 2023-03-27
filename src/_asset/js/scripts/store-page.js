@@ -186,21 +186,31 @@ if (pageURL.indexOf("?") > -1) {
                             /* Assign the `item` class to each listing for styling. */
                             storePage.className = "store-page-container";
 
-
-
                             //store image
                             
                             const storeHeader = storePage.appendChild(
                                 document.createElement("div")
                             );
                             storeHeader.className = "store-page-header";
-                            const storeImage= storeHeader.appendChild(
-                                document.createElement("img")
-                            );
-                            storeImage.src = store_image;
-                            storeImage.className = "store-image"
-                            storeImage.alt = page_title + "Store Image";
-
+                           // const storeImage= storeHeader.appendChild(
+                             //   document.createElement("img")
+                          //  );
+                            //storeImage.src = store_image;
+                         //   storeImage.className = "store-image"
+                           // storeImage.alt = page_title + "Store Image";
+                            var css = '#app .store-page-header {background-image: url('+store_image+');}',
+                            head = document.head || document.getElementsByTagName('head')[0],
+                            style = document.createElement('style');
+                        
+                            head.appendChild(style);
+                            
+                            style.type = 'text/css';
+                            if (style.styleSheet){
+                                // This is required for IE8 and below.
+                                style.styleSheet.cssText = css;
+                            } else {
+                                style.appendChild(document.createTextNode(css));
+                            }
                             const details = storePage.appendChild(
                                 document.createElement("div")
                             );

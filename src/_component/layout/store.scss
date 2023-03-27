@@ -1,6 +1,8 @@
 #app .store-page-container {
-    .store-page-header {
+    .store-page-header {    
+        background-size: cover;
         height: 180px;
+        background-position: center center;
         overflow: hidden;
         @media screen and (min-width: 768px) {
             height: 320px;
@@ -57,7 +59,7 @@
         .store-page-details-header {
             margin-bottom: 10px;
             @media screen and (min-width: 768px) {
-                margin-bottom: 30px;
+                margin-bottom: 40px;
             }
 
             @media screen and (min-width: 1024px) {

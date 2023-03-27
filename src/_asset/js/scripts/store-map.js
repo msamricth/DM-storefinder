@@ -146,7 +146,7 @@ if (pageURL.indexOf("?") > -1) {
                             });
                     
                             // Add a layer to use the image to represent the data.
-                            map.addLayer({
+                           /* map.addLayer({
                             id: "points",
                             type: "symbol",
                             source: "point", // reference the data source
@@ -154,7 +154,7 @@ if (pageURL.indexOf("?") > -1) {
                                 "icon-image": "Marker", // reference the image
                                 "icon-size": 0.5
                             }
-                            });
+                            }); */
                         }
                         );
                     });
