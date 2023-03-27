@@ -99,7 +99,7 @@ if (pageURL.indexOf("?") > -1) {
                 upcomingEvnts.innerHTML += "<h4>UPCOMING EVENTS</h4>";
                 has_events = 1;
                 var tr_str = "<div class='eb-event'>" +
-                "<div class='event-image'><a href='"+url+"' target='_blank'><img src='" + eImage + "' /></a></div>" +
+                "<div class='event-image'><a href='"+url+"' target='_blank' class='ratio ratio-16x9'><img src='" + eImage + "' /></a></div>" +
                 "<div class='event-details'><div class='event-content'><h3 role='heading' aria-level='2'>" + city + ": " + venueName +"</h3>" +
                 "<p class='desc'>" + description + "</p>" +
                 "<p>" + address + " &bull; "+ title +"</p>" +
