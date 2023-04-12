@@ -2,54 +2,48 @@
   box-sizing: border-box;
 }
 
-html,
-body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-}
-
-h1, h2 {
-	margin: 0;
-	font-family: "Oswald", "Trade Gothic Bold", sans-serif; 
-	font-weight: 500;
-}
-		
-h1 {
-	font-size: 48px;
-	text-transform: uppercase;
-} 
-	
-h2 {
-	font-size: 20px;
-}
-
-h3 {
-	font-family: "Overpass", "Interstate Reg", sans-serif;
-	font-size: 15px;
-	font-weight: 800;
-}
-
-p { 
-	line-height: 30px;
-}
-
-body {
-	background-color: #000;
-	color: #fff;
-	font-family: "Overpass", "Interstate Reg", sans-serif;
-	font-size: 14px;
-}
-
-@media screen and (max-width:1023px) {
-	.dm-main { 
-		margin-top: 0px !important;
-	}
-}
 #app {
-  position: relative;
-  background-color: #fff;
-  color: #000;
+	position: relative;
+	background-color: #fff;
+	color: #000;
+
+	h1, h2 {
+		margin: 0;
+		font-family: "Oswald", "Trade Gothic Bold", sans-serif; 
+		font-weight: 500;
+	}
+			
+	h1 {
+		font-size: 48px;
+		text-transform: uppercase;
+	} 
+		
+	h2 {
+		font-size: 20px;
+	}
+
+	h3 {
+		font-family: "Overpass", "Interstate Reg", sans-serif;
+		font-size: 15px;
+		font-weight: 800;
+	}
+
+	p { 
+		line-height: 30px;
+	}
+
+	body {
+		background-color: #000;
+		color: #fff;
+		font-family: "Overpass", "Interstate Reg", sans-serif;
+		font-size: 14px;
+	}
+
+	@media screen and (max-width:1023px) {
+		.dm-main { 
+			margin-top: 0px !important;
+		}
+	}
   h1 {
 	font-family: 'Oswald';
 	font-style: normal;
