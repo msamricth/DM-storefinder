@@ -25,7 +25,13 @@
        //     display: block;
         }
     }
-    
+    @media screen and (min-width: 768px) {
+        @media (orientation: landscape) {
+            .sidebar {
+                width: 50%;
+            }
+        }
+    }
     .map {
         height:268px;
         width: 100%;
@@ -38,7 +44,7 @@
         @media screen and (min-width: 768px) {
             @media (orientation: landscape) {
                 position: sticky;
-                width: 66.6666%;
+                width: 50%;
                 left:0;
                 top: 0;
                 bottom: 0;
