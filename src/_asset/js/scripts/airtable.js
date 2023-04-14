@@ -386,7 +386,8 @@ function startApp2() {
                     mapboxgl: mapboxgl, // Set the mapbox-gl instance
                     marker: false, // Use the geocoder's default marker style
                     localGeocoder: forwardGeocoder,
-                    types: 'place',
+                    countries: 'us',
+                    types: 'place, postcode',
                     countries: 'US'
                     //bbox: [-77.210763, 38.803367, -76.853675, 39.052643] // Set the bounding box coordinates
                   });
