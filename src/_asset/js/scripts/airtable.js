@@ -255,7 +255,7 @@ function startApp2() {
                       data: stores,
                       cluster: true,
                       clusterMaxZoom: 8, // Max zoom to cluster points on
-                      clusterRadius: 3 // Radius of each cluster when clustering points (defaults to 50)
+                      clusterRadius: 12 // Radius of each cluster when clustering points (defaults to 50)
                     });
                     map.addLayer({
                       id: "clusters",
