@@ -6,7 +6,11 @@ var isAppLoaded;
 const observer = new MutationObserver((mutations) => {
   if (mutations[0].attributeName === 'class') { 
     isAppLoaded = app.classList.contains('app2-completed');
-        if(isAppLoaded){ 
+        if(isAppLoadegeolocatorstatusd){ 
+
+
+            const geolocatorstatus = document.getElementById('geolocatorstatus');
+            geolocatorstatus.innerHTML = '';
             const MBinput = document.querySelector(".mapboxgl-ctrl-geocoder--input");
             MBinput.addEventListener("input", (e) => {
               if (MBinput.value == null || MBinput.value == "") {
