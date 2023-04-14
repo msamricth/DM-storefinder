@@ -8,7 +8,13 @@ const observer = new MutationObserver((mutations) => {
     isAppLoaded = app.classList.contains('app2-completed');
         if(isAppLoaded){ 
             const MBinput = document.querySelector(".mapboxgl-ctrl-geocoder--input");
-            MBinput.addEventListener("input", displayGrey);
+            MBinput.addEventListener("input", (e) => {
+              if (MBinput.value == null || MBinput.value == "") {
+                sidebar.classList.remove("search-suggestions-displayed");
+              } else {
+                sidebar.classList.add("search-suggestions-displayed");
+              }
+            });
             const suggestions = document.querySelectorAll(".suggestions a");
             suggestions.forEach(element => {
               element.addEventListener("click", (evt) => {
@@ -37,14 +43,7 @@ const observer = new MutationObserver((mutations) => {
             });
 
 
-            function displayGrey(e) {
-              
-              if (MBinput.value == null || MBinput.value == "") {
-                sidebar.classList.remove("search-suggestions-displayed");
-              } else {
-                sidebar.classList.add("search-suggestions-displayed");
-              }
-            }
+
 
         }
     }
