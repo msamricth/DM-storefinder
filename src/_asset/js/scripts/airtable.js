@@ -470,11 +470,10 @@ function startApp2() {
                         `listing-${stores.features[0].properties.id}`
                       );
                       activeListing.classList.add('active');
-                  
+                      closeAlrt();
                       flyToStore(stores.features[0])
                       createPopUp(stores.features[0]);
                     }
-                  
                     function error() {
                       status.textContent = "Unable to retrieve your location";
                     }
@@ -485,10 +484,15 @@ function startApp2() {
                       status.textContent = "Locating…";
                       navigator.geolocation.getCurrentPosition(success, error);
                     }
+                    closeAlrt();
                   }
                   
                   document.querySelector("#find-me").addEventListener("click", geoFindMe);
         
+                  function closeAlrt(){
+                    const alertCNTR = document.querySelector(".fade-map-elements");
+                    alertCNTR.classList.remove('show');
+                  }
                   map.on("render", () => {
                     updateMarkers();
                   });
