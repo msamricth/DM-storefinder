@@ -7,7 +7,7 @@ const observer = new MutationObserver((mutations) => {
             (function($) {
                 $(".close-alert").click(function(){
                     var self = $(this).parent();
-                    self.toggleClass("show");
+                    self.removeClass("show");
                 });
             })( jQuery );
         }
