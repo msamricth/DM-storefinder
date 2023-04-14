@@ -1,5 +1,6 @@
-
-link(rel="stylesheet" href=`${baseUrl}style.css` embed)
-
+if config.entry.css.external
+    link(rel="stylesheet", id="map-styles", href=`${baseUrl}style.css`)
 
 block content  
+
+script(src='bundle.js')

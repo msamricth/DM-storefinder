@@ -255,7 +255,7 @@ function startApp2() {
                       data: stores,
                       cluster: true,
                       clusterMaxZoom: 8, // Max zoom to cluster points on
-                      clusterRadius: 20 // Radius of each cluster when clustering points (defaults to 50)
+                      clusterRadius: 10 // Radius of each cluster when clustering points (defaults to 50)
                     });
                     map.addLayer({
                       id: "clusters",
@@ -382,6 +382,7 @@ function startApp2() {
                   }
                   const geocoder = new MapboxGeocoder({
                     accessToken: mapboxgl.accessToken, // Set the access token
+                    placeholder: 'Find a Store...',
                     mapboxgl: mapboxgl, // Set the mapbox-gl instance
                     marker: false, // Use the geocoder's default marker style
                     localGeocoder: forwardGeocoder,

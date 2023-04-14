@@ -1,7 +1,6 @@
-style 
-    <!--paste script here -->
+if config.entry.css.external
+    link(rel="stylesheet", id="map-styles", href=`${baseUrl}style.css`)
 
-block content
+block content  
 
-script(type="text/javascript")
-    <!--paste script here -->
+script(src='bundle.js')
