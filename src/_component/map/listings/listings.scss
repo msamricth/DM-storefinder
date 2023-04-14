@@ -100,7 +100,18 @@
     @media screen and (max-width: 460px) {
       top: -268px;
     }
+    input.mapboxgl-ctrl-geocoder--input::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+      color: #9E9E9E;
+      opacity: 1; /* Firefox */
+    }
     
+    input.mapboxgl-ctrl-geocoder--input:-ms-input-placeholder { /* Internet Explorer 10-11 */
+      color: #9E9E9E;
+    }
+    
+    input.mapboxgl-ctrl-geocoder--input::-ms-input-placeholder { /* Microsoft Edge */
+      color: #9E9E9E;
+    }
   }
   .results-icon {
     width: 1rem;
