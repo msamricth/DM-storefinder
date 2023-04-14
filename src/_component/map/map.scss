@@ -13,7 +13,7 @@
 }
 //ohh hybris
 .js-device-info main#main-content {
-    padding-top: 0 !important;
+ //   padding-top: 0 !important;
 }
 .map-container {
     position: relative;
@@ -174,7 +174,7 @@
         }
         .map-btn {
             position: absolute;
-            z-index: 99999;
+            z-index: 99;
             font-family: 'Oswald';
             font-weight: 600;
             font-size: 12px;
@@ -191,6 +191,7 @@
             &:hover {
                 background-color: #FFD909;
                 border-color: #FFD909;
+                text-decoration: none;
             }
             @media screen and (min-width: 768px) {
               //  top: 62%;
