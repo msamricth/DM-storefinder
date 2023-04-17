@@ -556,9 +556,21 @@ function startApp2() {
                   const meta = detailsContainer.appendChild(
                     document.createElement("div")
                   );
+
+
+                  var containerPhone = `${store.properties.phoneFormatted}`,
+                  containerAddress = `${store.properties.address}`;
+
+                  if(containerPhone){
+                    containerPhone = encodeURIComponent(containerPhone);
+                  }
+                  if(containerAddress){
+                      containerAddress = encodeURIComponent(containerAddress);
+                  }
+                  var containerhref = "https://www.google.com/maps/dir/?api=1&destination="+containerAddress;
                   meta.className = 'meta-details';
-                  meta.innerHTML += "<img class='results-icon' src='"+directionIcon+"'/>";
-                  meta.innerHTML += "<img class='results-icon' src='"+phoneIcon+"'/>";
+                  meta.innerHTML += "<a href='"+containerhref+"' targt='_blank'><img class='results-icon' src='"+directionIcon+"'/></a>";
+                  meta.innerHTML += "<a href='"+containerPhone+"' targt='_blank'><img class='results-icon' src='"+phoneIcon+"'/></a>";
 
                   /**
                    * Listen to the element and when it is clicked, do four things:
