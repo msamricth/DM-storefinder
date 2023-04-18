@@ -6,7 +6,7 @@ var isAppLoaded;
 const observer = new MutationObserver((mutations) => {
   if (mutations[0].attributeName === 'class') { 
     isAppLoaded = app.classList.contains('app2-completed');
-        if(isAppLoadegeolocatorstatusd){ 
+        if(isAppLoaded){ 
 
 
             const geolocatorstatus = document.getElementById('geolocatorstatus');
