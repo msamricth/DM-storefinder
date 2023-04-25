@@ -12,13 +12,15 @@ const observer = new MutationObserver((mutations) => {
             const geolocatorstatus = document.getElementById('geolocatorstatus');
             geolocatorstatus.innerHTML = '';
             const MBinput = document.querySelector(".mapboxgl-ctrl-geocoder--input");
-            MBinput.addEventListener("input", (e) => {
-              if (MBinput.value == null || MBinput.value == "") {
-                sidebar.classList.remove("search-suggestions-displayed");
-              } else {
-                sidebar.classList.add("search-suggestions-displayed");
-              }
-            });
+            if(MBinput){
+              MBinput.addEventListener("input", (e) => {
+                if (MBinput.value == null || MBinput.value == "") {
+                  sidebar.classList.remove("search-suggestions-displayed");
+                } else {
+                  sidebar.classList.add("search-suggestions-displayed");
+                }
+              });
+            }
             const suggestions = document.querySelectorAll(".suggestions a");
             suggestions.forEach(element => {
               element.addEventListener("click", (evt) => {

@@ -71,6 +71,20 @@ function startApp2() {
           ctaIcon = Sfields.cta[0].url;
           search_markerIcon = Sfields.search_marker[0].url;
         
+          var css = '.map-container .marker {background-image: url('+markerIMG+');}',
+          head = document.head || document.getElementsByTagName('head')[0],
+          style = document.createElement('style');
+      
+          head.appendChild(style);
+          
+          style.type = 'text/css';
+          if (style.styleSheet){
+              // This is required for IE8 and below.
+              style.styleSheet.cssText = css;
+          } else {
+              style.appendChild(document.createTextNode(css));
+          }
+
 
           page_title = response.data.records[0].fields.page_title;
           document.title = page_title;
@@ -267,11 +281,7 @@ function startApp2() {
                       id: "unclustered-point",
                       source: "places",
                       filter: ["!", ["has", "point_count"]],
-                      type: "symbol",
-                      layout: {
-                        "icon-image": "pin", // reference the image
-                        "icon-size": 0.25
-                      }
+                      type: "symbol"
                     });
                   });
                   /**
@@ -282,7 +292,7 @@ function startApp2() {
 
 
                   map.addControl(new mapboxgl.NavigationControl());
-                  map.on("click", "unclustered-point", (e) => {
+                /**  map.on("click", "unclustered-point", (e) => {
                     const coordinates = e.features[0].geometry.coordinates.slice();
 
                     // Ensure that if the map is zoomed out such that
@@ -294,7 +304,7 @@ function startApp2() {
 
                     flyToStoreAndChange(e.features[0]);
                     /* Close all other popups and display popup for clicked store */
-                    /* Highlight listing in sidebar */
+                    /* Highlight listing in sidebar 
                     const activeItem = document.getElementsByClassName("active");
                     // e.stopPropagation();
                     if (activeItem[0]) {
@@ -305,10 +315,62 @@ function startApp2() {
                     );
                     listing.classList.add("active");
                   });
+                  */
+                 
+                  var markersList= []; //outer scope
+                  function updateMarkers() {
+                    markersList.forEach(marker => marker.remove());
+                    markersList = []; //reassign empty array
+                
+                    const features = map.querySourceFeatures("places",{
+                      layers: ['unclustered-point']
+                    });
+                    for (const feature of features) {
+                      // create a HTML element for each feature
+
+                      const coords = feature.geometry.coordinates;
+                      const props = feature.properties;
+                      var Mslug = props.slug;
+                      if(Mslug) Mslug = Mslug.replace('?','');
+
+                      const id = props.id
+                     // let NCmarker = NCmarkers[id];
+                      var PDMT = document.getElementsByClassName(Mslug);
+        
+                      
+                      if(PDMT){ }
+                        const el = document.createElement('div');
+                        el.className = 'marker';
+                        el.classList.add(Mslug);
+
+                        el.addEventListener("click", (e) => {
+                          flyToStoreAndChange(feature);
+                          /* Close all other popups and display popup for clicked store */
+                          /* Highlight listing in sidebar */
+                          const activeItem = document.getElementsByClassName("active");
+                          // e.stopPropagation();
+                          if (activeItem[0]) {
+                            activeItem[0].classList.remove("active");
+                          }
+                          const listing = document.getElementById(
+                            `listing-${feature.properties.id}`
+                          );
+                          listing.classList.add("active");
+                        });
+                        //marker.addTo(map);
+                        // make a marker for each feature and add it to the map
+                        let marker = new mapboxgl.Marker(el).setLngLat(coords);
+                        marker.addTo(map);
+                        markersList.push(marker);
+                      
+                    }
+                    // for every marker we've added previously, remove those that are no longer visible
+                    //  }
+                  }
                   const markers = {};
                   let markersOnScreen = {};
 
-                  function updateMarkers() {
+                  function updateClusters() {
                     const newMarkers = {};
                     const features = map.querySourceFeatures("places");
 
@@ -327,19 +389,23 @@ function startApp2() {
                         marker = markers[id] = new mapboxgl.Marker({
                           element: el
                         }).setLngLat(coords);
-
                         el.addEventListener("click", (e) => {
-                          
                           const clusterId = feature.properties.cluster_id;
                           map
                             .getSource("places")
                             .getClusterExpansionZoom(clusterId, (err, zoom) => {
                               if (err) return;
-
+                              var Currentzoom = map.getZoom(),zoomTO;
+                              if(Currentzoom >= 8){
+                                zoomTO = zoom;
+                              } else {
+                                zoomTO = 8;
+                              }
                               map.easeTo({
                                 center: feature.geometry.coordinates,
-                                zoom: zoom
+                                zoom: zoomTO
                               });
+                             // map.setZoom(zoomTO);
                             });
                         });
                       }
@@ -353,6 +419,8 @@ function startApp2() {
                     }
                     markersOnScreen = newMarkers;
                   }
+                   
+
                   function forwardGeocoder(query) {
                     const matchingFeatures = [];
                   // const features = map.querySourceFeatures("places");
@@ -495,9 +563,12 @@ function startApp2() {
                   }
                   map.on("render", () => {
                     updateMarkers();
+                    updateClusters();
                   });
                   map.on("zoom", () => {
                     //updateMarkers();
+                    
+                  //  updateClusters();
                     markerCheck(map.getZoom());
                   });
                   map.on("mouseenter", "unclustered-point", () => {
@@ -506,12 +577,18 @@ function startApp2() {
                   map.on("mouseleave", "unclustered-point", () => {
                     map.getCanvas().style.cursor = "";
                   });
+                    
                 // map.addControl(geocoder, 'top-right');
                   buildLocationList(stores);
 
                 
                 });
               }
+              // disable map rotation using right click + drag
+              map.dragRotate.disable();
+              
+              // disable map rotation using touch rotation gesture
+              map.touchZoomRotate.disableRotation();
               /**
                * Add a listing for each store to the sidebar.
                **/
@@ -623,6 +700,7 @@ function startApp2() {
                 map.setZoom(SMZoom);
                 map.setMinZoom(SMMZoom);
               }
+
               /**
                * Use Mapbox GL JS's `flyTo` to move the camera smoothly
                * a given center point.

@@ -46,6 +46,6 @@ include('https://kit.fontawesome.com/8b0174b394.js','fontawesome', true, 'anonym
 
 includeCSS('https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.css', 'mapbox-gl-geocoder');
 include('https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.min.js', 'mapbox-gl-geocoder');
-
+//include('https://unpkg.com/supercluster@7.1.2/dist/supercluster.min.js', 'mapbox-supercluser');
 include('https://npmcdn.com/@turf/turf/turf.min.js', 'TurfJS');
 
