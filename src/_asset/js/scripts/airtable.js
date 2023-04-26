@@ -415,7 +415,7 @@ function startApp2() {
                     marker: false, // Use the geocoder's default marker style
                     localGeocoder: forwardGeocoder,
                     countries: 'us',
-                    types: 'place, postcode',
+                    types: 'place, postcode, region',
                     countries: 'US'
                     //bbox: [-77.210763, 38.803367, -76.853675, 39.052643] // Set the bounding box coordinates
                   });
