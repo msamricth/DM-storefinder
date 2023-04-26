@@ -268,7 +268,7 @@ function startApp2() {
                       type: "geojson",
                       data: stores,
                       cluster: true,
-                      clusterMaxZoom: 8, // Max zoom to cluster points on
+                      clusterMaxZoom: 12, // Max zoom to cluster points on
                       clusterRadius: 12 // Radius of each cluster when clustering points (defaults to 50)
                     });
                     map.addLayer({
@@ -281,7 +281,11 @@ function startApp2() {
                       id: "unclustered-point",
                       source: "places",
                       filter: ["!", ["has", "point_count"]],
-                      type: "symbol"
+                      type: "symbol",
+                      layout: {
+                        "icon-image": "pin", // reference the image
+                        "icon-size": 0.25
+                      }
                     });
                   });
                   /**
@@ -292,81 +296,33 @@ function startApp2() {
 
 
                   map.addControl(new mapboxgl.NavigationControl());
-                /**  map.on("click", "unclustered-point", (e) => {
+                  map.on("click", "unclustered-point", (e) => {
                     const coordinates = e.features[0].geometry.coordinates.slice();
+                    const props = e.features[0].properties;
+                    if (!props.cluster) {
+                      // Ensure that if the map is zoomed out such that
+                      // multiple copies of the feature are visible, the
+                      // popup appears over the copy being pointed to.
+                      while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+                        coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+                      }
 
-                    // Ensure that if the map is zoomed out such that
-                    // multiple copies of the feature are visible, the
-                    // popup appears over the copy being pointed to.
-                    while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
-                      coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+                      flyToStoreAndChange(e.features[0]);
+                      /* Close all other popups and display popup for clicked store */
+                      /* Highlight listing in sidebar 
+                    */
+                      const activeItem = document.getElementsByClassName("active");
+                      // e.stopPropagation();
+                      if (activeItem[0]) {
+                        activeItem[0].classList.remove("active");
+                      }
+                      const listing = document.getElementById(
+                        `listing-${e.features[0].properties.id}`
+                      );
+                      listing.classList.add("active");
                     }
-
-                    flyToStoreAndChange(e.features[0]);
-                    /* Close all other popups and display popup for clicked store */
-                    /* Highlight listing in sidebar 
-                    const activeItem = document.getElementsByClassName("active");
-                    // e.stopPropagation();
-                    if (activeItem[0]) {
-                      activeItem[0].classList.remove("active");
-                    }
-                    const listing = document.getElementById(
-                      `listing-${e.features[0].properties.id}`
-                    );
-                    listing.classList.add("active");
                   });
-                  */
                  
-                  var markersList= []; //outer scope
-                  function updateMarkers() {
-                    markersList.forEach(marker => marker.remove());
-                    markersList = []; //reassign empty array
-                
-                    const features = map.querySourceFeatures("places",{
-                      layers: ['unclustered-point']
-                    });
-                    for (const feature of features) {
-                      // create a HTML element for each feature
-
-                      const coords = feature.geometry.coordinates;
-                      const props = feature.properties;
-                      var Mslug = props.slug;
-                      if(Mslug) Mslug = Mslug.replace('?','');
-
-                      const id = props.id
-                     // let NCmarker = NCmarkers[id];
-                      var PDMT = document.getElementsByClassName(Mslug);
-        
-                      
-                      if(PDMT){ }
-                        const el = document.createElement('div');
-                        el.className = 'marker';
-                        el.classList.add(Mslug);
-
-                        el.addEventListener("click", (e) => {
-                          flyToStoreAndChange(feature);
-                          /* Close all other popups and display popup for clicked store */
-                          /* Highlight listing in sidebar */
-                          const activeItem = document.getElementsByClassName("active");
-                          // e.stopPropagation();
-                          if (activeItem[0]) {
-                            activeItem[0].classList.remove("active");
-                          }
-                          const listing = document.getElementById(
-                            `listing-${feature.properties.id}`
-                          );
-                          listing.classList.add("active");
-                        });
-                        //marker.addTo(map);
-                        // make a marker for each feature and add it to the map
-                        let marker = new mapboxgl.Marker(el).setLngLat(coords);
-                        marker.addTo(map);
-                        markersList.push(marker);
-                      
-                    }
-                    // for every marker we've added previously, remove those that are no longer visible
-                    //  }
-                  }
                   const markers = {};
                   let markersOnScreen = {};
 
@@ -395,14 +351,18 @@ function startApp2() {
                             .getSource("places")
                             .getClusterExpansionZoom(clusterId, (err, zoom) => {
                               if (err) return;
-                              var Currentzoom = map.getZoom(),zoomTO;
-                              if(Currentzoom >= 8){
-                                zoomTO = zoom;
+                              var Currentzoom = map.getZoom(),zoomTO, midLvlZoom = 7;
+                              if(Currentzoom >= midLvlZoom){
+                                
+                                zoomTO = Currentzoom * 1.5;
                               } else {
-                                zoomTO = 8;
+                                zoomTO = midLvlZoom;
                               }
                               map.easeTo({
                                 center: feature.geometry.coordinates,
+                                speed: 0.2,
+                                //curve: 1,
+                                duration: 2500,
                                 zoom: zoomTO
                               });
                              // map.setZoom(zoomTO);
@@ -562,7 +522,7 @@ function startApp2() {
                     alertCNTR.classList.remove('show');
                   }
                   map.on("render", () => {
-                    updateMarkers();
+                   // updateMarkers();
                     updateClusters();
                   });
                   map.on("zoom", () => {
