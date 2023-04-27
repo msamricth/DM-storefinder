@@ -116,6 +116,7 @@ if (pageURL.indexOf("?") > -1) {
                         // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
                         style: "mapbox://styles/mapbox/light-v11",
                         zoom: 15, // starting zoom
+                        interactive: false,
                         center: [containerLon, containerLat] // starting position
                     });
                     
