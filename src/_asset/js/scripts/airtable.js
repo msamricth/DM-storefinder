@@ -347,6 +347,8 @@ function startApp2() {
                         }).setLngLat(coords);
                         el.addEventListener("click", (e) => {
                           const clusterId = feature.properties.cluster_id;
+                          SortListingsOnMapLoc(coords);
+                          console.log(coords);
                           map
                             .getSource("places")
                             .getClusterExpansionZoom(clusterId, (err, zoom) => {
@@ -455,8 +457,50 @@ function startApp2() {
                     const sidebar = document.querySelector(".sidebar");
                     sidebar.classList.remove("search-suggestions-displayed");
                   });
-                  
-                  
+                  function resetStoreListOnZoomOut(zoom){
+                      if (zoom > 8) {
+                        buildLocationList(stores);
+                      }
+                  }
+                  function SortListingsOnMapLoc(position) {
+                   
+                    var usrCoordinates = {
+                      type: "Point",
+                      coordinates: [
+                        position[0],
+                        position[1]
+                      ]
+                    };
+                    
+                    console.log(usrCoordinates);
+                    const searchResult = usrCoordinates;
+                    const options = { units: 'miles' };
+                    for (const store of stores.features) {
+                      store.properties.distance = turf.distance(
+                        searchResult,
+                        store.geometry,
+                        options
+                      );
+                    }
+                    stores.features.sort((a, b) => {
+                      if (a.properties.distance > b.properties.distance) {
+                        return 1;
+                      }
+                      if (a.properties.distance < b.properties.distance) {
+                        return -1;
+                      }
+                      return 0; // a must be equal to b
+                    });
+                    const listings = document.getElementById('listings');
+                    while (listings.firstChild) {
+                      listings.removeChild(listings.firstChild);
+                    }
+                    buildLocationList(stores);
+                    const activeListing = document.getElementById(
+                      `listing-${stores.features[0].properties.id}`
+                    );
+                    activeListing.classList.add('active');
+                  }
                   function geoFindMe() {
                     const status = document.querySelector("#geolocatorstatus");
                     
@@ -527,7 +571,8 @@ function startApp2() {
                   });
                   map.on("zoom", () => {
                     //updateMarkers();
-                    
+                    var Currentzoom = map.getZoom();
+                    resetStoreListOnZoomOut(Currentzoom);
                   //  updateClusters();
                     markerCheck(map.getZoom());
                   });
