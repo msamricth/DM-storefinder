@@ -1,3 +1,4 @@
+//ohh hybris
 .yCmsComponent div#app {
     margin-top: 58px;
 }
@@ -11,10 +12,30 @@
     //    margin-top: -16px;
     }
 }
-//ohh hybris
+
 .js-device-info main#main-content {
  //   padding-top: 0 !important;
 }
+#app {
+    margin-bottom: -90px;
+    @media screen and (min-width: 768px) {
+        margin-bottom: -60px;
+	} 
+}
+main#main-content {
+    background-color: black;
+}
+
+.yCmsContentSlot.smartEditComponent {
+    background-color: transparent;
+}
+
+.yCmsComponent.smartEditComponent {
+    background-color: transparent;
+}
+
+
+//END ohh hybris
 .mapCluster.mapboxgl-marker.mapboxgl-marker-anchor-center {
     z-index: 9999;
 }
