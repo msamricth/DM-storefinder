@@ -102,6 +102,8 @@ if (pageURL.indexOf("?") > -1) {
                                 if(store_image == "undefined"){
                                     store_image = default_image
                                 }
+                            } else {
+                                store_image = default_image
                             }
                             
                             if ((current_day_of_week = 0)) {
@@ -156,7 +158,6 @@ if (pageURL.indexOf("?") > -1) {
                                 closing_time_display = "Closes at " + closing_time;
                             } 
                             } 
-                            store_image = default_image
                             hours = storeFields.hours_fx;
                             if(hours){
                                 if (hours.indexOf("[LINEBREAK]") > -1) {
