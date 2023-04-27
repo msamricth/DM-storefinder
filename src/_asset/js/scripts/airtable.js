@@ -463,7 +463,6 @@ function startApp2() {
                       }
                   }
                   function SortListingsOnMapLoc(position) {
-                   
                     var usrCoordinates = {
                       type: "Point",
                       coordinates: [
@@ -472,7 +471,6 @@ function startApp2() {
                       ]
                     };
                     
-                    console.log(usrCoordinates);
                     const searchResult = usrCoordinates;
                     const options = { units: 'miles' };
                     for (const store of stores.features) {
@@ -482,6 +480,7 @@ function startApp2() {
                         options
                       );
                     }
+                    
                     stores.features.sort((a, b) => {
                       if (a.properties.distance > b.properties.distance) {
                         return 1;
