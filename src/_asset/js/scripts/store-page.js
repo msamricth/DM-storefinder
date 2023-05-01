@@ -192,7 +192,7 @@ if (pageURL.indexOf("?") > -1) {
                             const storeHeader = storePage.appendChild(
                                 document.createElement("div")
                             );
-                            storeHeader.className = "store-page-header";
+                            storeHeader.className = "store-page-header ratio ratio-16x9";
                            // const storeImage= storeHeader.appendChild(
                              //   document.createElement("img")
                           //  );
