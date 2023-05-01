@@ -131,6 +131,13 @@
       min-width: 100%;
       margin-left: 0;
     }
+    svg.mapboxgl-ctrl-geocoder--icon.mapboxgl-ctrl-geocoder--icon-search {
+        display: none;
+    }
+    .mapboxgl-ctrl-geocoder.mapboxgl-ctrl {
+        background: #f7f7f7 url(https://www.drmartens.com/_ui/responsive/theme-dm/images/mag-srch-icn-black.png) no-repeat 9px 15px;
+        background-size: 16px;
+    }
     .mapboxgl-ctrl-geocoder--input {
         font-family: $mainfont;
         height: 50px;
