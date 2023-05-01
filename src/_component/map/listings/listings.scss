@@ -135,8 +135,15 @@
         display: none;
     }
     .mapboxgl-ctrl-geocoder.mapboxgl-ctrl {
-        background: #f7f7f7 url(https://www.drmartens.com/_ui/responsive/theme-dm/images/mag-srch-icn-black.png) no-repeat 9px 15px;
+        background: #f7f7f7 url(https://www.drmartens.com/_ui/responsive/theme-dm/images/mag-srch-icn-black.png) no-repeat 16px 15px;
         background-size: 16px;
+    }
+    
+    @media screen and (min-width: 1024px) {
+      .mapboxgl-ctrl-geocoder.mapboxgl-ctrl {
+          background: #f7f7f7 url(https://www.drmartens.com/_ui/responsive/theme-dm/images/mag-srch-icn-black.png) no-repeat 24px 15px;
+
+      }
     }
     .mapboxgl-ctrl-geocoder--input {
         font-family: $mainfont;
