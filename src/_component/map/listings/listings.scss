@@ -6,7 +6,14 @@
       width: 33.3333%;
       height: 100%;
       top: 0;
-      overflow: hidden;
+      //overflow: hidden;
+    }
+    .searchcntr {
+        background-color: white;
+        position: sticky;
+        z-index: 3;
+        padding: 20px 18px;
+        top: 0;
     }
     padding-top: 0px;
     border-right: 1px solid rgba(0, 0, 0, 0.25);
@@ -92,47 +99,60 @@
   
  .searchcntr {
   @media screen and (max-width: 768px) {
-    top: -300px;
-    z-index: 2;
-    position: absolute;
+   // top: -300px;
+    //z-index: 2;
+   // position: absolute;
     width: 100%;
   }
     @media screen and (max-width: 460px) {
-      top: -268px;
+   //   top: -268px;
     }
+    
     input.mapboxgl-ctrl-geocoder--input::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-      color: #9E9E9E;
+      color: #000000;
       opacity: 1; /* Firefox */
     }
     
     input.mapboxgl-ctrl-geocoder--input:-ms-input-placeholder { /* Internet Explorer 10-11 */
-      color: #9E9E9E;
+      color: #000000;
     }
     
     input.mapboxgl-ctrl-geocoder--input::-ms-input-placeholder { /* Microsoft Edge */
-      color: #9E9E9E;
+      color: #000000;
+    }
+    .active {
+      input.mapboxgl-ctrl-geocoder--input::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+        color: #000000;
+        opacity: 0.25; /* Firefox */
+      }
+      
+      input.mapboxgl-ctrl-geocoder--input:-ms-input-placeholder { /* Internet Explorer 10-11 */
+        color: rgba(0, 0, 0, 0.25);
+      }
+      
+      input.mapboxgl-ctrl-geocoder--input::-ms-input-placeholder { /* Microsoft Edge */
+        color: rgba(0, 0, 0, 0.25);
+      }
     }
   }
   .results-icon {
     width: 1rem;
   }
   .mapboxgl-ctrl-geocoder.mapboxgl-ctrl {
-      background: #f7f7f7 url(https://www.drmartens.com/_ui/responsive/theme-dm/images/mag-srch-icn-black.png) no-repeat 10px 15px;
-      background-size: 16px;
-  }
-
-  @media screen and (min-width: 1024px) {
-    .mapboxgl-ctrl-geocoder.mapboxgl-ctrl {
-        background: #f7f7f7 url(https://www.drmartens.com/_ui/responsive/theme-dm/images/mag-srch-icn-black.png) no-repeat 24px 15px;
-
+    background-image: url(https://www.drmartens.com/_ui/responsive/theme-dm/images/mag-srch-icn-black.png);
+    background-repeat: no-repeat;
+    background-position: 21px center;
+    background-size: 15px;
+    opacity: .5;
+    transition: .15s ease opacity;
+    &.active, &:active {
+      opacity: 1;
     }
   }
     .mapboxgl-ctrl-geocoder {
     border: 0;
-    //position: absolute;
     box-shadow: none;
     z-index: 9;
-    //left: calc(100% + 25px);
     border-radius: 0;
     top: 0;
     width: 100%;
@@ -149,10 +169,11 @@
     .mapboxgl-ctrl-geocoder--input {
         font-family: $mainfont;
         height: 50px;
-        padding: 6px 15px 6px 35px;
+        padding: 6px 15px 6px 31px;
         font-size: 12px;
+        border: 1px solid;
          @media screen and (min-width: 1024px) {
-          padding: 6px 15px 6px 50px;
+          padding: 6px 15px 6px 46px;
         }
       }
     .mapboxgl-ctrl-geocoder--icon {

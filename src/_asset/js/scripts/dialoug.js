@@ -12,7 +12,33 @@ const observer = new MutationObserver((mutations) => {
             const geolocatorstatus = document.getElementById('geolocatorstatus');
             geolocatorstatus.innerHTML = '';
             const MBinput = document.querySelector(".mapboxgl-ctrl-geocoder--input");
+            const MBinputContainer = document.querySelector(".mapboxgl-ctrl-geocoder.mapboxgl-ctrl");
+            const closeBTN = document.querySelector(".button.mapboxgl-ctrl-geocoder--button");
             if(MBinput){
+              MBinput.addEventListener("input", (event) => {
+                event.stopPropagation();
+                if(MBinputContainer.classList.contains('active')) {
+                  MBinputContainer.classList.remove('active');
+                }
+                MBinputContainer.classList.add('active');
+              });
+              MBinput.addEventListener("click", (event) => {
+                event.stopPropagation();
+                if(MBinputContainer.classList.contains('active')) {
+                  MBinputContainer.classList.remove('active');
+                }
+                MBinputContainer.classList.add('active');
+              });
+              document.addEventListener("click", (event) => {
+                if(MBinputContainer.classList.contains('active')) {
+                  MBinputContainer.classList.remove('active');
+                }
+              });
+              if(closeBTN){
+                closeBTN.addEventListener("click", (event) => {
+                    MBinputContainer.classList.remove('active');
+                });
+              }
               MBinput.addEventListener("input", (e) => {
                 if (MBinput.value == null || MBinput.value == "") {
                   sidebar.classList.remove("search-suggestions-displayed");
