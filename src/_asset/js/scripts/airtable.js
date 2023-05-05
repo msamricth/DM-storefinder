@@ -651,7 +651,6 @@ function startApp2() {
                   var containerhref = "https://www.google.com/maps/dir/?api=1&destination="+containerAddress;
                   meta.className = 'meta-details';
                   meta.innerHTML += "<a href='"+containerhref+"' target='_blank'><img class='results-icon' src='"+directionIcon+"'/></a>";
-                  meta.innerHTML += "<a href='tel:"+containerPhone+"' target='_blank'><img class='results-icon' src='"+phoneIcon+"'/></a>";
 
                   /**
                    * Listen to the element and when it is clicked, do four things:
