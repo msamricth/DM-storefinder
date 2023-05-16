@@ -1,5 +1,19 @@
 #app .store-page-container {
     background-color: white;
+    .ratio.ratio-16x9 {
+		display: block;
+		--bs-aspect-ratio: 56.25%;
+		position: relative;
+		width: 100%;
+		&::before {
+			display: block;
+			padding-top: var(--bs-aspect-ratio);
+			content: "";
+		}
+		@media screen and (min-width: 1290px) {
+            --bs-aspect-ratio: 42.8571428571%;
+        }
+	}
     .store-page-header {    
         background-size: cover;
         //height: 180px;
