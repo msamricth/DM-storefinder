@@ -10,7 +10,7 @@
 			padding-top: var(--bs-aspect-ratio);
 			content: "";
 		}
-		@media screen and (min-width: 1290px) {
+		@media screen and (min-width: 1024px) {
             --bs-aspect-ratio: 28.125%;
         }
 	}

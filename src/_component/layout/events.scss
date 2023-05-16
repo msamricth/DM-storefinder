@@ -115,17 +115,7 @@
 			}
 		}
 	}
-	.ratio.ratio-16x9 {
-		display: block;
-		--bs-aspect-ratio: 56.25%;
-		position: relative;
-		width: 100%;
-		&::before {
-			display: block;
-			padding-top: var(--bs-aspect-ratio);
-			content: "";
-		}
-	}
+	
 	.store-page-events-container .eb-event .event-content p, .store-page-events-container .eb-event .event-meta span{
 //		margin-bottom: 12px;
 	}
