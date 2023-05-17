@@ -192,7 +192,7 @@
             vertical-align: middle;
             margin-right: 8px;
         }
-        .mapboxgl-ctrl-geocoder--suggestion {
+        .mapboxgl-ctrl-geocoder--suggestion, .mapbox-gl-geocoder--error.mapbox-gl-geocoder--no-results {
             font-family: $mainfont;
             font-size: 10px;
             display: flex;  
