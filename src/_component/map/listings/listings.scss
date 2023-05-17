@@ -72,12 +72,12 @@
               font-weight: bold;
           }
             h3 {
-                font-size: 14px;
+                font-size: 16px;
                 margin-bottom: 8px;
                 line-height: 21px;
             }
             small {
-              font-size: 14px;
+              font-size: 16px;
               display:block;
               margin-bottom: 8px;
               color: #1E1E1E;
@@ -171,12 +171,9 @@
         font-family: $mainfont;
         height: 50px;
         padding: 6px 15px 6px 46px;
-        font-size: 12px;
+        font-size: 16px;
         border: 1px solid;
       }
-    .mapboxgl-ctrl-geocoder--icon {
-    
-    }
     .suggestions-wrapper {
       .suggestions {
         border-radius: 0;
@@ -194,7 +191,7 @@
         }
         .mapboxgl-ctrl-geocoder--suggestion, .mapbox-gl-geocoder--error.mapbox-gl-geocoder--no-results {
             font-family: $mainfont;
-            font-size: 10px;
+            font-size: 16px;
             display: flex;  
             .mapboxgl-ctrl-geocoder--suggestion-title {
                 padding-right: 6px;
