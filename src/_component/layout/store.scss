@@ -62,7 +62,7 @@
             font-family: 'Oswald';
             font-style: normal;
             font-weight: 600;
-            font-size: 10px;
+            font-size: 16px;
             display: inline-block;
             @media screen and (min-width: 768px) {
                 font-size: 16px;
@@ -84,7 +84,7 @@
     
             .mobile-address-label {
                 padding-bottom: 10px;
-                font-size: 12px;
+                font-size: 16px;
             }
         }
         .store-page-details-inner {
@@ -110,7 +110,7 @@
                 }
                 @media screen and (max-width: 768px) {
                   //  width: calc(50% - 40px);
-                    font-size: 12px;
+                    font-size: 16px;
                 }
                 
                 @media screen and (max-width: 1290px) {
