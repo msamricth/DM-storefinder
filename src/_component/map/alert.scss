@@ -1,11 +1,11 @@
 
 .map-alert {
     position: sticky;
-    top: calc(100% - 58px - 15px);
-    left:0;
-    background: black;
-    color: white;
-    padding: 12px 48px 10px 12px;
+    top: calc(100% - 58px - 35px);
+    left: 0;
+    background: #000;
+    color: #fff;
+    padding: 19px 48px 25px 18px;
     z-index: 999;
     visibility: hidden;
     opacity: 0;
