@@ -1,17 +1,10 @@
-
-  #app {
-    .sidebar {
-      .searchcntr {
-          @media screen and (min-width: 768px) {
-           top: 155px;
-          }
-          @media screen and (min-width: 1024px) {
-             top: 133px;
-          }
-      }
-    }
+div#app.store-page {
+  padding-top: 80px;
+  
+  @media screen and (min-width: 768px) {
+    padding-top: 0;
   }
-
+}
 #app {
   .sidebar {
     position: relative;
@@ -30,10 +23,10 @@
           border-bottom: 1px solid #f2f2f2;
         top: 0;
         @media screen and (min-width: 768px) {
-          //top: 155px;
+          top: 155px;
         }
         @media screen and (min-width: 1024px) {
-          //top: 133px;
+          top: 133px;
         }
     }
     padding-top: 0px;
@@ -53,7 +46,7 @@
       transition: .15s ease background-color;
     }
     svg.mapboxgl-ctrl-geocoder--icon.mapboxgl-ctrl-geocoder--icon-close {
-        margin-top: 8px;
+       // margin-top: 8px;
     }
     .listings {
         .item {
