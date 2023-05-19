@@ -1,4 +1,4 @@
-.js-device-info[data-device="mobile"] {
+
   #app {
     .sidebar {
       .searchcntr {
@@ -12,7 +12,6 @@
     }
   }
 
-}
 #app {
   .sidebar {
     position: relative;
@@ -213,7 +212,8 @@
         .mapboxgl-ctrl-geocoder--suggestion, .mapbox-gl-geocoder--error.mapbox-gl-geocoder--no-results {
             font-family: $mainfont;
             font-size: 16px;
-            display: flex;  
+            display: flex; 
+            padding: 15px 0;
             .mapboxgl-ctrl-geocoder--suggestion-title {
                 padding-right: 6px;
             }
