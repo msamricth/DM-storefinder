@@ -202,6 +202,9 @@ div#app.store-page {
             vertical-align: middle;
             margin-right: 8px;
         }
+        .mapbox-gl-geocoder--error.mapbox-gl-geocoder--no-results {
+            padding: 15px 15px;
+        }
         .mapboxgl-ctrl-geocoder--suggestion, .mapbox-gl-geocoder--error.mapbox-gl-geocoder--no-results {
             font-family: $mainfont;
             font-size: 16px;
