@@ -393,7 +393,7 @@ function startApp2() {
                     // Handle queries with different capitalization
                       // than the source data by calling toLowerCase().
                       
-                      const storeName = '<img class="results-icon" src="'+search_storeIcon+'"/> '+`${feature.properties.name}`+', '+`${feature.properties.address}`;
+                      const storeName = '<img class="results-icon" src="'+search_storeIcon+'"/> '+`${feature.properties.name}`;
                       if (
                         feature.properties.name
                         .toLowerCase()
