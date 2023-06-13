@@ -1,4 +1,4 @@
-import '.scripts/query-check.js'
+import './scripts/query-check.js'
 import './scripts/store-page.js';
 import './scripts/store-map.js';
 import './scripts/events.js';
