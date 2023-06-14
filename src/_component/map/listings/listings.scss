@@ -49,6 +49,10 @@ div#app.store-page {
        // margin-top: 8px;
     }
     .listings {
+      padding-bottom: 85px;
+      @media screen and (min-width: 768px) {
+        padding-bottom:0;
+      }
         .item {
           position:relative;
             padding: 23px 0;

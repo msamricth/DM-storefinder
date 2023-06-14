@@ -1,4 +1,11 @@
 //ohh hybris
+@media screen and (max-width: 768px) {
+    footer {
+        min-height: 550px;
+        position: relative;
+        z-index: 999;
+    }
+}
 
 .yCmsComponent div#app {
     margin-top: 58px;
