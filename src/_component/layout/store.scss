@@ -2,7 +2,7 @@
     background-color: white;
     .ratio.ratio-16x9 {
 		display: block;
-		--bs-aspect-ratio: 56.25%;
+		--bs-aspect-ratio: 45%;
 		position: relative;
 		width: 100%;
 		&::before {
@@ -11,7 +11,7 @@
 			content: "";
 		}
 		@media screen and (min-width: 1024px) {
-            --bs-aspect-ratio: 28.125%;
+           // --bs-aspect-ratio: 28.125%;
         }
 	}
     .store-page-header {    
