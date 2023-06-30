@@ -19,6 +19,8 @@ if (pageURL.indexOf("?") > -1) {
               if(isJqueryLoaded){ 
                 if(isThereAEventContainer){
                    LoadEvents();
+                   const preloader = document.querySelector('.storemap-preloader');
+                   preloader.style.display = "none";
                 }
               }
             }
