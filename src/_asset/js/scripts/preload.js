@@ -10,12 +10,15 @@ const observer = new MutationObserver((mutations) => {
 });
 observer.observe(app, { attributes: true });
 function hidePreloader() {
-    isMapboxLoaded = app.classList.contains('mapbox-loaded');
+    isMapLoaded = app.classList.contains('listings-completed');
+    isStorePageLoaded = app.classList.contains('event-container-added');
 
         
-    if(isMapboxLoaded){
+    if(isMapLoaded){
         preloader.style.display = "none";
-        console.log('preloader should have dipped');
+    }
+    if(isStorePageLoaded){
+        preloader.style.display = "none";
     }
 }
 hidePreloader();
