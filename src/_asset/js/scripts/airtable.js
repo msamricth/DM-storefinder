@@ -683,7 +683,7 @@ function startApp2() {
                 setTimeout(
                   function() {
                     preloader.style.display = "none";
-                  }, 50);
+                  }, 300);
                 }
 
               function matchZoom(){
