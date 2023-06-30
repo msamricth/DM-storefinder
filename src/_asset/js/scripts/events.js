@@ -24,7 +24,7 @@ if (pageURL.indexOf("?") > -1) {
                     setTimeout(
                       function() {
                         preloader.style.display = "none";
-                      }, 50);
+                      }, 300);
                     
                 }
               }
