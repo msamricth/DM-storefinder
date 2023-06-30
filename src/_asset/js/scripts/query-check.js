@@ -19,16 +19,11 @@ const observer = new MutationObserver((mutations) => {
         isMapboxLoaded = app.classList.contains('mapbox-loaded');
 
         
-        if(isVueLoaded){
-            if(isAxiosLoaded){
-                if(isAirtableLoaded){
-                    if(isJqueryLoaded){ 
                         if(isMapboxLoaded){
                             preloader.style.display = "none";
+                            console.log('preloader should have dipped');
                         }
                     }
-                }
-            }
-        }
-    }
+                
 });
+observer.observe(app, { attributes: true });
