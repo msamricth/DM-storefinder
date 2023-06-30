@@ -11,24 +11,19 @@ var isVueLoaded,isAxiosLoaded,isAirtableLoaded,isJqueryLoaded,isMapboxLoaded;
 var preloader = document.querySelector('.storemap-preloader');
 const observer = new MutationObserver((mutations) => {
     if (mutations[0].attributeName === 'class') { 
-        
-        isVueLoaded = app.classList.contains('vue-loaded');
-        isAxiosLoaded = app.classList.contains('axios-loaded');
-        isAirtableLoaded = app.classList.contains('airtable-loaded');
-        isJqueryLoaded = app.classList.contains('jquery-loaded');
-        isMapboxLoaded = app.classList.contains('mapbox-loaded');
+        hidePreloader();
+  
+                    }
+                
+});
+observer.observe(app, { attributes: true });
+function hidePreloader() {
+    isMapboxLoaded = app.classList.contains('mapbox-loaded');
 
         
-        if(isVueLoaded){
-            if(isAxiosLoaded){
-                if(isAirtableLoaded){
-                    if(isJqueryLoaded){ 
-                        if(isMapboxLoaded){
-                            preloader.style.display = "none";
-                        }
-                    }
-                }
-            }
-        }
+    if(isMapboxLoaded){
+        preloader.style.display = "none";
+        console.log('preloader should have dipped');
     }
-});
+}
+hidePreloader();
