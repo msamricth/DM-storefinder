@@ -20,12 +20,12 @@ if (pageURL.indexOf("?") > -1) {
                 if(isThereAEventContainer){
                    LoadEvents();
                    const preloader = document.querySelector('.storemap-preloader');
-                    preloader.classList += 'hide';
+                    preloader.classList.add('hide');
                     setTimeout(
                       function() {
                         preloader.style.display = "none";
                       }, 50);
-                    }
+                    
                 }
               }
             }
