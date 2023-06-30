@@ -677,6 +677,9 @@ function startApp2() {
                 }
                 
                 app.classList.add("listings-completed");
+                
+                const preloader = document.querySelector('.storemap-preloader');
+                preloader.style.display = "none";
               }
 
               function matchZoom(){
