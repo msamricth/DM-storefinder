@@ -1,7 +1,43 @@
 * {
   box-sizing: border-box;
 }
+@keyframes pulse {
+	0% { transform: scale(0.85); opacity: 0.75;}
+	50% { transform: scale(1); opacity: 1;}
+	100% { transform: scale(0.85); opacity: 0.75;}
+  }
+.preloader {
+    top: 0;
+    width: 100%;
+    position:absolute;
+    height: 100vh;
+    background-color:black;
+    text-align: center;
+    z-index: 10;
+}
 
+.preloader img {
+    transform: scale(0.85);
+    opacity: 0.75;
+    animation: pulse 2s ease-in-out infinite;
+     position: absolute;
+    right: 0;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    width: 144px;
+}
+@media screen and (min-width: 768px) {
+  .preloader img {
+      width: 216px;
+  }
+}
+@media screen and (min-width: 1440px) {
+  .preloader img {
+      width: 288px;
+  }
+}
 #app {
 	position: relative;
 	//background-color: #fff;
