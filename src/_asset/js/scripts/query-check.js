@@ -8,6 +8,7 @@ if ($pageURL.indexOf("?fbclid") > -1) {
 
 const app = document.getElementById('app');
 var isVueLoaded,isAxiosLoaded,isAirtableLoaded,isJqueryLoaded,isMapboxLoaded;
+var preloader = document.querySelector('.storemap-preloader');
 const observer = new MutationObserver((mutations) => {
     if (mutations[0].attributeName === 'class') { 
         
@@ -23,7 +24,7 @@ const observer = new MutationObserver((mutations) => {
                 if(isAirtableLoaded){
                     if(isJqueryLoaded){ 
                         if(isMapboxLoaded){
-                            document.querySelector('.preloader.storemap').style.display = "none";
+                            preloader.style.display = "none";
                         }
                     }
                 }
