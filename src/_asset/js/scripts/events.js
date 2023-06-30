@@ -20,7 +20,12 @@ if (pageURL.indexOf("?") > -1) {
                 if(isThereAEventContainer){
                    LoadEvents();
                    const preloader = document.querySelector('.storemap-preloader');
-                   preloader.style.display = "none";
+                    preloader.classList += 'hide';
+                    setTimeout(
+                      function() {
+                        preloader.style.display = "none";
+                      }, 50);
+                    }
                 }
               }
             }
