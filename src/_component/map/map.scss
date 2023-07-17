@@ -8,7 +8,7 @@
 }
 
 .yCmsComponent div#app {
-    margin-top: 58px;
+    margin-top: 160px;
 }
 @media screen and (min-width: 768px) {
     .yCmsComponent div#app {
@@ -103,12 +103,13 @@ main#main-content {
             }
         }
         @media screen and (min-width: 1024px) {
+            position: -webkit-sticky;
             position: sticky;
             width: 66.6666%;
-            left:0;
-            top: 0;
+            left: 0;
+            top: 133px;
             bottom: 0;
-            height:100vh;
+            height: calc(100vh - 133px);
         }
     }
     .marker {
