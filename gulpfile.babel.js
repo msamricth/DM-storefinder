@@ -27,6 +27,7 @@ import sass from './gulp/sass';
 import template from './gulp/template';
 import watch from './gulp/watch';
 import flip from './gulp/flip';
+import preview from './gulp/preview';
 import { printCompile, getBaseUrl } from './gulp/util/util.js';
 
 global.compileMode = 'all';
@@ -64,6 +65,7 @@ sass(taskOptionList);
 template(taskOptionList);
 watch(taskOptionList);
 flip(taskOptionList);
+preview(taskOptionList);
 
 // Server task with watch
 gulp.task(
@@ -74,6 +76,7 @@ gulp.task(
     'copy',
     'copyIcon',
     'image',
+    'preview',
     'sass',
     'pug',
     'javascript',
