@@ -50,6 +50,9 @@ div#app.store-page {
     }
     .listings {
       padding-bottom: 85px;
+      @media screen and (max-width: 768px) {
+        min-height: 300vh;
+      }
       @media screen and (min-width: 768px) {
         padding-bottom:0;
       }
