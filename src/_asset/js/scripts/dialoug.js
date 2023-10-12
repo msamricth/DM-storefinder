@@ -8,9 +8,6 @@ const observer = new MutationObserver((mutations) => {
     isAppLoaded = app.classList.contains('app2-completed');
         if(isAppLoaded){ 
 
-
-            const geolocatorstatus = document.getElementById('geolocatorstatus');
-            geolocatorstatus.innerHTML = '';
             const MBinput = document.querySelector(".mapboxgl-ctrl-geocoder--input");
             const MBinputContainer = document.querySelector(".mapboxgl-ctrl-geocoder.mapboxgl-ctrl");
             const closeBTN = document.querySelector(".button.mapboxgl-ctrl-geocoder--button");
