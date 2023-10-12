@@ -75,8 +75,9 @@ const watch = ({ gulp, plugins, args, config, browserSync, taskTarget }) => {
       // copy files
       gulp.watch(
         `./${dir.source}/${dir.asset}/${gulpConfig.fileExpression.copy}`,
-        gulp.series('copy', browserSync.reload)
+        gulp.series('copy')
       );
+
 
       // embed.css
       gulp.watch([`./${taskTarget}/embed.css`], gulp.series('pug'));
