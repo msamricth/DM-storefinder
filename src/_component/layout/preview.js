@@ -6,7 +6,7 @@ $(document).ready(function() {
 		ACC.langcurrency.setCurrentCountryVariables(countryMappingData);
 	});
 	
-		if(ACC.global.getCookieVal("siteCookie") !== "/us/en"){
+		if(ACC.global.getCookieVal("siteCookie") !== "https://www.drmartens.com/us/en"){
 			$('#country-popup-modal').modal('show');
 		} else if(typeof(ACC.recentlyViewed) !== 'undefined' &&
 				  ACC.recentlyViewed.getRecentlyViewedItems().length > 0 &&
@@ -21,13 +21,13 @@ $(document).ready(function() {
 		
 var ACC = { config: {} };
 ACC.config.buildVersion = "202310041030";
-ACC.config.sitePath = "/us/en";
+ACC.config.sitePath = "https://www.drmartens.com/us/en";
 ACC.config.site = 'dm-us';
 
 	ACC.config.sitesIsUS = true;
 
 ACC.config.language = "en";
-ACC.config.contextPath = "/us/en";
+ACC.config.contextPath = "https://www.drmartens.com/us/en";
 ACC.config.encodedContextPath = "/us/en";
 ACC.config.commonResourcePath = "/_ui/responsive/common";
 ACC.config.themeResourcePath = "/_ui/responsive/theme-dm";

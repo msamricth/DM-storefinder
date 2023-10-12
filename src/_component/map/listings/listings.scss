@@ -22,12 +22,6 @@ div#app.store-page {
           padding: 20px 18px;
           border-bottom: 1px solid #f2f2f2;
         top: 0;
-        @media screen and (min-width: 768px) {
-          top: 155px;
-        }
-        @media screen and (min-width: 1024px) {
-          top: 133px;
-        }
     }
     padding-top: 0px;
     border-right: 1px solid rgba(0, 0, 0, 0.25);

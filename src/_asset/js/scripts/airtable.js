@@ -501,11 +501,11 @@ function startApp2() {
                     activeListing.classList.add('active');
                   }
                   function geoFindMe() {
-                    const status = document.querySelector("#geolocatorstatus");
+                    //const status = document.querySelector("#geolocatorstatus");
                     
                   
                     function success(position) {
-                      status.textContent = "";
+                  //    status.textContent = "";
                       
                       var usrCoordinates = {
                         type: "Point",
@@ -541,24 +541,27 @@ function startApp2() {
                         `listing-${stores.features[0].properties.id}`
                       );
                       activeListing.classList.add('active');
-                      closeAlrt();
+                     // closeAlrt();
+                    if(stores.features[0]){
                       flyToStore(stores.features[0])
                       createPopUp(stores.features[0]);
                     }
+                      
+                    }
                     function error() {
-                      status.textContent = "Unable to retrieve your location";
+                     // status.textContent = "Unable to retrieve your location";
                     }
                   
                     if (!navigator.geolocation) {
-                      status.textContent = "Geolocation is not supported by your browser";
+                   //   status.textContent = "Geolocation is not supported by your browser";
                     } else {
-                      status.textContent = "Locating…";
+                    //  status.textContent = "Locating…";
                       navigator.geolocation.getCurrentPosition(success, error);
                     }
-                    closeAlrt();
+                  //  closeAlrt();
                   }
                   
-                  document.querySelector("#find-me").addEventListener("click", geoFindMe);
+                 // document.querySelector("#find-me").addEventListener("click", geoFindMe);
         
                   function closeAlrt(){
                     const alertCNTR = document.querySelector(".fade-map-elements");
@@ -584,8 +587,7 @@ function startApp2() {
                     
                 // map.addControl(geocoder, 'top-right');
                   buildLocationList(stores);
-
-                
+                  geoFindMe();                
                 });
               }
               // disable map rotation using right click + drag
