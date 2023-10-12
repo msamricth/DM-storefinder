@@ -9,8 +9,8 @@ const preview = ({
     taskTarget
   }) => {
     gulp.task("preview", () => {
-        return gulp.src('./_asset/_preview/*.png').pipe(gulp.dest('./asset/preview')),
-        gulp.src('./_asset/_preview/*.svg').pipe(gulp.dest('./asset/preview'));
+        return gulp.src('./*.png').pipe(gulp.dest('./asset/preview')),
+        gulp.src('./*.svg').pipe(gulp.dest('./asset/preview'));
     });
 }
 export default preview;

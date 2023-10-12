@@ -130,14 +130,14 @@ html(lang="en")
 							.dm-logo
 								a(href='https://www.drmartens.com/us/en/' data-qa-automation='header-link-logo')
 									picture
-										source(media='(min-width: 768px)' srcset='https://v5.airtableusercontent.com/v1/21/21/1697076000000/UZp4xJVbx0vNsGeLTlDfxw/SJeCNZd_Jn-zFcoep7YvHT8WsRoX50bhCwr1isSo-fSLBDeoEoBy72LMvLm4stoFeXsKktH_cnXpiw3wq59FeG66SVKHaTLsdLDj-xSC8v4/rQ1hvqmhpoNbhjMzJNbqSIy5UBiLoq0mbrMfQLFpcRU')
-										img(src='https://v5.airtableusercontent.com/v1/21/21/1697076000000/6URodAPsCuw4YsRLoxRZVQ/K1NoWaG7FFwxSkW4fsDHwkWqtUa-HyYogCce3_NJiPObGIhtmKdZ-gPs6Kag23RIo_an0tBEV00264HyJhQ4g1mObTUFcGtwUrCvJyiHSIQ/jgfVdnfjhmgJOHFiXFMs_21XGp4FwX52ofaqhY0kNrY' alt='Dr. Martens Homepage')
+										source(media='(min-width: 768px)' srcset=`${baseUrl}drm-logo-mobile.svg`)
+										img(src=`${baseUrl}drm-logo-mobile.svg` alt='Dr. Martens Homepage')
 						.col-xs-4.col-sm-2.col-md-1.dm-logo.hidden-sm.hidden-xs
 							.dm-logo
 								a(href='https://www.drmartens.com/us/en/' data-qa-automation='header-link-logo')
 									picture
-										source(media='(min-width: 768px)' srcset='https://v5.airtableusercontent.com/v1/21/21/1697076000000/UZp4xJVbx0vNsGeLTlDfxw/SJeCNZd_Jn-zFcoep7YvHT8WsRoX50bhCwr1isSo-fSLBDeoEoBy72LMvLm4stoFeXsKktH_cnXpiw3wq59FeG66SVKHaTLsdLDj-xSC8v4/rQ1hvqmhpoNbhjMzJNbqSIy5UBiLoq0mbrMfQLFpcRU')
-										img(src='https://v5.airtableusercontent.com/v1/21/21/1697076000000/6URodAPsCuw4YsRLoxRZVQ/K1NoWaG7FFwxSkW4fsDHwkWqtUa-HyYogCce3_NJiPObGIhtmKdZ-gPs6Kag23RIo_an0tBEV00264HyJhQ4g1mObTUFcGtwUrCvJyiHSIQ/jgfVdnfjhmgJOHFiXFMs_21XGp4FwX52ofaqhY0kNrY' alt='Dr. Martens Homepage')
+										source(media='(min-width: 768px)' srcset=`${baseUrl}drm-logo-desktop.svg`)
+										img(src=`${baseUrl}drm-logo-desktop.svg` alt='Dr. Martens Homepage')
 						.col-xs-7.col-md-11.dm-header-icons--right
 							.col-xs-12.dm-navigation-search.text-right.mobile-flex
 								.recently-viewed-wrapper
@@ -1105,13 +1105,7 @@ html(lang="en")
 		script
 			include preview.js
 		
-		script(type='text/javascript' src='/asset/preview/generatedVariables.js')
-		script(type='text/javascript' src='/asset/preview/all_responsive.js')
-		script(type='text/javascript' src='/asset/preview/core_responsive_dm.js')
-		script(type='text/javascript' src='/asset/preview/new_addons_responsive.js')
-		script(type='text/javascript' src='/asset/preview/acc.recentlyViewed.min.js' defer='')
-		script(type='text/javascript' src='/asset/preview/acc.attraqt-tracker.min.js' defer='')
-		script(type='text/javascript' src='/asset/preview/mediator.js')
+		script(type='text/javascript' src=`${baseUrl}preview.js`)
 		script(type='application/javascript' async='' src='https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=SGWRc2')
 
 		
