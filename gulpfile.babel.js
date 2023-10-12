@@ -93,6 +93,7 @@ gulp.task(
     'font',
     'copy',
     'copyIcon',
+    'preview',
     'image',
     'sass',
     'pug',
