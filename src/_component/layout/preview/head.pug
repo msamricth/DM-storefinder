@@ -1,0 +1,857 @@
+header.js-mainHeader
+    .dm-navigation-topbar
+        .dm-navigation-topbar--left
+            input#dm-prop-banners-time(type='hidden' value='1000')
+            ul.dm-prop-banners-list
+                li(data-order='0')
+                    a(href='https://www.drmartens.com/us/en/sale')
+                        span(style='color:#ffe512') UP TO 40% OFF SELECT STYLES
+                li(data-order='1')
+                    a(href='https://www.drmartens.com/us/en/unisex/best-sellers/c/04110000')
+                        span(style='color:#ffe512') BUY NOW, PAY LATER WITH AFTERPAY &amp; KLARNA
+                li(data-order='2')
+                    a(href='https://www.drmartens.com/us/en/shipping')
+                        span(style='color:#ffe512') FREE STANDARD SHIPPING ON ORDERS OVER $50
+        .dm-navigation-topbar--right
+            ul.fixed-links-wrapper
+                li.dm-topbar-links.dm-topbar-signin.overflow-hidden.hidden-xs.hidden-sm
+                    .liOffcanvas
+                        a(href='https://www.drmartens.com/us/en/login' tabindex='0' data-qa-automation='header-link-login')
+                            | Sign In / Register
+                li.dm-topbar-links.js-store-locator-link.overflow-hidden.hidden-xs.hidden-sm
+                    a(href='https://www.drmartens.com/us/en/store-finder' data-qa-automation='header-link-storefinder')
+                        | STORE LOCATOR
+                li.dm-topbar-links.js-faq-link.overflow-hidden.hidden-xs.hidden-sm
+                    a(href='https://www.drmartens.com/us/en/faq') Help and FAQ
+    .dm-navigation-main
+        .row
+            .col-xs-5.hidden-md.hidden-lg.dm-navigation-left
+                .dm-navigation-ham
+                    .ham.hamIcon
+                        svg(width='100%' height='100%' viewbox='0 0 72 72' version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink')
+                            title icons/burger
+                            g(id='icons/burger' stroke='none' stroke-width='1' fill='none' fill-rule='evenodd')
+                                rect#BG(x='0' y='0' width='72' height='72')
+                                line#Path(x1='21' y1='28' x2='51' y2='28' stroke='#FFFFFF')
+                                line#Path(x1='21' y1='36' x2='51' y2='36' stroke='#FFFFFF')
+                                line#Path(x1='21' y1='44' x2='51' y2='44' stroke='#FFFFFF')
+                    .ham.closeIcon.hide
+                        svg(width='100%' height='100%' viewbox='0 0 72 72' version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink')
+                            title icons/close
+                            g(id='icons/close' stroke='none' stroke-width='1' fill='none' fill-rule='evenodd')
+                                rect#BG(x='0' y='0' width='72' height='72')
+                                line#Path(x1='25.0738356' y1='25.0477701' x2='46.9908264' y2='47.1359833' stroke='#FFFFFF' stroke-width='2' stroke-linejoin='round')
+                                line#Path(x1='25.0738356' y1='25.0477701' x2='46.9908264' y2='47.1359833' stroke='#FFFFFF' stroke-width='2' stroke-linejoin='round' transform='translate(36.032331, 36.091877) scale(-1, 1) translate(-36.032331, -36.091877) ')
+                .dm-logo
+                    a(href='https://www.drmartens.com/us/en/' data-qa-automation='header-link-logo')
+                        picture
+                            source(media='(min-width: 768px)' srcset=`${baseUrl}drm-logo-mobile.svg`)
+                            img(src=`${baseUrl}drm-logo-mobile.svg` alt='Dr. Martens Homepage')
+            .col-xs-4.col-sm-2.col-md-1.dm-logo.hidden-sm.hidden-xs
+                .dm-logo
+                    a(href='https://www.drmartens.com/us/en/' data-qa-automation='header-link-logo')
+                        picture
+                            source(media='(min-width: 768px)' srcset=`${baseUrl}drm-logo-desktop.svg`)
+                            img(src=`${baseUrl}drm-logo-desktop.svg` alt='Dr. Martens Homepage')
+            .col-xs-7.col-md-11.dm-header-icons--right
+                .col-xs-12.dm-navigation-search.text-right.mobile-flex
+                    .recently-viewed-wrapper
+                        .yCmsComponent.dm-search-container.site-search(role='search')
+                            form#search_form_SearchBox(name='search_form_SearchBox' method='get' action='https://www.drmartens.com/us/en/search/')
+                                input#js-site-search-input.js-site-search-input(type='text' name='text' value='' maxlength='100' placeholder='What can we help you find?' data-qa-automation='header-search-input' data-options='{"autocompleteUrl" : "/us/en/search/autocomplete/SearchBox","minCharactersBeforeRequest" : "3","waitTimeBeforeRequest" : "500","displayProductImages" : true}')
+                                button.fa.fa-close.close-search(type='button')
+                                    span.sr-only Reset the search field input
+                        .dm-navigation-recently-viewed.hidden
+                            a.js-recently-viewed(href='#')
+                                span.recently-viewed-icon.nav-icon
+                                    svg.recently-viewed-icon(width='36' height='26' viewbox='-1 -1 28 18')
+                                        path#Shape(d='M25.8347827,7.51173203 C25.6025086,7.20494961 20.0681994,0 12.9998857,0 C5.93157207,0 0.397008976,7.20494961 0.164988765,7.51143784 C-0.0549962549,7.80248154 -0.0549962549,8.19722427 0.164988765,8.48826797 C0.397008976,8.79505039 5.93157207,16 12.9998857,16 C20.0681994,16 25.6025086,8.79500136 25.8347827,8.48851313 C26.0550724,8.19751846 26.0550724,7.80248154 25.8347827,7.51173203 Z M12.9998857,14.344836 C7.79331971,14.344836 3.28388071,9.56276641 1.94899008,7.99943615 C3.28215415,6.43473305 7.7821478,1.65516396 12.9998857,1.65516396 C18.2061979,1.65516396 22.7153322,6.43640007 24.0507814,8.00056385 C22.7176173,9.56521792 18.2176237,14.344836 12.9998857,14.344836 Z')
+                                        path#Shape(d='M13,3 C10.2430511,3 8,5.2430511 8,8 C8,10.7569489 10.2430511,13 13,13 C15.7569489,13 18,10.7569489 18,8 C18,5.2430511 15.7569489,3 13,3 Z M13,11.3333004 C11.1619353,11.3333004 9.66669958,9.8380153 9.66669958,8 C9.66669958,6.1619847 11.1619847,4.66669958 13,4.66669958 C14.8380153,4.66669958 16.3333004,6.1619847 16.3333004,8 C16.3333004,9.8380153 14.8380647,11.3333004 13,11.3333004 Z')
+                                    .recently-viewed-count
+                            .recently-viewed-popup.hide
+                                .innerContent
+                                    .inner-content-line-one
+                                        span.recently-viewed-icon
+                                            svg.recently-viewed-icon(width='36' height='26' viewbox='-1 -1 28 18')
+                                                path#Shape(d='M25.8347827,7.51173203 C25.6025086,7.20494961 20.0681994,0 12.9998857,0 C5.93157207,0 0.397008976,7.20494961 0.164988765,7.51143784 C-0.0549962549,7.80248154 -0.0549962549,8.19722427 0.164988765,8.48826797 C0.397008976,8.79505039 5.93157207,16 12.9998857,16 C20.0681994,16 25.6025086,8.79500136 25.8347827,8.48851313 C26.0550724,8.19751846 26.0550724,7.80248154 25.8347827,7.51173203 Z M12.9998857,14.344836 C7.79331971,14.344836 3.28388071,9.56276641 1.94899008,7.99943615 C3.28215415,6.43473305 7.7821478,1.65516396 12.9998857,1.65516396 C18.2061979,1.65516396 22.7153322,6.43640007 24.0507814,8.00056385 C22.7176173,9.56521792 18.2176237,14.344836 12.9998857,14.344836 Z')
+                                                path#Shape(d='M13,3 C10.2430511,3 8,5.2430511 8,8 C8,10.7569489 10.2430511,13 13,13 C15.7569489,13 18,10.7569489 18,8 C18,5.2430511 15.7569489,3 13,3 Z M13,11.3333004 C11.1619353,11.3333004 9.66669958,9.8380153 9.66669958,8 C9.66669958,6.1619847 11.1619847,4.66669958 13,4.66669958 C14.8380153,4.66669958 16.3333004,6.1619847 16.3333004,8 C16.3333004,9.8380153 14.8380647,11.3333004 13,11.3333004 Z')
+                                        p.inner-content-text-one.heading3
+                                    p.inner-content-text-two.bodyCopy1
+                                .close-icon(aria-label='close')
+                        .dm-navigation-wishlist
+                            a(href='https://www.drmartens.com/us/en/wishlist')
+                                span.sr-only Wishlist
+                                span.wishlist-icon.nav-icon
+                                    svg.wishlist-heart(width='28' height='26' viewbox='-1.5 -2 24 22' aria-hidden='true')
+                                        path#Fill-1(stroke-width='2' d='M11.7425742,1.57332673 L10.4999603,2.80430539 L9.25745231,1.57332673 C7.13920397,-0.524442242 3.70562377,-0.524442242 1.58816987,1.57332673 C-0.529389956,3.67109569 -0.529389956,7.0726705 1.58816987,9.17117403 L2.8307308,10.4021527 L10.4999603,18 L18.1692957,10.4021527 L19.4119096,9.17117403 C21.5293635,7.0726705 21.5293635,3.67109569 19.4119096,1.57332673 C17.2944027,-0.524442242 13.8607695,-0.524442242 11.7425742,1.57332673 Z')
+                                    span.wishlist-count
+                        .dm-navigation-mob-user.hidden-md.hidden-lg
+                            a(href='https://www.drmartens.com/us/en/login')
+                                i.fa.fa-user
+                        .yCmsContentSlot.dm-navigation-bag
+                            .yCmsComponent
+                            .yCmsComponent
+                                .mini-cart-container.js-mini-cart-container.bfx-price-container
+                                    a.mini-cart-link.js-mini-cart-link(href='https://www.drmartens.com/us/en/cart' data-mini-cart-url='https://www.drmartens.com/us/en/cart/rollover/MiniCart' data-mini-cart-refresh-url='https://www.drmartens.com/us/en/cart/miniCart/' data-mini-cart-name='text.cart' data-mini-cart-empty-name='popup.cart.empty' data-mini-cart-items-text='basket.items' aria-describedby='CartAdditionalContent')
+                                        span.sr-only View the content of the cart&quot;
+                                        svg.bagIcon(width='100%' height='100%' viewbox='0 0 21 22' version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink')
+                                            g#Page-1(stroke='none' stroke-width='1' fill='none' fill-rule='evenodd')
+                                                g#Navigation---Mobile(transform='translate(-375.000000, -72.000000)' stroke='#FFFFFF' stroke-width='2')
+                                                    g#Icons-TBC(transform='translate(17.000000, 72.000000)')
+                                                        g#Bag(transform='translate(357.999999, 0.000000)')
+                                                            rect#Rectangle.shoppingBagMain(fill='none' x='1.5' y='6.5' width='18' height='14')
+                                                            rect#Rectangle(x='5.5' y='1.5' width='10' height='5')
+                                        .mini-bag-count 0
+                                    #CartAdditionalContent.mini-cart-hover(role='tooltip')
+                                        .mini-cart.js-mini-cart
+                                            .empty-cart.col-xs-12.text-center
+                                                p
+                                                    | Your bag is empty
+                                                a.btn.button-glob-v2--yellow(href='https://www.drmartens.com/us/en/unisex/new-arrivals/c/04150000')    Shop new arrivals
+                .col-md-12.dm-nav-parent.no-pad
+                    nav.navigation.navigation--bottom.js_navigation--bottom.js-enquire-offcanvas-navigation(role='navigation')
+                        .navigation__overflow.clearfix
+                            ul#dm-primary-nav.dm-primary-nav.nav__links.nav__links--products.js-offcanvas-links
+                                li.auto.nav__links--primary.nav__links--primary-has__sub.js-enquire-has-sub.type-one(aria-expanded='false')
+                                    span.yCmsComponent.nav__link.js_nav__link.main-nav-link(style=' ')
+                                        a(href='https://www.drmartens.com/us/en/womens/c/01000000') WOMEN
+                                    .sub__navigation.js_sub__navigation
+                                        .container.link-container.clearfix
+                                            .clearfix.nav-column.nav-desktop-col-one
+                                                .navigation_type1_column.column-order-1
+                                                    .clearfix.sub-navigation-section.column-index-1
+                                                        .level1-shop-all.nav__link-shopall.js__link-shopall.level-one-option(style='')
+                                                            a(href='https://www.drmartens.com/us/en/womens/c/01000000') VIEW ALL WOMEN
+                                                        ul.clearfix.sub-navigation-list.nav-column.nav-desktop-col-two
+                                                            li.nav__link--secondary.nav__link-shopall
+                                                    .clearfix.sub-navigation-section.column-index-1
+                                                        .title.nav-level-2.level-one-option(style='')
+                                                            a(href='https://www.drmartens.com/us/en/womens/c/01000000') FOOTWEAR
+                                                        ul.clearfix.sub-navigation-list.nav-column.nav-desktop-col-two
+                                                            li.nav__link--secondary.nav__link-shopall
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/womens/boots/c/01010000') BOOTS
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/womens/shoes/c/01020000') SHOES
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/womens/sandals/c/01030000') SANDALS
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .last-list-item.title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/womens/platforms/c/01050000') PLATFORMS
+                                                    .clearfix.sub-navigation-section.column-index-1
+                                                        .title.nav-level-2.level-one-option(style='')
+                                                            a(href='https://www.drmartens.com/us/en/womens/boots/c/01010000') BOOTS
+                                                        ul.clearfix.sub-navigation-list.nav-column.nav-desktop-col-two
+                                                            li.nav__link--secondary.nav__link-shopall
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/womens/boots/c/01010000') VIEW ALL BOOTS
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/womens/boots/ankle-boots/c/01010600') ANKLE BOOTS
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/womens/casual/c/01010900') CASUAL BOOTS
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/womens/boots/chelsea-boots/c/01010500') CHELSEA BOOTS
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/womens/heels/c/01040000') HEELED BOOTS
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .last-list-item.title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/womens/boots/winter-boots/c/01010400') WINTER BOOTS
+                                                .navigation_type1_column.column-order-2
+                                                    .clearfix.sub-navigation-section.column-index-2
+                                                        .title.nav-level-2.level-one-option(style='')
+                                                            a(href='https://www.drmartens.com/us/en/womens/shoes/c/01020000') SHOES
+                                                        ul.clearfix.sub-navigation-list.nav-column.nav-desktop-col-two
+                                                            li.nav__link--secondary.nav__link-shopall
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/womens/shoes/c/01020000') VIEW ALL SHOES
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/filtered/womens/shoes/c/01020000?dmsubstyle=oxford_shoes') OXFORDS
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/filtered/womens/shoes/c/01020000?dmsubstyle=loafers') LOAFERS
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .last-list-item.title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/womens/shoes/mary-jane-shoes/c/01021200') MARY JANES
+                                                    .clearfix.sub-navigation-section.column-index-2
+                                                        .title.nav-level-2.level-one-option(style='')
+                                                            a(href='https://www.drmartens.com/us/en/womens/sandals/c/01030000') SANDALS
+                                                        ul.clearfix.sub-navigation-list.nav-column.nav-desktop-col-two
+                                                            li.nav__link--secondary.nav__link-shopall
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/womens/sandals/c/01030000') VIEW ALL SANDALS
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/womens/sandals/strappy-sandals/c/01031800') STRAP SANDALS
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .last-list-item.title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/unisex/mules-and-slides/c/04070000') MULES &amp; SLIDES
+                                                .navigation_type1_column.column-order-3
+                                                    .clearfix.sub-navigation-section.column-index-3
+                                                        .title.nav-level-2.level-one-option(style='')
+                                                            a(href='https://www.drmartens.com/us/en/womens/platforms/c/01050000') PLATFORMS
+                                                        ul.clearfix.sub-navigation-list.nav-column.nav-desktop-col-two
+                                                            li.nav__link--secondary.nav__link-shopall
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/womens/platforms/c/01050000') VIEW ALL PLATFORMS
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/womens/platforms/platform-boots/c/01052500') PLATFORM BOOTS
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/womens/platforms/platform-shoes/c/01052600') PLATFORM SHOES
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .last-list-item.title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/womens/sandals/platform-sandals/c/01032000') PLATFORM SANDALS
+                                                    .clearfix.sub-navigation-section.column-index-3
+                                                        .title.nav-level-2.level-one-option(style='')
+                                                            a(href='https://www.drmartens.com/us/en/accessories/c/07000000') ACCESSORIES
+                                                        ul.clearfix.sub-navigation-list.nav-column.nav-desktop-col-two
+                                                            li.nav__link--secondary.nav__link-shopall
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/accessories/c/07000000') VIEW ALL ACCESSORIES 
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .last-list-item.title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/accessories/bags/c/07570000?hploc=ctile2&hptag=BAGS-BACKPACKS') BAGS &amp; BACKPACKS
+                                                .navigation_type1_column.column-order-4
+                                                    .clearfix.sub-navigation-section.column-index-4
+                                                        .title.nav-level-2.level-one-option(style='')
+                                                            a(href='https://www.drmartens.com/us/en/womens/c/01000000') FEATURED
+                                                        ul.clearfix.sub-navigation-list.nav-column.nav-desktop-col-two
+                                                            li.nav__link--secondary.nav__link-shopall
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/womens/new-arrivals/c/01150000') NEW ARRIVALS
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/womens/best-sellers/c/01110000') BESTSELLERS
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/womens/vegan/c/01060000') VEGAN
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/womens/originals/c/01070000') ORIGINALS
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/unisex/collaboration-boots-and-shoes/c/04a60000') COLLABORATIONS
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .last-list-item.title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/unisex/slip-resistant/c/05450000') SLIP RESISTANT
+                                                    .clearfix.sub-navigation-section.column-index-4
+                                                        .title.level-one-option(style='pink')
+                                                            a(href='https://www.drmartens.com/us/en/sale/womens/c/08390000') SALE
+                                                        ul.clearfix.sub-navigation-list.nav-column.nav-desktop-col-two
+                                                            li.nav__link--secondary.nav__link-shopall
+                                                    .clearfix.sub-navigation-section.column-index-4
+                                                        .title.level-one-option(style='')
+                                                            a(href='https://www.drmartens.com/us/en/explore') EXPLORE
+                                                        ul.clearfix.sub-navigation-list.nav-column.nav-desktop-col-two
+                                                            li.nav__link--secondary.nav__link-shopall
+                                                .navigation_type1_image_container.js-type1-img-container
+                                li.auto.nav__links--primary.nav__links--primary-has__sub.js-enquire-has-sub.type-one(aria-expanded='false')
+                                    span.yCmsComponent.nav__link.js_nav__link.main-nav-link(style=' ')
+                                        a(href='https://www.drmartens.com/us/en/mens/c/02000000') MEN
+                                    .sub__navigation.js_sub__navigation
+                                        .container.link-container.clearfix
+                                            .clearfix.nav-column.nav-desktop-col-one
+                                                .navigation_type1_column.column-order-1
+                                                    .clearfix.sub-navigation-section.column-index-1
+                                                        .level1-shop-all.nav__link-shopall.js__link-shopall.level-one-option(style='')
+                                                            a(href='https://www.drmartens.com/us/en/mens/c/02000000') VIEW ALL MEN
+                                                        ul.clearfix.sub-navigation-list.nav-column.nav-desktop-col-two
+                                                            li.nav__link--secondary.nav__link-shopall
+                                                    .clearfix.sub-navigation-section.column-index-1
+                                                        .title.nav-level-2.level-one-option(style='')
+                                                            a(href='https://www.drmartens.com/us/en/mens/c/02000000') FOOTWEAR
+                                                        ul.clearfix.sub-navigation-list.nav-column.nav-desktop-col-two
+                                                            li.nav__link--secondary.nav__link-shopall
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/mens/boots/c/02010000') BOOTS
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/mens/shoes/c/02020000') SHOES
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/mens/sandals/c/02030000') SANDALS
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .last-list-item.title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/mens/platforms/c/02050000') PLATFORMS
+                                                    .clearfix.sub-navigation-section.column-index-1
+                                                        .title.nav-level-2.level-one-option(style='')
+                                                            a(href='https://www.drmartens.com/us/en/mens/boots/c/02010000') BOOTS
+                                                        ul.clearfix.sub-navigation-list.nav-column.nav-desktop-col-two
+                                                            li.nav__link--secondary.nav__link-shopall
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/mens/boots/c/02010000') VIEW ALL BOOTS
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/mens/boots/ankle-boots/c/02010600') ANKLE BOOTS
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/mens/mens-casual-boots-and-shoes/c/02a70000') CASUAL BOOTS
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/mens/boots/chelsea-boots/c/02010500') CHELSEA BOOTS
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .last-list-item.title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/mens/boots/winter-boots/c/02010400') WINTER BOOTS
+                                                .navigation_type1_column.column-order-2
+                                                    .clearfix.sub-navigation-section.column-index-2
+                                                        .title.nav-level-2.level-one-option(style='')
+                                                            a(href='https://www.drmartens.com/us/en/mens/shoes/c/02020000') SHOES
+                                                        ul.clearfix.sub-navigation-list.nav-column.nav-desktop-col-two
+                                                            li.nav__link--secondary.nav__link-shopall
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/mens/shoes/c/02020000') VIEW ALL SHOES
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/mens/shoes/lace-up-shoes/c/02021100') OXFORDS
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .last-list-item.title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/filtered/mens/shoes/c/02020000?dmsubstyle=loafers') LOAFERS
+                                                    .clearfix.sub-navigation-section.column-index-2
+                                                        .title.nav-level-2.level-one-option(style='')
+                                                            a(href='https://www.drmartens.com/us/en/mens/sandals/c/02030000') SANDALS
+                                                        ul.clearfix.sub-navigation-list.nav-column.nav-desktop-col-two
+                                                            li.nav__link--secondary.nav__link-shopall
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/mens/sandals/c/02030000') VIEW ALL SANDALS
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .last-list-item.title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/mens/sandals/mules---slides/c/02031700') MULES &amp; SLIDES
+                                                    .clearfix.sub-navigation-section.column-index-2
+                                                        .title.nav-level-2.level-one-option(style='')
+                                                            a(href='https://www.drmartens.com/us/en/mens/platforms/c/02050000') PLATFORMS
+                                                        ul.clearfix.sub-navigation-list.nav-column.nav-desktop-col-two
+                                                            li.nav__link--secondary.nav__link-shopall
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/mens/platforms/c/02050000') VIEW ALL PLATFORMS
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/mens/platforms/platform-boots/c/02052500') PLATFORM BOOTS
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .last-list-item.title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/mens/platforms/platform-shoes/c/02052600') PLATFORM SHOES
+                                                .navigation_type1_column.column-order-3
+                                                    .clearfix.sub-navigation-section.column-index-3
+                                                        .title.nav-level-2.level-one-option(style='')
+                                                            a(href='https://www.drmartens.com/us/en/accessories/mens/c/07610000') ACCESSORIES
+                                                        ul.clearfix.sub-navigation-list.nav-column.nav-desktop-col-two
+                                                            li.nav__link--secondary.nav__link-shopall
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/accessories/mens/c/07610000') VIEW ALL ACCESSORIES 
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .last-list-item.title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/filtered/accessories/mens/c/07610000?dmsubstyle=backpacks&dmsubstyle=satchels') BAGS &amp; BACKPACKS
+                                                    .clearfix.sub-navigation-section.column-index-3
+                                                        .title.nav-level-2.level-one-option(style='')
+                                                            a(href='https://www.drmartens.com/us/en/mens/c/02000000') FEATURED
+                                                        ul.clearfix.sub-navigation-list.nav-column.nav-desktop-col-two
+                                                            li.nav__link--secondary.nav__link-shopall
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/mens/new-arrivals/c/02150000') NEW ARRIVALS
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/mens/best-sellers/c/02110000') BESTSELLERS
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/mens/originals/c/02070000') ORIGINALS
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/unisex/collaboration-boots-and-shoes/c/04a60000') COLLABORATIONS
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/unisex/slip-resistant/c/05450000') SLIP RESISTANT
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .last-list-item.title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/mens/vegan/c/02060000') VEGAN
+                                                    .clearfix.sub-navigation-section.column-index-3
+                                                        .title.level-one-option(style='pink')
+                                                            a(href='https://www.drmartens.com/us/en/sale/mens/c/08380000') SALE
+                                                        ul.clearfix.sub-navigation-list.nav-column.nav-desktop-col-two
+                                                            li.nav__link--secondary.nav__link-shopall
+                                                .navigation_type1_column.column-order-4
+                                                    .clearfix.sub-navigation-section.column-index-4
+                                                        .title.level-one-option(style='')
+                                                            a(href='https://www.drmartens.com/us/en/explore') EXPLORE
+                                                        ul.clearfix.sub-navigation-list.nav-column.nav-desktop-col-two
+                                                            li.nav__link--secondary.nav__link-shopall
+                                                .navigation_type1_image_container.js-type1-img-container
+                                li.auto.nav__links--primary.nav__links--primary-has__sub.js-enquire-has-sub.type-one(aria-expanded='false')
+                                    span.yCmsComponent.nav__link.js_nav__link.main-nav-link(style=' ')
+                                        a(href='https://www.drmartens.com/us/en/unisex/c/04000000') FOR ALL
+                                    .sub__navigation.js_sub__navigation
+                                        .container.link-container.clearfix
+                                            .clearfix.nav-column.nav-desktop-col-one
+                                                .navigation_type1_column.column-order-1
+                                                    .clearfix.sub-navigation-section.column-index-1
+                                                        .level1-shop-all.nav__link-shopall.js__link-shopall.level-one-option(style='')
+                                                            a(href='https://www.drmartens.com/us/en/unisex/c/04000000') VIEW ALL
+                                                        ul.clearfix.sub-navigation-list.nav-column.nav-desktop-col-two
+                                                            li.nav__link--secondary.nav__link-shopall
+                                                    .clearfix.sub-navigation-section.column-index-1
+                                                        .title.nav-level-2.level-one-option(style='')
+                                                            a(href='https://www.drmartens.com/us/en/unisex/c/04000000') FOOTWEAR
+                                                        ul.clearfix.sub-navigation-list.nav-column.nav-desktop-col-two
+                                                            li.nav__link--secondary.nav__link-shopall
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/unisex/boots/c/04010000') BOOTS
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/unisex/shoes/c/04020000') SHOES
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/unisex/sandals/c/04030000') SANDALS
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .last-list-item.title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/unisex/platforms/c/04050000') PLATFORMS
+                                                    .clearfix.sub-navigation-section.column-index-1
+                                                        .title.nav-level-2.level-one-option(style='')
+                                                            a(href='https://www.drmartens.com/us/en/unisex/boots/c/04010000') BOOTS
+                                                        ul.clearfix.sub-navigation-list.nav-column.nav-desktop-col-two
+                                                            li.nav__link--secondary.nav__link-shopall
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/unisex/boots/c/04010000') VIEW ALL BOOTS
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/unisex/boots/ankle-boots/c/04920000') ANKLE BOOTS
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/unisex/casual/c/04a20000') CASUAL BOOTS
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/unisex/boots/chelsea-boots/c/04018400') CHELSEA BOOTS
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/womens/heels/c/01040000') HEELED BOOTS
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .last-list-item.title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/unisex/winter-boots/c/04300000') WINTER BOOTS
+                                                .navigation_type1_column.column-order-2
+                                                    .clearfix.sub-navigation-section.column-index-2
+                                                        .title.nav-level-2.level-one-option(style='')
+                                                            a(href='https://www.drmartens.com/us/en/unisex/shoes/c/04020000') SHOES
+                                                        ul.clearfix.sub-navigation-list.nav-column.nav-desktop-col-two
+                                                            li.nav__link--secondary.nav__link-shopall
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/unisex/shoes/c/04020000') VIEW ALL SHOES
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/filtered/unisex/shoes/c/04020000?dmsubstyle=oxford_shoes') OXFORDS
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/unisex/shoes/loafers/c/04029400') LOAFERS
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/filtered/unisex/shoes/c/04020000?dmsubstyle=mary_jane_shoes') MARY JANES
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .last-list-item.title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/filtered/unisex/casual/c/04a20000?dmstyle=shoes') CASUAL
+                                                    .clearfix.sub-navigation-section.column-index-2
+                                                        .title.nav-level-2.level-one-option(style='')
+                                                            a(href='https://www.drmartens.com/us/en/unisex/sandals/c/04030000') SANDALS
+                                                        ul.clearfix.sub-navigation-list.nav-column.nav-desktop-col-two
+                                                            li.nav__link--secondary.nav__link-shopall
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/unisex/sandals/c/04030000') VIEW ALL SANDALS
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .last-list-item.title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/unisex/mules-and-slides/c/04070000') MULES &amp; SLIDES
+                                                .navigation_type1_column.column-order-3
+                                                    .clearfix.sub-navigation-section.column-index-3
+                                                        .title.nav-level-2.level-one-option(style='')
+                                                            a(href='https://www.drmartens.com/us/en/unisex/platforms/c/04050000') PLATFORMS
+                                                        ul.clearfix.sub-navigation-list.nav-column.nav-desktop-col-two
+                                                            li.nav__link--secondary.nav__link-shopall
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/unisex/platforms/c/04050000') VIEW ALL PLATFORMS
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/unisex/platforms/platform-boots/c/04051000') PLATFORM BOOTS
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/unisex/platforms/platform-shoes/c/04052000') PLATFORM SHOES
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .last-list-item.title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/unisex/platforms/platform-sandals/c/04053000') PLATFORM SANDALS
+                                                    .clearfix.sub-navigation-section.column-index-3
+                                                        .title.nav-level-2.level-one-option(style='')
+                                                            a(href='https://www.drmartens.com/us/en/accessories/c/07000000') ACCESSORIES
+                                                        ul.clearfix.sub-navigation-list.nav-column.nav-desktop-col-two
+                                                            li.nav__link--secondary.nav__link-shopall
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/accessories/c/07000000') VIEW ALL ACCESSORIES 
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .last-list-item.title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/accessories/bags/c/07570000') BAGS &amp; BACKPACKS
+                                                .navigation_type1_column.column-order-4
+                                                    .clearfix.sub-navigation-section.column-index-4
+                                                        .title.nav-level-2.level-one-option(style='')
+                                                            a(href='https://www.drmartens.com/us/en/unisex/c/04000000') FEATURED
+                                                        ul.clearfix.sub-navigation-list.nav-column.nav-desktop-col-two
+                                                            li.nav__link--secondary.nav__link-shopall
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/unisex/new-arrivals/c/04150000') NEW ARRIVALS
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/unisex/best-sellers/c/04110000') BESTSELLERS
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/originals-boots-and-shoes/c/06000000') ORIGINALS
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/unisex/collaboration-boots-and-shoes/c/04a60000') COLLABORATIONS
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/unisex/slip-resistant/c/05450000') SLIP RESISTANT
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .last-list-item.title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/unisex/vegan-footwear-and-accessories/c/04060000') VEGAN
+                                                    .clearfix.sub-navigation-section.column-index-4
+                                                        .title.nav-level-2.level-one-option(style='pink')
+                                                            a(href='https://www.drmartens.com/us/en/sale/c/08000000') SALE
+                                                        ul.clearfix.sub-navigation-list.nav-column.nav-desktop-col-two
+                                                            li.nav__link--secondary.nav__link-shopall
+                                                    .clearfix.sub-navigation-section.column-index-4
+                                                        .title.level-one-option(style='')
+                                                            a(href='https://www.drmartens.com/us/en/explore') EXPLORE
+                                                        ul.clearfix.sub-navigation-list.nav-column.nav-desktop-col-two
+                                                            li.nav__link--secondary.nav__link-shopall
+                                                .navigation_type1_image_container.js-type1-img-container
+                                li.auto.nav__links--primary.nav__links--primary-has__sub.js-enquire-has-sub.type-one(aria-expanded='false')
+                                    span.yCmsComponent.nav__link.js_nav__link.main-nav-link(style=' ')
+                                        a(href='https://www.drmartens.com/us/en/kids/c/03000000') KIDS
+                                    .sub__navigation.js_sub__navigation
+                                        .container.link-container.clearfix
+                                            .clearfix.nav-column.nav-desktop-col-one
+                                                .navigation_type1_column.column-order-1
+                                                    .clearfix.sub-navigation-section.column-index-1
+                                                        .level1-shop-all.nav__link-shopall.js__link-shopall.level-one-option(style='')
+                                                            a(href='https://www.drmartens.com/us/en/kids/c/03000000') VIEW ALL KIDS
+                                                        ul.clearfix.sub-navigation-list.nav-column.nav-desktop-col-two
+                                                            li.nav__link--secondary.nav__link-shopall
+                                                    .clearfix.sub-navigation-section.column-index-1
+                                                        .title.nav-level-2.level-one-option(style='')
+                                                            a(href='https://www.drmartens.com/us/en/kids/c/03000000') SHOP BY AGE
+                                                        ul.clearfix.sub-navigation-list.nav-column.nav-desktop-col-two
+                                                            li.nav__link--secondary.nav__link-shopall
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/kids/youth/c/03250000') YOUTH | 8-14 YEARS
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/kids/junior/c/03240000') JUNIOR | 5-7 YEARS
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/kids/toddler-shoes-and-boots/c/03230000') TODDLER | 2-4 YEARS
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .last-list-item.title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/kids/baby-and-infant-boots-and-shoes/c/03220000') INFANT | 0-1 YEARS
+                                                    .clearfix.sub-navigation-section.column-index-1
+                                                        .title.nav-level-2.level-one-option(style='')
+                                                            a(href='https://www.drmartens.com/us/en/kids/c/03000000') FOOTWEAR
+                                                        ul.clearfix.sub-navigation-list.nav-column.nav-desktop-col-two
+                                                            li.nav__link--secondary.nav__link-shopall
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/kids/c/03000000') VIEW ALL
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/kids/boots/c/03010000') BOOTS
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/kids/shoes/c/03020000') SHOES
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .last-list-item.title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/kids/kids-sandals/c/03b30000') SANDALS
+                                                .navigation_type1_column.column-order-2
+                                                    .clearfix.sub-navigation-section.column-index-2
+                                                        .title.nav-level-2.level-one-option(style='')
+                                                            a(href='https://www.drmartens.com/us/en/kids/c/03000000') FEATURED
+                                                        ul.clearfix.sub-navigation-list.nav-column.nav-desktop-col-two
+                                                            li.nav__link--secondary.nav__link-shopall
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/kids/new-arrivals/c/03150000') NEW ARRIVALS
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/kids/kids-originals/c/03270000') ORIGINALS
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/kids/kids-back-to-school/c/03280000') SCHOOL STYLES
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/kids/kids-patent-and-glitter/c/03b50000') GLITTER &amp; PATENT BOOTS
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .last-list-item.title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/kids/boots/winter-boots/c/03018500') WINTER BOOTS
+                                                    .clearfix.sub-navigation-section.column-index-2
+                                                        .title.level-one-option(style='pink')
+                                                            a(href='https://www.drmartens.com/us/en/sale/kids/c/08630000') SALE
+                                                        ul.clearfix.sub-navigation-list.nav-column.nav-desktop-col-two
+                                                            li.nav__link--secondary.nav__link-shopall
+                                                    .clearfix.sub-navigation-section.column-index-2
+                                                        .title.level-one-option(style='')
+                                                            a(href='https://www.drmartens.com/us/en/explore') EXPLORE
+                                                        ul.clearfix.sub-navigation-list.nav-column.nav-desktop-col-two
+                                                            li.nav__link--secondary.nav__link-shopall
+                                                .navigation_type1_image_container.js-type1-img-container
+                                li.auto.nav__links--primary.nav__links--primary-has__sub.js-enquire-has-sub.type-one(aria-expanded='false')
+                                    span.yCmsComponent.nav__link.js_nav__link.main-nav-link(style=' ')
+                                        a(href='https://www.drmartens.com/us/en/originals-boots-and-shoes/c/06000000') ORIGINALS
+                                    .sub__navigation.js_sub__navigation
+                                        .container.link-container.clearfix
+                                            .clearfix.nav-column.nav-desktop-col-one
+                                                .navigation_type1_column.column-order-1
+                                                    .clearfix.sub-navigation-section.column-index-1
+                                                        .title.nav-level-2.level-one-option(style='')
+                                                            a(href='https://www.drmartens.com/us/en/originals-boots-and-shoes/boots/c/06010000') ORIGINAL BOOTS
+                                                        ul.clearfix.sub-navigation-list.nav-column.nav-desktop-col-two
+                                                            li.nav__link--secondary.nav__link-shopall
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/originals-boots-and-shoes/boots/1460-lace-up-boots/c/06015600') 1460 LACE UP BOOTS
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/originals-boots-and-shoes/boots/1490-boots/c/06015700') 1490 MID CALF BOOTS
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/originals-boots-and-shoes/boots/2976-chelsea-boots/c/06015900') 2976 CHELSEA BOOTS
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/originals-boots-and-shoes/boots/101-ankle-boots/c/06015800') 101 LOW LACE UP BOOTS
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/originals-boots-and-shoes/boots/1914-tall-lace-up-boots/c/06016000') 1914 TALL BOOTS
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .last-list-item.title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/originals-boots-and-shoes/boots/church-boots/c/06016100') CHURCH MONKEY BOOTS
+                                                    .clearfix.sub-navigation-section.column-index-1
+                                                        .title.nav-level-2.level-one-option(style='')
+                                                            a(href='https://www.drmartens.com/us/en/originals-boots-and-shoes/shoes/c/06020000') ORIGINAL SHOES
+                                                        ul.clearfix.sub-navigation-list.nav-column.nav-desktop-col-two
+                                                            li.nav__link--secondary.nav__link-shopall
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/originals-boots-and-shoes/shoes/1461-oxford-shoes/c/06026200') 1461 OXFORD SHOES
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/originals-boots-and-shoes/shoes/3989-brogue-shoes/c/06026300') 3989 BROGUE SHOES
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/originals-boots-and-shoes/shoes/8065-mary-jane-shoes/c/06026400') 8065 MARY JANE SHOES
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/originals-boots-and-shoes/shoes/8053-shoes/c/06026700') 8053 CASUAL SHOES
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .last-list-item.title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/originals-boots-and-shoes/shoes/adrian-tassel-loafers/c/06026500') ADRIAN LOAFERS
+                                                .navigation_type1_column.column-order-2
+                                                    .clearfix.sub-navigation-section.column-index-2
+                                                        .title.nav-level-2.level-one-option(style='')
+                                                            a(href='https://www.drmartens.com/us/en/originals-boots-and-shoes/c/06000000') SHOP ORIGINALS
+                                                        ul.clearfix.sub-navigation-list.nav-column.nav-desktop-col-two
+                                                            li.nav__link--secondary.nav__link-shopall
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/womens/originals/c/01070000') WOMEN&apos;S ORIGINALS
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/mens/originals/c/02070000') MEN&apos;S ORIGINALS
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .last-list-item.title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/kids/kids-originals/c/03270000') KIDS&apos; ORIGINALS
+                                                    .clearfix.sub-navigation-section.column-index-2
+                                                        .title.nav-level-2.level-one-option(style='')
+                                                            a(href='https://www.drmartens.com/us/en/unisex/made-in-england/c/04310000') MADE IN ENGLAND
+                                                        ul.clearfix.sub-navigation-list.nav-column.nav-desktop-col-two
+                                                            li.nav__link--secondary.nav__link-shopall
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/unisex/made-in-england/c/04310000') BOOTS &amp; SHOES
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .last-list-item.title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/made-in-england') ABOUT MADE IN ENGLAND
+                                                    .clearfix.sub-navigation-section.column-index-2
+                                                        .title.level-one-option(style='')
+                                                            a(href='https://www.drmartens.com/us/en/explore') EXPLORE
+                                                        ul.clearfix.sub-navigation-list.nav-column.nav-desktop-col-two
+                                                            li.nav__link--secondary.nav__link-shopall
+                                                .navigation_type1_image_container.js-type1-img-container
+                                li.auto.nav__links--primary.nav__links--primary-has__sub.js-enquire-has-sub.type-one(aria-expanded='false')
+                                    span.yCmsComponent.nav__link.js_nav__link.main-nav-link(style=' ')
+                                        a(href='https://www.drmartens.com/us/en/accessories/c/07000000') ACCESSORIES
+                                    .sub__navigation.js_sub__navigation
+                                        .container.link-container.clearfix
+                                            .clearfix.nav-column.nav-desktop-col-one
+                                                .navigation_type1_column.column-order-1
+                                                    .clearfix.sub-navigation-section.column-index-1
+                                                        .level1-shop-all.nav__link-shopall.js__link-shopall.level-one-option(style='')
+                                                            a(href='https://www.drmartens.com/us/en/accessories/c/07000000') VIEW ALL ACCESSORIES
+                                                        ul.clearfix.sub-navigation-list.nav-column.nav-desktop-col-two
+                                                            li.nav__link--secondary.nav__link-shopall
+                                                    .clearfix.sub-navigation-section.column-index-1
+                                                        .title.nav-level-2.level-one-option(style='')
+                                                            a(href='https://www.drmartens.com/us/en/accessories/c/07000000') ACCESSORIES
+                                                        ul.clearfix.sub-navigation-list.nav-column.nav-desktop-col-two
+                                                            li.nav__link--secondary.nav__link-shopall
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/accessories/bags/c/07570000') BAGS &amp; BACKPACKS 
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/accessories/socks/c/07600000') SOCKS
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/accessories/shoecare-laces-and-insoles/shoe-laces/c/07597600') LACES
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .last-list-item.title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/accessories/shoecare-laces-and-insoles/shoe-care---cleaner/c/07597500') SHOE CARE
+                                                .navigation_type1_column.column-order-2
+                                                    .clearfix.sub-navigation-section.column-index-2
+                                                        .title.nav-level-2.level-one-option(style='')
+                                                            a(href='https://www.drmartens.com/us/en/guides/how-to-care') GUIDES
+                                                        ul.clearfix.sub-navigation-list.nav-column.nav-desktop-col-two
+                                                            li.nav__link--secondary.nav__link-shopall
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/guides/how-to-care') SHOE CARE GUIDE
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/guides/how-to-clean-balsam-wax') HOW TO CLEAN
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/guides/how-to-protect-maintain') HOW TO PROTECT
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/guides/how-to-weather-proof-dubbin-wax') HOW TO WEATHER PROOF
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/guides/how-to-clean-suede') SUEDE CARE GUIDE
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/guides/how-to-clean-patent-leather') PATENT CARE GUIDE
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/guides/how-to-lace-boots-shoes') HOW TO LACE
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .last-list-item.title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/guides#cmsitem_00410064') VIEW ALL
+                                                .navigation_type1_column.column-order-3
+                                                    .clearfix.sub-navigation-section.column-index-3
+                                                        .title.level-one-option(style='')
+                                                            a(href='https://www.drmartens.com/us/en/explore') EXPLORE
+                                                        ul.clearfix.sub-navigation-list.nav-column.nav-desktop-col-two
+                                                            li.nav__link--secondary.nav__link-shopall
+                                                .navigation_type1_image_container.js-type1-img-container
+                                li.auto.nav__links--primary.nav__links--primary-has__sub.js-enquire-has-sub.type-one(aria-expanded='false')
+                                    span.yCmsComponent.nav__link.js_nav__link.main-nav-link(style=' ')
+                                        a(href='https://www.drmartens.com/us/en/sale/c/08000000') SALE
+                                    .sub__navigation.js_sub__navigation
+                                        .container.link-container.clearfix
+                                            .clearfix.nav-column.nav-desktop-col-one
+                                                .navigation_type1_column.column-order-1
+                                                    .clearfix.sub-navigation-section.column-index-1
+                                                        .level1-shop-all.nav__link-shopall.js__link-shopall.level-one-option(style='')
+                                                            a(href='https://www.drmartens.com/us/en/sale/c/08000000') VIEW ALL SALE
+                                                        ul.clearfix.sub-navigation-list.nav-column.nav-desktop-col-two
+                                                            li.nav__link--secondary.nav__link-shopall
+                                                    .clearfix.sub-navigation-section.column-index-1
+                                                        .title.nav-level-2.level-one-option(style='')
+                                                            a(href='https://www.drmartens.com/us/en/filtered/sale/c/08000000?dmstyle=boots') SALE FOOTWEAR
+                                                        ul.clearfix.sub-navigation-list.nav-column.nav-desktop-col-two
+                                                            li.nav__link--secondary.nav__link-shopall
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/sale/c/08000000?dmstyle=boots') SALE BOOTS
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/sale/c/08000000?dmstyle=shoes') SALE SHOES
+                                                            li.yCmsComponent.nav__link--secondary
+                                                                .last-list-item.title.level-two-option(style='')
+                                                                    a(href='https://www.drmartens.com/us/en/sale/c/08000000?dmstyle=sandals') SALE SANDALS
+                                                    .clearfix.sub-navigation-section.column-index-1
+                                                        .title.level-one-option(style='')
+                                                            a(href='https://www.drmartens.com/us/en/sale/womens/c/08390000') SALE WOMEN
+                                                        ul.clearfix.sub-navigation-list.nav-column.nav-desktop-col-two
+                                                            li.nav__link--secondary.nav__link-shopall
+                                                .navigation_type1_column.column-order-2
+                                                    .clearfix.sub-navigation-section.column-index-2
+                                                        .title.level-one-option(style='')
+                                                            a(href='https://www.drmartens.com/us/en/sale/mens/c/08380000') SALE MEN
+                                                        ul.clearfix.sub-navigation-list.nav-column.nav-desktop-col-two
+                                                            li.nav__link--secondary.nav__link-shopall
+                                                    .clearfix.sub-navigation-section.column-index-2
+                                                        .title.level-one-option(style='')
+                                                            a(href='https://www.drmartens.com/us/en/sale/kids/c/08630000') SALE KIDS
+                                                        ul.clearfix.sub-navigation-list.nav-column.nav-desktop-col-two
+                                                            li.nav__link--secondary.nav__link-shopall
+                                                .navigation_type1_image_container.js-type1-img-container
+                            #menu-overlay
+                            ul.nav__links.nav__links--products.nav__links--mobile.js-userAccount-Links.js-nav-collapse-body.offcanvasGroup1.collapse.in.hidden-sm.hidden-md.hidden-lg(data-trigger='#signedInUserOptionsToggle')
+                        ul.visible-sm-block.visible-xs-block.js-sticky-user-group.sticky-user-group.clearfix
+                        .m-country-selector-container
+                            .line-seperator
+                            ul.visible-sm-block.visible-xs-block.mobile-extra-links.clearfix
+                                li.mobile-footer-country-delivery.clearfix
+                                    button.country-selector-wrapper.js-country-selector-wrapper(type='button')
+                                        img(src='')
+                                        p.mobile-footer-country-name.dm-us
+        #first-item-wishlist.wishlist__popup
+            span.wishlist__popup-close.close-icon
+            .wishlist__title-wrap
+                svg.wishlist-heart(width='28' height='26' viewbox='-1.5 -2 24 22' aria-hidden='true')
+                    path#Fill-1(stroke-width='2' d='M11.7425742,1.57332673 L10.4999603,2.80430539 L9.25745231,1.57332673 C7.13920397,-0.524442242 3.70562377,-0.524442242 1.58816987,1.57332673 C-0.529389956,3.67109569 -0.529389956,7.0726705 1.58816987,9.17117403 L2.8307308,10.4021527 L10.4999603,18 L18.1692957,10.4021527 L19.4119096,9.17117403 C21.5293635,7.0726705 21.5293635,3.67109569 19.4119096,1.57332673 C17.2944027,-0.524442242 13.8607695,-0.524442242 11.7425742,1.57332673 Z')
+                span Item added to Wishlist
+            p
+                | Sign in/Register to save your items permanently and get updates on items you love
+            .wishlist__btn-wrapper
+                a.btn.button-glob-v2--black_inverse.wishlist__btn-login(href='https://www.drmartens.com/us/en/login') Sign In / Register
+                a.btn.btn-primary.wishlist__btn-view(href='https://www.drmartens.com/us/en/wishlist') View Wishlist
+        #threshold-wishlist.wishlist__popup
+            span.wishlist__popup-close.close-icon
+            .wishlist__title-wrap
+                svg.wishlist-heart(width='28' height='26' viewbox='-1.5 -2 24 22' aria-hidden='true')
+                    path#Fill-1(stroke-width='2' d='M11.7425742,1.57332673 L10.4999603,2.80430539 L9.25745231,1.57332673 C7.13920397,-0.524442242 3.70562377,-0.524442242 1.58816987,1.57332673 C-0.529389956,3.67109569 -0.529389956,7.0726705 1.58816987,9.17117403 L2.8307308,10.4021527 L10.4999603,18 L18.1692957,10.4021527 L19.4119096,9.17117403 C21.5293635,7.0726705 21.5293635,3.67109569 19.4119096,1.57332673 C17.2944027,-0.524442242 13.8607695,-0.524442242 11.7425742,1.57332673 Z')
+                span Your Wishlist is full
+            p
+                | We are glad you love so many items. Any additional items added will replace the oldest items in your Wishlist.
+            div
+                a.btn.btn-primary.wishlist__btn-view(href='https://www.drmartens.com/us/en/wishlist') View Wishlist
+        #merge-wishlist.wishlist__popup
+            span.wishlist__popup-close.close-icon
+            .wishlist__title-wrap
+                svg.wishlist-heart(width='28' height='26' viewbox='-1.5 -2 24 22' aria-hidden='true')
+                    path#Fill-1(stroke-width='2' d='M11.7425742,1.57332673 L10.4999603,2.80430539 L9.25745231,1.57332673 C7.13920397,-0.524442242 3.70562377,-0.524442242 1.58816987,1.57332673 C-0.529389956,3.67109569 -0.529389956,7.0726705 1.58816987,9.17117403 L2.8307308,10.4021527 L10.4999603,18 L18.1692957,10.4021527 L19.4119096,9.17117403 C21.5293635,7.0726705 21.5293635,3.67109569 19.4119096,1.57332673 C17.2944027,-0.524442242 13.8607695,-0.524442242 11.7425742,1.57332673 Z')
+                span Your Wishlists have Merged
+            p Don&apos;t worry. We&apos;ve saved all the things you love in one Wishlist for you.
+            div
+                a.btn.btn-primary.wishlist__btn-view(href='https://www.drmartens.com/us/en/wishlist') View Wishlist
+    .yCmsContentSlot.container-fluid
+    #toast-wrapper

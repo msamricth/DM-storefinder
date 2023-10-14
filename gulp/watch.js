@@ -34,6 +34,11 @@ const watch = ({ gulp, plugins, args, config, browserSync, taskTarget }) => {
         `./${dir.source}/${dir.asset}/js/scripts/*.js`,
       ], gulp.series('copy', 'javascript'));
 
+      gulp.watch([
+        `./${dir.source}/${dir.asset}/js/scripts/store-locator/*.js`,
+      ], gulp.series('copy', 'javascript'));
+
+
       // Template
       dir.templateCollection.map(folderName => {
         gulp.watch(
