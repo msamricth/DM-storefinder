@@ -1,0 +1,155 @@
+footer(data-instore='false')
+    .footer__top
+        .newsletter-container
+            form#dm-subscribe-newsletter-form(method='post' action='/us/en/newsletter/subscribe' data-error-general='newsletter.signup.error' data-error-emailempty='Enter your email address' data-error-emailinvalid='Enter a valid email address' data-mgs-done='Thank you for signing up to our newsletter')
+                input(type='hidden' name='source' value='footer_signup')
+                input(type='hidden' name='chkOptin' value='on')
+                input(type='hidden' name='CSRFToken' value='954e630e-39a1-48b8-a1b1-a4ba9dbf9126')
+                .form-container
+                    h3.join-newsletter-label
+                        | SIGN UP FOR EMAIL
+                    p.newsLetterSegmentDiscount 10% off for new subscribers
+                    .form-email-container
+                        .newsletter-email-signup
+                            .input-wrapper
+                                .input-box
+                                    input#newsletter-email.email(name='email' type='email' placeholder='Enter your email address' data-qa-automation='footer-subscribe-input')
+                                .submit-wrapper
+                                    button.button-glob-v2--yellow.newsLetterSignUpBtn.btn-subscribe.js-subscribe-newsletter(title='SIGN UP' type='submit' data-qa-automation='footer-subscribe-button')
+                                        span SIGN UP
+                            p.errorMessage.hide
+    .footer__mid
+        .footer__nav--container
+            ul.footer__nav--links
+                li.footer__link.fixed-link
+                    a(href='/us/en/login' data-qa-automation='header-link-login')
+                        | Sign In / Register
+                li.footer__link.fixed-link
+                    a(href='/us/en/store-finder' data-qa-automation='header-link-storefinder')
+                        | STORE LOCATOR
+        .footer__nav--container
+            input.footer-checkbox(type='checkbox' id='ABOUT US' name='ABOUT US')
+            label.title(name='ABOUT US label' for='ABOUT US')
+                | ABOUT US
+                span.footer__label-chevron &gt;
+            ul.footer__nav--links
+                li.yCmsComponent.footer__link
+                    a(href='/us/en/history') HISTORY
+                li.yCmsComponent.footer__link
+                    a(href='https://jobs.drmartens.com' target='_blank' rel='noopener noreferrer') JOBS
+                li.yCmsComponent.footer__link
+                    a(href='https://blog.drmartens.com' target='_blank' rel='noopener noreferrer') BLOG
+                li.yCmsComponent.footer__link
+                    a(href='/us/en/press') PRESS CONTACTS
+                li.yCmsComponent.footer__link
+                    a(href='/us/en/store-finder') STORE LOCATOR
+                li.yCmsComponent.footer__link
+                    a(href='/us/en/contact') CONTACT
+        .footer__nav--container
+            input.footer-checkbox(type='checkbox' id='USEFUL INFO' name='USEFUL INFO')
+            label.title(name='USEFUL INFO label' for='USEFUL INFO')
+                | USEFUL INFO
+                span.footer__label-chevron &gt;
+            ul.footer__nav--links
+                li.yCmsComponent.footer__link
+                    a(href='/us/en/faq') FAQs
+                li.yCmsComponent.footer__link
+                    a(href='/us/en/delivery') SHIPPING
+                li.yCmsComponent.footer__link
+                    a(href='/us/en/returns') RETURNS
+                li.yCmsComponent.footer__link
+                    a(href='/us/en/size-info') SIZE GUIDE
+                li.yCmsComponent.footer__link
+                    a(href='/us/en/for-life-info') FOR LIFE
+                li.yCmsComponent.footer__link
+                    a(href='/us/en/sitemap') SITE MAP
+                li.yCmsComponent.footer__link
+                    a(href='/us/en/student-discount') STUDENTS
+                li.yCmsComponent.footer__link
+                    a(href='/us/en/affiliates') AFFILIATES
+                li.yCmsComponent.footer__link
+                    a(href='/us/en/gift-cards') GIFT CARDS
+        .footer__nav--container
+            input.footer-checkbox(type='checkbox' id='CORPORATE AND LEGAL' name='CORPORATE AND LEGAL')
+            label.title(name='CORPORATE AND LEGAL label' for='CORPORATE AND LEGAL')
+                | CORPORATE AND LEGAL
+                span.footer__label-chevron &gt;
+            ul.footer__nav--links
+                li.yCmsComponent.footer__link
+                    a(href='https://www.drmartensplc.com/' target='_blank' rel='noopener noreferrer') INVESTORS
+                li.yCmsComponent.footer__link
+                    a(href='https://www.drmartensplc.com/sustainability/' target='_blank' rel='noopener noreferrer') SUSTAINABILITY
+                li.yCmsComponent.footer__link
+                    a(href='https://dm-us-imgs.s3.amazonaws.com/SS23/Modern%20Slavery%20Report_2023_V3.6.pdf' target='_blank' rel='noopener noreferrer') CA SUPPLY CHAIN
+                li.yCmsComponent.footer__link
+                    a(href='/us/en/our-community') OUR COMMUNITY
+                li.yCmsComponent.footer__link
+                    a(href='/us/en/accessibility-statement') ACCESSIBILITY STATEMENT
+                li.yCmsComponent.footer__link
+                    a(href='/us/en/privacy') PRIVACY AND COOKIES POLICY
+                li.yCmsComponent.footer__link
+                    a(href='/us/en/terms-conditions') TERMS &amp; CONDITIONS
+                li.yCmsComponent.footer__link
+                    a(href='/us/en/california-residents-do-not-sell-my-info') DO NOT SHARE OR SELL MY INFO
+                li.yCmsComponent.footer__link
+                    a(href='/us/en/california-privacy-rights') CALIFORNIA RESIDENTS: NOTICE AT COLLECTION AND PRIVACY POLICY
+        .footer__nav--container.footer__cards--container
+            h3.title__card SECURE ONLINE SHOPPING
+            ul.footer__payment-options
+                li.payment-icon
+                    img.faded.lazy-background(data-src='https://checkoutshopper-live.adyen.com/checkoutshopper/images/logos/applepay.svg' alt='Apple Pay')
+                li.payment-icon
+                    img.faded.lazy-background(data-src='https://checkoutshopper-live.adyen.com/checkoutshopper/images/logos/discover.svg' alt='discover')
+                li.payment-icon
+                    img.faded.lazy-background(data-src='https://checkoutshopper-live.adyen.com/checkoutshopper/images/logos/diners.svg' alt='diners')
+                li.payment-icon
+                    img.faded.lazy-background(data-src='https://checkoutshopper-live.adyen.com/checkoutshopper/images/logos/visa.svg' alt='visa')
+                li.payment-icon
+                    img.border-icon.faded.lazy-background(data-src='https://checkoutshopper-live.adyen.com/checkoutshopper/images/logos/mc.svg' alt='Mastercard')
+                li.payment-icon
+                    img.faded.lazy-background(data-src='https://checkoutshopper-live.adyen.com/checkoutshopper/images/logos/amex.svg' alt='American Express')
+                li.payment-icon
+                    img.border-icon.faded.lazy-background(data-src='https://checkoutshopper-live.adyen.com/checkoutshopper/images/logos/afterpaytouch.svg' alt='Afterpay')
+                li.payment-icon
+                    img.faded.lazy-background(data-src='https://i1.adis.ws/i/drmartens/giftcard-pay.png' alt='Dr. Martens eGift Card')
+                li.payment-icon
+                    img.faded.lazy-background(data-src='https://checkoutshopper-live.adyen.com/checkoutshopper/images/logos/klarna_account.svg' alt='Pay over time with Klarna.')
+                li.payment-icon
+                    img.border-icon.faded.lazy-background(data-src='https://checkoutshopper-live.adyen.com/checkoutshopper/images/logos/paypal.svg' alt='PayPal')
+                li.payment-icon
+                    img.faded.lazy-background(data-src='https://checkoutshopper-live.adyen.com/checkoutshopper/images/logos/paywithgoogle.svg' alt='Google Pay')
+    .footer__bottom.clearfix
+        .footer__copyright
+            .container.footer-social
+                .footer-social__left.col-xs-12.col-sm-12.col-md-4.copyright.hidden-xs.hidden-sm
+                    p
+                        | &copy; 2023 Airwair Intl. Ltd
+                .col-xs-12.col-sm-12.col-md-4.text-center.footer__center.hidden-xs.hidden-sm
+                    #bfx-cc-container.dm-topbar-links.country-picker
+                        button#flyoutOpen(type='button' data-qa-automation='header-select-language' aria-label='Accessible Language' data-toggle='modal' data-target='#country-popup-modal' data-country-iso='US')
+                            img(aria-hidden='true' alt=' ' src='https://cdn.media.amplience.net/i/drmartens/USA_44px.png')
+                            p United States
+                .footer-social__right.col-xs-12.col-sm-12.col-md-4
+                    .social-container
+                        ul
+                            li
+                                a.dm-navigation-topbar--right(href='https://www.facebook.com/drmartens' target='_blank' aria-label='Dr. Martens Facebook')
+                                    i.fa.fa-facebook-square(aria-hidden='true')
+                            li
+                                a.dm-navigation-topbar--right(href='https://twitter.com/drmartens/' target='_blank' aria-label='Dr. Martens Twitter')
+                                    i.fa.fa-twitter(aria-hidden='true')
+                            li
+                                a.dm-navigation-topbar--right(href='https://www.instagram.com/drmartensusa/' target='_blank' aria-label='Dr. Martens Instagram')
+                                    i.fa.fa-instagram(aria-hidden='true')
+                            li
+                                a.dm-navigation-topbar--right(href='https://www.tiktok.com/@drmartens' target='_blank' aria-label='Dr. Martens TikTok')
+                                    i.fa.fa-tiktok(aria-hidden='true')
+                            li
+                                a.dm-navigation-topbar--right(href='https://www.pinterest.co.uk/DRMARTENS/' target='_blank' aria-label='Dr. Martens Pinterest')
+                                    i.fa.fa-pinterest(aria-hidden='true')
+                            li
+                                a.dm-navigation-topbar--right(href='https://www.youtube.com/user/DrMartensOfficial' target='_blank' aria-label='Dr. Martens YouTube')
+                                    i.fa.fa-youtube-play(aria-hidden='true')
+                        p.hashTag.hidden-xs.hidden-sm #TOUGHASYOU
+                p.footer-social__left.col-xs-12.col-sm-12.col-md-4.copyright.hidden-md.hidden-lg
+                    | &copy; 2023 Airwair Intl. Ltd

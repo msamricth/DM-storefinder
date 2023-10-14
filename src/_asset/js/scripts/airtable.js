@@ -103,13 +103,7 @@ function startApp2() {
               this.rfields = response.data.records;
               var theRecords = this.rfields;
 
-              var dt = new Date();
-              var current_time =
-                dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds();
-              var current_day_of_week = new Date().getDay();
-              var closing_time;
-              var closing_time_comparison;
-              var closing_time_display;
+              
               mapboxgl.accessToken =
                 "pk.eyJ1IjoiZW1tLXN1cHBseSIsImEiOiJjbGYwMXN1YTEwNHIwNDNwZzZqYmpnbXNnIn0.jbtZE6fXhOgKTWFsPHeDNg";
 
@@ -120,27 +114,6 @@ function startApp2() {
                 [-39.11807460657073, 48.86784324437724] // Northeast coordinates
               ];
               
-              var mq = window.matchMedia( "(max-width: 460px)" );
-              
-              var mq1 = window.matchMedia( "(max-width: 1024px)" );
-              var mq2 = window.matchMedia( "(max-width: 1360px)" );
-              var SMZoom, SMMZoom;
-              if (mq.matches){
-                SMZoom = 1.5,
-                SMMZoom = 0;
-              } else {
-                  if (mq1.matches){ 
-                    SMZoom = 2.4,
-                    SMMZoom = 2;
-                  } else if (mq2.matches){ 
-                    SMZoom = 2.6,
-                    SMMZoom = 2.2;
-                  } else {
-                    SMZoom = 3.5,
-                    SMMZoom = 3.2;
-                  }
-              };
-              const mapContainr = document.getElementById('map');
               var map;
               if(mapContainr){
                 map = new mapboxgl.Map({
@@ -586,6 +559,12 @@ function startApp2() {
                   });
                     
                 // map.addControl(geocoder, 'top-right');
+                
+                preloader.classList.add('hide');
+                setTimeout(
+                  function() {
+                    preloader.style.display = "none";
+                  }, 100);
                   buildLocationList(stores);
                   geoFindMe();                
                 });
@@ -680,12 +659,7 @@ function startApp2() {
                 
                 app.classList.add("listings-completed");
                 
-                const preloader = document.querySelector('.storemap-preloader');
-                preloader.classList.add('hide');
-                setTimeout(
-                  function() {
-                    preloader.style.display = "none";
-                  }, 300);
+             
                 }
 
               function matchZoom(){
@@ -738,8 +712,8 @@ function startApp2() {
                 if (storeLandingURL.indexOf("#") > -1) {
                   storeLandingURL = window.location.href.split('#')[0]
                 }
-                
-
+                $pageURL = storeLandingURL + currentFeature.properties.slug;
+                jediMindTricks($pageURL, $pageTitle, $pageID)
                 window.location.href = storeLandingURL + currentFeature.properties.slug;
 
               }
@@ -794,7 +768,7 @@ function startApp2() {
                 fadeElementsIn();
                 
                 app.classList.add("app2-completed");
-              }, 1400);
+              }, 400);
             })
         })
         .catch((error) => {
@@ -829,7 +803,26 @@ function fadeElementsIn(){
   }
 }
 
-
-
-
-
+function jediMindTricks($pageURL, $pageTitle, $pageID){
+  (function($) {
+     // $('#streamload').html("<h5 class='text-center'>Loading...</h5>");
+      $("#app").load($pageURL+" #streamload", function( response, status, xhr ) {
+          if ( status == "error" ) {
+            var msg = "Sorry but there was an error: ";
+            $( "#streamload" ).html('Error loading');
+            console.log( msg + xhr.status + " " + xhr.statusText );
+          }
+        });
+        if($('.subnav a').hasClass('active')){$('.subnav a.active').removeClass('active');}
+      
+      const nextURL = window.location.protocol+'//'+window.location.hostname+$pageURL;
+      const nextTitle = decodeEntities($pageTitle + ' - Supply');
+      const nextState = { additionalInformation: 'Updated the URL with JS' };
+      document.title = nextTitle;
+      const navlinkID = document.getElementById($pageID);
+      navlinkID.classList.add('active');
+      // This will create a new entry in the browser's history, without reloading
+      window.history.pushState(nextState, nextTitle, nextURL);
+      window.scrollTo(0,0);
+  })( jQuery );
+}
