@@ -1,4 +1,4 @@
-import { app, appClassList, pageURL } from "./identifiers.js";
+import { app, appClassList, pageURL, storePageClass } from "./identifiers.js";
 
 import { decodeEntities } from "./functions.js";
 import { startApp2 } from "./locator.js";
@@ -18,9 +18,13 @@ function buildMap(){
     const listings = sidebar.appendChild(document.createElement("div"));
     listings.classList.add('listings');
     listings.id = 'listings';
+    
+    window.scrollTo(0,0);
+    startApp2('push');
 }
-function returnToStore(storePage, return_map){
-    const link = storePage.appendChild(document.createElement("a"));
+function returnToStore(return_map, map){
+
+    const link = document.querySelector('.store-page-container').appendChild(document.createElement("a"));
     link.href = '#return-to-map';
     link.className = "store-btn";
     link.innerHTML = '<svg height="17" width="9"><polyline points="9,0,0,8.5,9,17" style="stroke:#000;fill:transparent;stroke-width:4px;"></polyline></svg>';
@@ -35,10 +39,13 @@ function returnToStore(storePage, return_map){
                 app.classList.remove(removeStoreClass);
             }
         }
+        if(map){
+            
+            map.removeSource('point')
+            map.remove();
+        }
         app.innerHTML = '';
         buildMap();
-        window.scrollTo(0,0);
-        startApp2('push');
     });
 }
 
@@ -50,11 +57,10 @@ function updateStorePage(comparingSlug, page_title){
     window.history.pushState(nextState, nextTitle, nextURL);
 }
 
-function LoadStoreMap(containerLon, containerLat, markerIMG, ctaIcon) {
+function LoadStoreMap(containerLon, containerLat, markerIMG, ctaIcon, return_map) {
     
     const mapContainer = document.querySelector('.store-page-map-container');
-    var map,markerIMG, Sfields, ctaIcon;
-
+    var map,markerIMG, ctaIcon;
 
     map = mapContainer.appendChild(
         document.createElement("div")
@@ -125,6 +131,8 @@ function LoadStoreMap(containerLon, containerLat, markerIMG, ctaIcon) {
         );
     });
     map.scrollZoom.disable();
+    
+    returnToStore(return_map, map)
 }
 
 

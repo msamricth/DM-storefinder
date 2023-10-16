@@ -22,5 +22,6 @@ if (mq.matches){
 const pageURL = window.location.href;
 const mapContainr = document.getElementById('map');
 const preloader = document.querySelector('.storemap-preloader');
+const storePageClass = document.querySelector('.store-page-container');
 const appClassList = app.classList;
-export { app, SMZoom, SMMZoom, mapContainr, preloader, pageURL, appClassList }
+export { app, SMZoom, SMMZoom, mapContainr, preloader, pageURL, appClassList, storePageClass }
