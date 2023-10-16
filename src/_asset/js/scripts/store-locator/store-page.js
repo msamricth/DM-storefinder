@@ -1,12 +1,13 @@
 import { app } from "./identifiers.js";
 import { closingTimeDisplay } from "./functions.js";
-import { returnToStore, updateStorePage, LoadStoreMap } from "./store-functions.js";
+import {  updateStorePage, LoadStoreMap } from "./store-functions.js";
 
 
 var default_image, page_title, markerIMG, Sfields, ctaIcon, containerAddress;
 var return_map = "Return to store lookup";
 function load_storePage(SP_slug, map=null, historyUpdate = null) {
     if(map){
+        map.removeSource('places')
         map.remove();
         app.classList.remove('listings-completed');
         app.classList.remove('app2-completed');
@@ -201,7 +202,7 @@ function load_storePage(SP_slug, map=null, historyUpdate = null) {
                             
                             mapContainer.className = "store-page-map-container";
                             app.classList.add("map-container-added");
-                            LoadStoreMap(storeFields.lon, storeFields.lat, markerIMG, ctaIcon);
+                            LoadStoreMap(storeFields.lon, storeFields.lat, markerIMG, ctaIcon, return_map);
                             const eventContainer = storePage.appendChild(
                                 document.createElement("div")
                             );
@@ -211,7 +212,9 @@ function load_storePage(SP_slug, map=null, historyUpdate = null) {
                             eventContainer.setAttribute('data-name', storeFields.Name);
 
                             eventContainer.setAttribute('data-address', storeFields.full_address);
-                            returnToStore(storePage, return_map)
+                            window.onpopstate = (event) => {
+                                location.reload();
+                              };
                         } 
                     }
 
