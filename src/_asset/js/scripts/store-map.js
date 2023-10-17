@@ -53,8 +53,7 @@ if (pageURL.indexOf("?") > -1) {
         directions.className = "map-btn";
         directions.href = "https://www.google.com/maps/dir/?api=1&destination="+containerAddress;
         directions.innerHTML = "get directions";
-
-
+        
         var storeMap = new Vue({
             el: "#map",
             name:"store-page-map",
@@ -146,16 +145,6 @@ if (pageURL.indexOf("?") > -1) {
                             }
                             });
                     
-                            // Add a layer to use the image to represent the data.
-                           /* map.addLayer({
-                            id: "points",
-                            type: "symbol",
-                            source: "point", // reference the data source
-                            layout: {
-                                "icon-image": "Marker", // reference the image
-                                "icon-size": 0.5
-                            }
-                            }); */
                         }
                         );
                     });
