@@ -1,8 +1,9 @@
 import { SMZoom, SMMZoom, mapContainr, preloader, bounds, MBaccessToken  } from "./identifiers.js";
-import { fadeElementsIn, markerCheck, matchZoom, flyToStoreAndChange, locationInternal } from "./locator-functions.js";
+import { fadeElementsIn, markerCheck, matchZoom } from "./locator-functions.js";
 import {
   mapUnclusteredClick,
-  mainClusters
+  mainClusters, 
+  locationInternal
 } from "./locator-details.js";
 import { decodeEntities, closingTimeDisplay } from "./functions.js";
 var map,
