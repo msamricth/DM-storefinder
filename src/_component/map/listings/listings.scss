@@ -104,6 +104,9 @@ div#app.store-page {
             margin-right: 10px;
             display: flex;
             justify-content: end;
+            @media screen and (min-width: 1440px) {
+              min-width: 60px;
+            }
           }
         }
       }
