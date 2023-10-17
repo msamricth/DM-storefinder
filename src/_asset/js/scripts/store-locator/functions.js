@@ -78,7 +78,7 @@ function closingTimeDisplay(record){
   }
   if (closing_time_comparison) {
     if (closing_time_comparison > timeToSeconds(current_time)) {
-      closing_time_display = "Closes at " + closing_time;
+      closing_time_display = "Open until " + closing_time+" today";
     } else {
       closing_time_display = record.fields.Hours;
     }

@@ -19,6 +19,7 @@ const observer = new MutationObserver((mutations) => {
           if(isJqueryLoaded){ 
             if(isMapboxLoaded){
               if (!app.classList.contains("store-page")) {
+                window.scrollTo(0,0);
                 startApp2();
                 OBSDisconnect();
               }

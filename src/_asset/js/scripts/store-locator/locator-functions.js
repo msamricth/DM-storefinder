@@ -1,6 +1,4 @@
 import { load_storePage } from "./store-page.js";
-import { app } from "./identifiers.js";
-
 /**
  * Add a listing for each store to the sidebar.
  **/
