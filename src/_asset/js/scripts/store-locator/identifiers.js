@@ -26,9 +26,11 @@ const bounds = [
   [-125.97881615167792, 29.487440618804314], // Southwest coordinates
   [-39.11807460657073, 48.86784324437724] // Northeast coordinates
 ];
+
+const listings = document.getElementById("listings");
 const pageURL = window.location.href;
 const mapContainr = document.getElementById('map');
 const preloader = document.querySelector('.storemap-preloader');
 const storePageClass = document.querySelector('.store-page-container');
 const appClassList = app.classList;
-export { app, SMZoom, SMMZoom, mapContainr, preloader, pageURL, appClassList, storePageClass, bounds, MBaccessToken }
+export { app, SMZoom, SMMZoom, mapContainr, preloader, pageURL, appClassList, storePageClass, bounds, MBaccessToken,listings }

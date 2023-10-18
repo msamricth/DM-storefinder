@@ -1,11 +1,11 @@
-import { SMZoom, SMMZoom, mapContainr, preloader, bounds, MBaccessToken } from "./identifiers.js";
-import { fadeElementsIn, markerCheck, matchZoom } from "./locator-functions.js";
+import { SMZoom, SMMZoom, mapContainr, preloader, bounds, MBaccessToken, listings } from "./identifiers.js";
+import { fadeElementsIn, markerCheck, matchZoom, flyToStoreAndChange } from "./locator-functions.js";
 import {
   mapUnclusteredClick,
-  mainClusters,
-  locationInternal
+  mainClusters
 } from "./locator-details.js";
-import { decodeEntities, closingTimeDisplay } from "./functions.js";
+import { decodeEntities } from "./functions.js";
+import { closingTimeDisplay } from "./hours.js";
 var map,
   Sfields,
   markerIMG,
@@ -62,6 +62,7 @@ function startApp2(pushPage = null) {
           search_storeIcon = Sfields.search_store[0].url;
           ctaIcon = Sfields.cta[0].url;
           search_markerIcon = Sfields.search_marker[0].url;
+
           var css =
             ".map-container .marker {background-image: url(" +
             markerIMG +
@@ -78,7 +79,7 @@ function startApp2(pushPage = null) {
           }
           axios
             .get(
-              "https://api.airtable.com/v0/app7o6tSJG6UICys8/Stores?view=API",
+              "https://api.airtable.com/v0/app7o6tSJG6UICys8/Stores_new?view=API",
               {
                 headers: {
                   Authorization:
@@ -108,7 +109,7 @@ function startApp2(pushPage = null) {
               };
               window.addEventListener("resize", matchZoom);
               for (var i = 0; i < theRecords.length; i++) {
-                const closing_time_display = closingTimeDisplay(theRecords[i]);
+                const storeHours = closingTimeDisplay(theRecords[i]);
                 stores.features.push({
                   type: "Feature",
                   geometry: {
@@ -123,7 +124,7 @@ function startApp2(pushPage = null) {
                     name: theRecords[i].fields.Name,
                     address: theRecords[i].fields.full_address,
                     slug: "?" + theRecords[i].fields.Slug,
-                    hours: closing_time_display
+                    hours: storeHours
                   }
                 });
               }
@@ -383,11 +384,88 @@ function startApp2(pushPage = null) {
               map.touchZoomRotate.disableRotation();
               function buildLocationList(stores) {
                 for (const store of stores.features) {
-                  locationInternal(store, directionIcon)
-                }
+                  /* Add a new listing section to the sidebar. */
+                  const listings = document.getElementById("listings");
+                  const listing = listings.appendChild(
+                    document.createElement("div")
+                  );
+                  /* Assign a unique `id` to the listing. */
+                  listing.id = `listing-${store.properties.id}`;
+                  /* Assign the `item` class to each listing for styling. */
+                  listing.className = "item";
+                  const link = listing.appendChild(document.createElement("a"));
+                  link.href = "#";
+                  link.className = "title";
+                  link.id = `link-${store.properties.id}`;
+                  /* Add details to the individual listing. */
+                  const detailsContainer = listing.appendChild(
+                    document.createElement("div")
+                  );
+                  detailsContainer.className = 'listing-content';
+                  /* Add the link to the individual listing created above. */
+                  
+                  const details = detailsContainer.appendChild(
+                    document.createElement("div")
+                  );
+                  
+                  details.className = 'listing-details';
+                  var storeDistance = '';
+                  if (store.properties.distance) {
+                    const roundedDistance = Math.round(store.properties.distance * 100) / 100;
+                    storeDistance = ` <strong>${roundedDistance} miles away</strong> - `;
+                  }
+                  details.innerHTML = "<h3>" + `${store.properties.name}` + "</h3>";
+                  details.innerHTML += "<small>" + storeDistance +`${store.properties.address}`+ "</small>";
+                  if(store.properties.hours){
+                    details.innerHTML += "<strong>" + `${store.properties.hours}` + "</strong>";
+                  }
+                
+                  const meta = detailsContainer.appendChild(
+                    document.createElement("div")
+                  );
 
+
+                  var containerPhone = `${store.properties.phoneFormatted}`,
+                  containerAddress = `${store.properties.address}`;
+
+                  if(containerPhone){
+                    containerPhone = encodeURIComponent(containerPhone);
+                  }
+                  if(containerAddress){
+                      containerAddress = encodeURIComponent(containerAddress);
+                  }
+                  var containerhref = "https://www.google.com/maps/dir/?api=1&destination="+containerAddress;
+                  meta.className = 'meta-details';
+                  meta.innerHTML += "<a href='"+containerhref+"' target='_blank'><img class='results-icon' src='"+directionIcon+"'/></a>";
+
+                  /**
+                   * Listen to the element and when it is clicked, do four things:
+                   * 1. Update the `currentFeature` to the store associated with the clicked link
+                   * 2. Fly to the point
+                   * 3. Close all other popups and display popup for clicked store
+                   * 4. Highlight listing in sidebar (and remove highlight for all other listings)
+                   **/
+                  link.addEventListener("click", function (event) {
+                    event.preventDefault();
+                    for (const feature of stores.features) {
+                      if (this.id === `link-${feature.properties.id}`) {
+                        flyToStoreAndChange(feature);
+                        const sidebar = document.querySelector(".sidebar");
+                        sidebar.classList.remove("search-suggestions-displayed");
+                      }
+                    }
+                    const activeItem = document.getElementsByClassName("active");
+                    if (activeItem[0]) {
+                      activeItem[0].classList.remove("active");
+                    }
+                    this.parentNode.classList.add("active");
+                  });
+                }
+                
                 app.classList.add("listings-completed");
-              }
+                
+             
+                }
             });
         })
         .catch((error) => {
