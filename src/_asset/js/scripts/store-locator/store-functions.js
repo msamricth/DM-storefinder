@@ -20,7 +20,9 @@ function buildMap(){
     listings.id = 'listings';
     
     window.scrollTo(0,0);
-    startApp2('push');
+    setTimeout(function () {
+        startApp2('push');
+      }, 400);
 }
 function returnToStore(return_map, map){
 
@@ -40,8 +42,6 @@ function returnToStore(return_map, map){
             }
         }
         if(map){
-            
-            map.removeSource('point')
             map.remove();
         }
         app.innerHTML = '';

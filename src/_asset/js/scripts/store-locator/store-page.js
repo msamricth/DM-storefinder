@@ -1,13 +1,11 @@
 import { app } from "./identifiers.js";
-import { closingTimeDisplay } from "./functions.js";
 import {  updateStorePage, LoadStoreMap } from "./store-functions.js";
-
+import { storeHoursDisplay, closingTimeDisplay } from "./hours.js";
 
 var default_image, page_title, markerIMG, Sfields, ctaIcon, containerAddress;
 var return_map = "Return to store lookup";
 function load_storePage(SP_slug, map=null, historyUpdate = null) {
     if(map){
-        map.removeSource('places')
         map.remove();
         app.classList.remove('listings-completed');
         app.classList.remove('app2-completed');
@@ -67,7 +65,7 @@ function load_storePage(SP_slug, map=null, historyUpdate = null) {
                 var closing_time_display;
             axios
                 .get(
-                "https://api.airtable.com/v0/app7o6tSJG6UICys8/Stores?view=API",
+                "https://api.airtable.com/v0/app7o6tSJG6UICys8/Stores_new?view=API",
                 {
                     headers: {
                     Authorization:
@@ -103,8 +101,8 @@ function load_storePage(SP_slug, map=null, historyUpdate = null) {
                             }
 
                             const storeFields = theRecords[i].fields,
+                            storeRecords = theRecords[i],
                             closing_time_display = closingTimeDisplay(theRecords[i]);
-
                             store_image = storeFields.Store_Image;
                             if(store_image){
                                 store_image = storeFields.Store_Image[0].url;
@@ -176,21 +174,15 @@ function load_storePage(SP_slug, map=null, historyUpdate = null) {
                                 document.createElement("div")
                             );
                             detailsHeader.className = 'store-page-details-header';
+                            detailsHeader.innerHTML += "<h1>" + store_name; + "</h1>";
+                            detailsHeader.innerHTML += "<div class='mobile-address-label'>"+address+ "</div>";
                             if(closing_time_display){
                                 detailsHeader.innerHTML += "<h3 class='closing-time'>" + closing_time_display; + "</h3>";
                             }
-                            detailsHeader.innerHTML += "<h1>" + store_name; + "</h1>";
-                            detailsHeader.innerHTML += "<div class='mobile-address-label'>"+address+ "</div>";
-                            
-                            const detailsInner = details.appendChild(
+                            const directionsContainer = detailsHeader.appendChild(
                                 document.createElement("div")
                             );
-                            detailsInner.className = 'store-page-details-inner';
-                            detailsInner.innerHTML += "<div class='address-label'><h3>Address</h3>"+address+ "</div>";
-                            detailsInner.innerHTML += "<div><h3>Hours</h3>"+hours+ "</div>";
-                            detailsInner.innerHTML += "<div><h3>Phone</h3>"+phone+ "</div>";
-
-                            const directions = detailsInner.appendChild(
+                            const directions = directionsContainer.appendChild(
                                 document.createElement("a")
                             );
                             directions.className = "map-btn";
@@ -199,6 +191,18 @@ function load_storePage(SP_slug, map=null, historyUpdate = null) {
                             const mapContainer = storePage.appendChild(
                                 document.createElement("div")
                             );
+                            
+                            const detailsInner = details.appendChild(
+                                document.createElement("div")
+                            );
+                            detailsInner.className = 'store-page-details-inner';
+                            detailsInner.innerHTML += "<div class='address-label'><h2>Address</h2><p>"+address+ "</p><p><a href='tel:'"+phone+"'>"+phone+"</a></p></div>";
+                            
+                            const hourDisplay = detailsInner.appendChild(
+                                document.createElement("div")
+                            );
+                            hourDisplay.className = "store-hours-display";
+                            storeHoursDisplay(storeRecords, hourDisplay);
                             
                             mapContainer.className = "store-page-map-container";
                             app.classList.add("map-container-added");

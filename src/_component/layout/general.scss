@@ -1,26 +1,59 @@
 * {
-  box-sizing: border-box;
+	box-sizing: border-box;
 }
-@keyframes pulse {
-	0% { transform: scale(0.85); opacity: 0.75;}
-	50% { transform: scale(1); opacity: 1;}
-	100% { transform: scale(0.85); opacity: 0.75;}
-}
-@-webkit-keyframes fade-out{0%{opacity:1}100%{opacity:0}}@keyframes fade-out{0%{opacity:1}100%{opacity:0}}
 
-.storemap-preloader {    
+@keyframes pulse {
+	0% {
+		transform: scale(0.85);
+		opacity: 0.75;
+	}
+
+	50% {
+		transform: scale(1);
+		opacity: 1;
+	}
+
+	100% {
+		transform: scale(0.85);
+		opacity: 0.75;
+	}
+}
+
+@-webkit-keyframes fade-out {
+	0% {
+		opacity: 1
+	}
+
+	100% {
+		opacity: 0
+	}
+}
+
+@keyframes fade-out {
+	0% {
+		opacity: 1
+	}
+
+	100% {
+		opacity: 0
+	}
+}
+
+.storemap-preloader {
 	top: 0;
-    width: 100%;
-    position: absolute;
-    min-height: 100vh;
-    background-color: #000;
-    text-align: center;
-    z-index: 1000;
-    bottom: 0;
+	width: 100%;
+	position: absolute;
+	min-height: 100vh;
+	background-color: #000;
+	text-align: center;
+	z-index: 1000;
+	bottom: 0;
+
 	&.hide {
 		-webkit-animation: fade-out 300ms ease-out both;
-				animation: fade-out 300ms ease-out both;
+		animation: fade-out 300ms ease-out both;
 	}
+
 	img {
 		transform: scale(0.85);
 		opacity: 0.75;
@@ -33,33 +66,37 @@
 		margin: auto;
 		width: 144px;
 	}
+
 	@media screen and (min-width: 768px) {
 		img {
 			width: 216px;
 		}
 	}
+
 	@media screen and (min-width: 1440px) {
 		img {
 			width: 288px;
 		}
 	}
 }
+
 #app {
 	position: relative;
 	//background-color: #fff;
 	color: #000;
 
-	h1, h2 {
+	h1,
+	h2 {
 		margin: 0;
-		font-family: "Oswald", "Trade Gothic Bold", sans-serif; 
+		font-family: "Oswald", "Trade Gothic Bold", sans-serif;
 		font-weight: 500;
 	}
-			
+
 	h1 {
 		font-size: 48px;
 		text-transform: uppercase;
-	} 
-		
+	}
+
 	h2 {
 		font-size: 20px;
 	}
@@ -70,7 +107,7 @@
 		font-weight: 800;
 	}
 
-	p { 
+	p {
 		line-height: 30px;
 	}
 
@@ -82,40 +119,47 @@
 	}
 
 	@media screen and (max-width:1023px) {
-		.dm-main { 
+		.dm-main {
 			margin-top: 0px !important;
 		}
 	}
-  h1 {
-	font-family: 'Oswald';
-	font-style: normal;
-	font-weight: 600;
-	font-size: 58px;
-  }
-  h3 {
-	  font-family: 'Oswald';
-	  text-transform: uppercase;
-	  font-weight: 700;
-	  font-size: 18px;
-  }
-  h4 {
+
+	h1 {
+		font-family: 'Oswald';
+		font-style: normal;
+		font-weight: 600;
+		font-size: 58px;
+	}
+
+	h3 {
+		font-family: 'Oswald';
+		text-transform: uppercase;
+		font-weight: 700;
+		font-size: 18px;
+	}
+
+	h4 {
 		font-family: 'Oswald';
 		font-style: normal;
 		font-weight: 700;
 		font-size: 14px;
 		margin-bottom: 12px;
 		line-height: 16px;
+
 		@media screen and (min-width: 768px) {
 			margin-bottom: 26px;
 			font-size: 18px;
 		}
 	}
-	.mapboxgl-ctrl-bottom-right, .mapboxgl-ctrl-bottom-left {
+
+	.mapboxgl-ctrl-bottom-right,
+	.mapboxgl-ctrl-bottom-left {
 		display: none;
 	}
 }
+
 .fade {
-    visibility: hidden;
-    opacity: 0;
-    transition: 0.25s ease opacity;
+	visibility: hidden;
+	opacity: 0;
+	transition: 0.25s ease opacity;
 }
