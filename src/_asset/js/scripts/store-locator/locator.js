@@ -1,10 +1,13 @@
 import { SMZoom, SMMZoom, mapContainr, preloader, bounds, MBaccessToken, listings } from "./identifiers.js";
-import { fadeElementsIn, markerCheck, matchZoom, flyToStoreAndChange } from "./locator-functions.js";
-import {
+import { 
+  fadeElementsIn, 
+  markerCheck, 
+  matchZoom, 
+  flyToStoreAndChange, 
+  decodeEntities,
   mapUnclusteredClick,
-  mainClusters
-} from "./locator-details.js";
-import { decodeEntities } from "./functions.js";
+  mainClusters 
+} from "./locator-functions.js";
 import { closingTimeDisplay } from "./hours.js";
 var map,
   Sfields,
@@ -247,7 +250,6 @@ function startApp2(pushPage = null) {
                       }
                       return 0; // a must be equal to b
                     });
-                    const listings = document.getElementById('listings');
                     while (listings.firstChild) {
                       listings.removeChild(listings.firstChild);
                     }
@@ -353,6 +355,7 @@ function startApp2(pushPage = null) {
                       navigator.geolocation.getCurrentPosition(success, error);
                     }
                   }
+                  map.addControl(geocoder, 'top-right');
                   map.on("render", () => {
                     // updateMarkers();
                     updateClusters();
@@ -403,11 +406,11 @@ function startApp2(pushPage = null) {
                   );
                   detailsContainer.className = 'listing-content';
                   /* Add the link to the individual listing created above. */
-                  
+
                   const details = detailsContainer.appendChild(
                     document.createElement("div")
                   );
-                  
+
                   details.className = 'listing-details';
                   var storeDistance = '';
                   if (store.properties.distance) {
@@ -415,28 +418,28 @@ function startApp2(pushPage = null) {
                     storeDistance = ` <strong>${roundedDistance} miles away</strong> - `;
                   }
                   details.innerHTML = "<h3>" + `${store.properties.name}` + "</h3>";
-                  details.innerHTML += "<small>" + storeDistance +`${store.properties.address}`+ "</small>";
-                  if(store.properties.hours){
+                  details.innerHTML += "<small>" + storeDistance + `${store.properties.address}` + "</small>";
+                  if (store.properties.hours) {
                     details.innerHTML += "<strong>" + `${store.properties.hours}` + "</strong>";
                   }
-                
+
                   const meta = detailsContainer.appendChild(
                     document.createElement("div")
                   );
 
 
                   var containerPhone = `${store.properties.phoneFormatted}`,
-                  containerAddress = `${store.properties.address}`;
+                    containerAddress = `${store.properties.address}`;
 
-                  if(containerPhone){
+                  if (containerPhone) {
                     containerPhone = encodeURIComponent(containerPhone);
                   }
-                  if(containerAddress){
-                      containerAddress = encodeURIComponent(containerAddress);
+                  if (containerAddress) {
+                    containerAddress = encodeURIComponent(containerAddress);
                   }
-                  var containerhref = "https://www.google.com/maps/dir/?api=1&destination="+containerAddress;
+                  var containerhref = "https://www.google.com/maps/dir/?api=1&destination=" + containerAddress;
                   meta.className = 'meta-details';
-                  meta.innerHTML += "<a href='"+containerhref+"' target='_blank'><img class='results-icon' src='"+directionIcon+"'/></a>";
+                  meta.innerHTML += "<a href='" + containerhref + "' target='_blank'><img class='results-icon' src='" + directionIcon + "'/></a>";
 
                   /**
                    * Listen to the element and when it is clicked, do four things:
@@ -449,7 +452,7 @@ function startApp2(pushPage = null) {
                     event.preventDefault();
                     for (const feature of stores.features) {
                       if (this.id === `link-${feature.properties.id}`) {
-                        flyToStoreAndChange(feature);
+                        flyToStoreAndChange(feature, map);
                         const sidebar = document.querySelector(".sidebar");
                         sidebar.classList.remove("search-suggestions-displayed");
                       }
@@ -461,11 +464,11 @@ function startApp2(pushPage = null) {
                     this.parentNode.classList.add("active");
                   });
                 }
-                
+
                 app.classList.add("listings-completed");
-                
-             
-                }
+
+
+              }
             });
         })
         .catch((error) => {

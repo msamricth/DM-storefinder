@@ -87,15 +87,28 @@ div#app.store-page {
           }
             h3 {
                 margin-top: 0;
-                font-size: 16px;
-                margin-bottom: 15px;
-                line-height: 21px;
+                font-size: 18px;
+                margin-bottom: 8px;
+                line-height: 22px;
+                text-transform: uppercase;
+                @media screen and (min-width: 768px) {
+                  font-size: 16px;
+                }
+                @media screen and (min-width: 1440px) {
+                  font-size: 20px;
+                }
             }
             small {
-              font-size: 16px;
+              font-size: 14px;
               display:block;
-              margin-bottom: 15px;
+              margin-bottom: 8px;
               color: #1E1E1E;
+              @media screen and (min-width: 768px) {
+                font-size: 12px;
+              }
+              @media screen and (min-width: 1440px) {
+                font-size: 16px;
+              }
             }
             
           }
