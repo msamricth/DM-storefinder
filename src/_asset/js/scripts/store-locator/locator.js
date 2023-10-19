@@ -110,7 +110,8 @@ function startApp2(pushPage = null) {
                 type: "FeatureCollection",
                 features: []
               };
-              window.addEventListener("resize", matchZoom);
+              let zooming = matchZoom(map);
+              window.addEventListener("resize", zooming);
               for (var i = 0; i < theRecords.length; i++) {
                 const storeHours = closingTimeDisplay(theRecords[i]);
                 stores.features.push({
@@ -418,9 +419,9 @@ function startApp2(pushPage = null) {
                     storeDistance = ` <strong>${roundedDistance} miles away</strong> - `;
                   }
                   details.innerHTML = "<h3>" + `${store.properties.name}` + "</h3>";
-                  details.innerHTML += "<small>" + storeDistance + `${store.properties.address}` + "</small>";
+                  details.innerHTML += "<small>" + storeDistance + `${store.properties.address}`;
                   if (store.properties.hours) {
-                    details.innerHTML += "<strong>" + `${store.properties.hours}` + "</strong>";
+                    details.innerHTML += "<strong>" + `${store.properties.hours}` + "</strong></small>";
                   }
 
                   const meta = detailsContainer.appendChild(
