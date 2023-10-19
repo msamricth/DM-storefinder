@@ -113,12 +113,6 @@ function load_storePage(SP_slug, map=null, historyUpdate = null) {
                                 store_image = default_image
                             }
                             
-                            hours = storeFields.hours_fx;
-                            if(hours){
-                                if (hours.indexOf("[LINEBREAK]") > -1) {
-                                    hours = hours.replaceAll("[LINEBREAK]", "<br>")
-                                }
-                            }
                             store_name = storeFields.Name;
                             address = storeFields.full_address;
                             phone = storeFields.Phone;
@@ -175,10 +169,10 @@ function load_storePage(SP_slug, map=null, historyUpdate = null) {
                             );
                             detailsHeader.className = 'store-page-details-header';
                             detailsHeader.innerHTML += "<h1>" + store_name; + "</h1>";
-                            detailsHeader.innerHTML += "<div class='mobile-address-label'>"+address+ "</div>";
                             if(closing_time_display){
                                 detailsHeader.innerHTML += "<h3 class='closing-time'>" + closing_time_display; + "</h3>";
                             }
+                            detailsHeader.innerHTML += "<div class='mobile-address-label'>"+address+ "</div>";
                             const directionsContainer = detailsHeader.appendChild(
                                 document.createElement("div")
                             );

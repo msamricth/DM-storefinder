@@ -5,10 +5,11 @@ weekday,
 weekdaySH,
 months,
 month,
-currentDate,
-storeDate 
+currentDate
 } from "./identifiers.js";
 //closing time display
+
+let storeDate = currentDate;
 function closingTimeDisplay(record) {
     var current_time = dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds(),
         closing_time,
@@ -172,8 +173,8 @@ function storeHoursDisplay(record, parentDiv){
     );
     hourTitle.innerHTML +="Store Hours";
     for (const day of dayIterations) {
-        i = i+1;
         storeDate = currentDate + i;
+        i = i+1;
         const hourDisplayRow = parentDiv.appendChild(
             document.createElement("div")
         );

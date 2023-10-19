@@ -355,6 +355,7 @@ function startApp2(pushPage = null) {
                       navigator.geolocation.getCurrentPosition(success, error);
                     }
                   }
+                  map.addControl(geocoder, 'top-right');
                   map.on("render", () => {
                     // updateMarkers();
                     updateClusters();
@@ -451,7 +452,7 @@ function startApp2(pushPage = null) {
                     event.preventDefault();
                     for (const feature of stores.features) {
                       if (this.id === `link-${feature.properties.id}`) {
-                        flyToStoreAndChange(feature);
+                        flyToStoreAndChange(feature, map);
                         const sidebar = document.querySelector(".sidebar");
                         sidebar.classList.remove("search-suggestions-displayed");
                       }

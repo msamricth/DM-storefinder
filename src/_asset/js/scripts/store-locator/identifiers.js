@@ -33,7 +33,6 @@ const weekdaySH = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat", "Sun"];
 const months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
 const month = months[dt.getMonth()];
 const currentDate = dt.getDate();
-let storeDate = currentDate;
 const listings = document.getElementById("listings");
 const pageURL = window.location.href;
 const mapContainr = document.getElementById('map');
@@ -58,6 +57,5 @@ export {
   weekdaySH,
   months,
   month,
-  currentDate,
-  storeDate 
+  currentDate 
 }
