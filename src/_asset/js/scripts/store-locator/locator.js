@@ -418,9 +418,9 @@ function startApp2(pushPage = null) {
                     storeDistance = ` <strong>${roundedDistance} miles away</strong> - `;
                   }
                   details.innerHTML = "<h3>" + `${store.properties.name}` + "</h3>";
-                  details.innerHTML += "<small>" + storeDistance + `${store.properties.address}`;
+                  details.innerHTML += "<small>" + storeDistance + `${store.properties.address}`+"</small>";
                   if (store.properties.hours) {
-                    details.innerHTML += "<strong>" + `${store.properties.hours}` + "</strong></small>";
+                    details.innerHTML += "<strong><small>" + `${store.properties.hours}` + "</small></strong>";
                   }
 
                   const meta = detailsContainer.appendChild(
