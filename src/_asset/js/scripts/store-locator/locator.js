@@ -420,7 +420,7 @@ function startApp2(pushPage = null) {
                   details.innerHTML = "<h3>" + `${store.properties.name}` + "</h3>";
                   details.innerHTML += "<small>" + storeDistance + `${store.properties.address}`+"</small>";
                   if (store.properties.hours) {
-                    details.innerHTML += "<strong><small>" + `${store.properties.hours}` + "</small></strong>";
+                    details.innerHTML += "<small>" + `${store.properties.hours}` + "</small>";
                   }
 
                   const meta = detailsContainer.appendChild(
