@@ -80,6 +80,13 @@ div#app.store-page {
         justify-content: space-between;
         padding: 0 18px;
         .listing-details {
+          width: 280px;
+          @media screen and (min-width: 768px) {
+            width: 181px;
+          }
+          @media screen and (min-width: 1440px) {
+            width: 187px;
+          }
           padding: 10px 0;
           font-size: 16px;
             strong {
@@ -113,7 +120,6 @@ div#app.store-page {
             
           }
           .meta-details {
-            min-width: 160px;
             margin-right: 10px;
             display: flex;
             justify-content: end;

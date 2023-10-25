@@ -1,6 +1,7 @@
 import { app } from "./identifiers.js";
 import {  updateStorePage, LoadStoreMap } from "./store-functions.js";
-import { storeHoursDisplay, closingTimeDisplay } from "./hours.js";
+import { closingTimeDisplay } from "./hours.js";
+import { storeHoursDisplay } from "./holidays.js";
 
 var default_image, page_title, markerIMG, Sfields, ctaIcon, containerAddress;
 var return_map = "Return to store lookup";
@@ -176,12 +177,21 @@ function load_storePage(SP_slug, map=null, historyUpdate = null) {
                             const directionsContainer = detailsHeader.appendChild(
                                 document.createElement("div")
                             );
+                            directionsContainer.className = "sf-button-group";
                             const directions = directionsContainer.appendChild(
                                 document.createElement("a")
                             );
                             directions.className = "map-btn";
                             directions.href = "https://www.google.com/maps/dir/?api=1&destination="+containerAddress;
                             directions.innerHTML = "get directions";
+                            
+                            const callus = directionsContainer.appendChild(
+                                document.createElement("a")
+                            );
+                            callus.className = "map-btn";
+                            callus.classList.add('mobile-only');
+                            callus.href = "tel:"+phone;
+                            callus.innerHTML = "Call";
                             const mapContainer = storePage.appendChild(
                                 document.createElement("div")
                             );
@@ -196,6 +206,7 @@ function load_storePage(SP_slug, map=null, historyUpdate = null) {
                                 document.createElement("div")
                             );
                             hourDisplay.className = "store-hours-display";
+                            hourDisplay.id = 'hours';
                             storeHoursDisplay(storeRecords, hourDisplay);
                             
                             mapContainer.className = "store-page-map-container";

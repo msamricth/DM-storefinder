@@ -96,7 +96,7 @@
                 letter-spacing: -0.224px;
                 margin-bottom: 6px;
             }
-            @media screen and (min-width: 1290px) {
+            @media screen and (min-width: 1024px) {
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
@@ -136,7 +136,7 @@
                 @media screen and (min-width: 768px) {
                     font-size: 20px;
                     margin-top: 10px;
-                    margin-bottom: 20px;
+                    margin-bottom: 0px;
                 }
 
                 line-height: 1;
@@ -178,7 +178,7 @@
                     }
                 }
 
-                &>div {
+                &>.address-label {
                     margin-right: 60px;
 
                     @media screen and (min-width: 768px) {
@@ -205,18 +205,32 @@
                 }
 
                 &>div:last-of-type {
-                    margin-bottom: 0;
-                    margin-right: 40px;
+                   // margin-bottom: 0;
+                    //margin-right: 40px;
                 }
 
                 .store-hours-display {
                     min-width: 300px;
-
+                    @media screen and (min-width: 768px) {
+                        max-width: max-content;
+                    }
+                    &>span.small {
+                        color: rgba(29, 29, 31, 0.50);
+                        font-family: Overpass;
+                        font-size: 12px;
+                        font-style: normal;
+                        font-weight: 400;
+                        line-height: 20px; /* 166.667% */
+                        letter-spacing: -0.224px;
+                    }
                     .store-hours-display-row {
                         margin-right: 0px;
                         display: flex;
                         font-size: 14px;
                         margin-bottom: 6px;
+                        &.holiday {
+                            color: #BF2E00;
+                        }
                         span:first-child {
                             min-width: 79px;
                         }
@@ -229,7 +243,8 @@
 
             }
         }
-
+        .sf-button-group {display: flex;
+            padding: 20px 0;gap:20px;}
         .store-btn {
             background-color: rgb(255, 230, 0);
             color: #000;
@@ -262,17 +277,18 @@
                 letter-spacing: 0.05em;
             }
         }
-
         .map-btn {
             font-family: 'Oswald';
             font-weight: 600;
             font-size: 16px;
+            text-align: center;
+            min-width: 155px;
             line-height: 24px;
             text-transform: uppercase;
             display: inline-block;
             background: #FFE512;
             color: black;
-            padding: 12px 26px;
+            padding: 12px 24px;
 
             &:hover {
                 background-color: #FFD909;
@@ -292,6 +308,11 @@
     }
 }
 
+.mobile-only {
+    @media screen and (min-width: 768px) {
+        display: none !important;
+    }
+}
 @media screen and (min-width: 1440px) {
 
     .store-page-map-container,
