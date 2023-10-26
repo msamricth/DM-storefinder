@@ -9,7 +9,9 @@ import {
   mainClusters 
 } from "./locator-functions.js";
 import { closingTimeDisplay } from "./hours.js";
-var map,
+
+function startApp2(pushPage = null) {
+  var map,
   Sfields,
   markerIMG,
   page_title,
@@ -17,26 +19,14 @@ var map,
   phoneIcon,
   ctaIcon,
   search_storeIcon,
-  search_markerIcon;
-function startApp2(pushPage = null) {
-  var stores = new Vue({
-    el: "#map",
-    name: "store-locator-app",
-    data() {
-      return {
-        rfields: [],
-        markerIMG: null,
-        defaultStoreIMG: null,
-        Sfields: [],
-        page_title: null
-      };
-    },
-    filters: {
-      footerdecimal(value) {
-        return value.toFixed(2);
-      }
-    },
-    mounted() {
+  search_markerIcon,
+  nextURL = '',
+  rfields= [],
+  markerIMG ,
+  defaultStoreIMG,
+  Sfields= [],
+  page_title,
+  nextTitle = '';
       axios
         .get(
           "https://api.airtable.com/v0/app7o6tSJG6UICys8/Settings?view=API",
@@ -51,8 +41,8 @@ function startApp2(pushPage = null) {
           page_title = response.data.records[0].fields.page_title;
           document.title = page_title;
           if (pushPage) {
-            const nextURL = window.location.href.split("?")[0];
-            const nextTitle = decodeEntities(page_title);
+            nextURL = window.location.href.split("?")[0];
+            nextTitle = decodeEntities(page_title);
             const nextState = {
               additionalInformation: "Updated the URL with JS"
             };
@@ -91,8 +81,7 @@ function startApp2(pushPage = null) {
               }
             )
             .then((response) => {
-              this.rfields = response.data.records;
-              var theRecords = this.rfields;
+              var theRecords = response.data.records;
               mapboxgl.accessToken = MBaccessToken;
               var map;
               if (mapContainr) {
@@ -137,6 +126,9 @@ function startApp2(pushPage = null) {
               });
               if (mapContainr) {
                 map.on("load", () => {
+                  
+                  preloader.classList.add('hide');
+                  preloader.style.display = "none";
                   mainClusters(map, markerIMG, stores);
                   map.addControl(new mapboxgl.NavigationControl());
                   mapUnclusteredClick(map)
@@ -374,8 +366,6 @@ function startApp2(pushPage = null) {
                     map.getCanvas().style.cursor = "";
                   });
 
-                  preloader.classList.add('hide');
-                  preloader.style.display = "none";
                   buildLocationList(stores);
                   geoFindMe();
                   fadeElementsIn();
@@ -471,13 +461,6 @@ function startApp2(pushPage = null) {
               }
             });
         })
-        .catch((error) => {
-          console.log(error);
-          this.errored = true;
-        })
-        .finally(() => (this.loading = false));
     }
-  });
-}
 
 export { startApp2 };

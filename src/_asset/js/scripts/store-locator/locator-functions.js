@@ -25,7 +25,7 @@ function goToStorePage(currentFeature, map) {
 
   setTimeout(function () {
     load_storePage(pageURL, map, "true");
-  }, 400);
+  }, 100);
 }
 
 
