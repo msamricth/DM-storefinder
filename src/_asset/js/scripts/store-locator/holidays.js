@@ -9,35 +9,40 @@ import {
 } from "./identifiers.js";
 function storeHours(day, storeRecord) {
     let opens_time, closes_time;
+    
     if ((day == 0)) {
-        opens_time = storeRecord.fields.opens_monday;
-        closes_time = storeRecord.fields.closes_monday;
-    }
-    if ((day == 1)) {
-        opens_time = storeRecord.fields.opens_tuesday;
-        closes_time = storeRecord.fields.closes_tuesday;
-    }
-    if ((day == 2)) {
-        opens_time = storeRecord.fields.opens_wednesday;
-        closes_time = storeRecord.fields.closes_wednesday;
-    }
-    if ((day == 3)) {
-        opens_time = storeRecord.fields.opens_thursday;
-        closes_time = storeRecord.fields.closes_thursday;
-    }
-    if ((day == 4)) {
-        opens_time = storeRecord.fields.opens_friday;
-        closes_time = storeRecord.fields.closes_friday;
-    }
-    if ((day == 5)) {
-        opens_time = storeRecord.fields.opens_saturday;
-        closes_time = storeRecord.fields.closes_saturday;
-    }
-    if ((day == 6)) {
         opens_time = storeRecord.fields.opens_sunday;
         closes_time = storeRecord.fields.closes_sunday;
     }
+    if ((day == 1)) {
+        opens_time = storeRecord.fields.opens_monday;
+        closes_time = storeRecord.fields.closes_monday;
+    }
+    if ((day == 2)) {
+        opens_time = storeRecord.fields.opens_tuesday;
+        closes_time = storeRecord.fields.closes_tuesday;
+    }
+    if ((day == 3)) {
+        opens_time = storeRecord.fields.opens_wednesday;
+        closes_time = storeRecord.fields.closes_wednesday;
+    }
+    if ((day == 4)) {
+        opens_time = storeRecord.fields.opens_thursday;
+        closes_time = storeRecord.fields.closes_thursday;
+    }
+    if ((day == 5)) {
+        opens_time = storeRecord.fields.opens_friday;
+        closes_time = storeRecord.fields.closes_friday;
+    }
+    if ((day == 6)) {
+        opens_time = storeRecord.fields.opens_saturday;
+        closes_time = storeRecord.fields.closes_saturday;
+    }
     if ((day == 7)) {
+        opens_time = storeRecord.fields.opens_sunday;
+        closes_time = storeRecord.fields.closes_sunday;
+    }
+    if ((day == 8)) {
         opens_time = storeRecord.fields.opens_monday;
         closes_time = storeRecord.fields.closes_monday;
     }

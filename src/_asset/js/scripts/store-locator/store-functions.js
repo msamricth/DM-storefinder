@@ -1,4 +1,4 @@
-import { startApp2 } from "./locator.js";
+//import { startApp2 } from "./locator.js";
 let pageURL = window.location.href;
 var decodeEntities = (function () {
     // this prevents any overhead from creating the object each time
@@ -39,32 +39,37 @@ function buildMap() {
 
     window.scrollTo(0, 0);
     setTimeout(function () {
-        startApp2('push');
+        //   startApp2('push');
     }, 400);
 }
 function returnToStore(return_map, map) {
-
+    var storeLandingURL = window.location.href;
+    if (storeLandingURL.indexOf("?") > -1) {
+        storeLandingURL = storeLandingURL.split('?')[0];
+    }
     const link = document.querySelector('.store-page-container').appendChild(document.createElement("a"));
-    link.href = '#return-to-map';
+    //link.href = '#return-to-map';
+    link.href = storeLandingURL;
     link.className = "store-btn";
     link.innerHTML = '<svg height="17" width="9"><polyline points="9,0,0,8.5,9,17" style="stroke:#000;fill:transparent;stroke-width:4px;"></polyline></svg>';
     link.innerHTML += "<span>" + return_map + "</span>";
 
-    link.addEventListener("click", function (event) {
-        event.preventDefault();
-        const removeStoreClasses = ['store-page', 'map-container-added', 'event-container-added'];
-
-        for (const removeStoreClass of removeStoreClasses) {
-            if (app.classList.contains(removeStoreClass)) {
-                app.classList.remove(removeStoreClass);
+    /*
+        link.addEventListener("click", function (event) {
+            event.preventDefault();
+            const removeStoreClasses = ['store-page', 'map-container-added', 'event-container-added'];
+    
+            for (const removeStoreClass of removeStoreClasses) {
+                if (app.classList.contains(removeStoreClass)) {
+                    app.classList.remove(removeStoreClass);
+                }
             }
-        }
-        if (map) {
-            map.remove();
-        }
-        app.innerHTML = '';
-        buildMap();
-    });
+            if (map) {
+                map.remove();
+            }
+            app.innerHTML = '';
+      //      buildMap();
+        });*/
 }
 let nextURL = '',
     nextTitle = '';
