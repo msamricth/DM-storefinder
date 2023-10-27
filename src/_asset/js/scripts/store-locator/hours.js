@@ -18,7 +18,6 @@ function closingTimeDisplay(record) {
         closing_time_display;
 
     closing_time = record.fields.Closing_at[0];
-    console.log(closing_time);
     if (closing_time == 'Closed') {
         closing_time_display = openingtimes(record);
     } else {

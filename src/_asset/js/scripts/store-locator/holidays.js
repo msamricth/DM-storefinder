@@ -9,7 +9,7 @@ import {
 } from "./identifiers.js";
 function storeHours(day, storeRecord) {
     let opens_time, closes_time;
-    
+
     if ((day == 0)) {
         opens_time = storeRecord.fields.opens_sunday;
         closes_time = storeRecord.fields.closes_sunday;
@@ -56,7 +56,7 @@ function storeHoursDisplay(storeRecord, parentDiv) {
     let holidays = [],
         record_Fields,
         notHoliday = "true",
-        isHoliday='',
+        isHoliday = '',
         holidayDate = '';
     axios
         .get(
@@ -93,10 +93,15 @@ function storeHoursDisplay(storeRecord, parentDiv) {
             );
             hourTitle.innerHTML += "Store Hours";
             for (const day of dayIterations) {
-
+                let storedatefull = '', storeDateForComparison = '';
                 let storeDate = currentDate + i;
-                let storedatefull = dt.setDate(dt.getDate() + day),
-                    storeDateForComparison = new Date(storedatefull).toLocaleDateString('en-us', { weekday: "long", month: "short", day: "numeric" });
+                if(i==0){
+                    storedatefull = dt;
+                } else {
+
+                    storedatefull = dt.setDate(dt.getDate() + 1); //not sure why 1 works and not i or day 
+                }
+                storeDateForComparison = new Date(storedatefull).toLocaleDateString('en-us', { weekday: "long", month: "short", day: "numeric" });
                 dayOfWeek = current_day_of_week + day;
                 if (dayOfWeek > 7) {
                     dayOfWeek = dayOfWeek - 7;
@@ -137,9 +142,8 @@ function storeHoursDisplay(storeRecord, parentDiv) {
                     }
                     holidayDate = addHours(holidayDate, 4);
                     holidayDate = holidayDate.toLocaleDateString('en-us', { weekday: "long", month: "short", day: "numeric" });
-
-                    if (storeDateForComparison == holidayDate) {
-                        if (holiday.record_id.includes(storeRecord.id)) {
+                    if (holiday.record_id.includes(storeRecord.id)) {
+                        if (storeDateForComparison == holidayDate) {
                             notHoliday = '';
                             isHoliday = 'true';
                             hourDisplayRow.classList.add("holiday");

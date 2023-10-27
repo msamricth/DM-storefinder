@@ -1,5 +1,5 @@
 import { app, preloader } from "./identifiers.js";
-import { updateStorePage, LoadStoreMap } from "./store-functions.js";
+import { updateStorePage, LoadStoreMap, returnToStore } from "./store-functions.js";
 import { closingTimeDisplay } from "./hours.js";
 import { storeHoursDisplay } from "./holidays.js";
 import { get_events } from "./events.js";
@@ -207,9 +207,11 @@ function load_storePage(SP_slug, map = null, historyUpdate = null) {
 
                             eventContainer.className = "store-page-events-container";
                             app.classList.add("event-container-added");
-                            eventContainer.setAttribute('data-name', storeFields.Name);
                             get_events();
+                            eventContainer.setAttribute('data-name', storeFields.Name);
                             eventContainer.setAttribute('data-address', storeFields.full_address);
+                            
+                            returnToStore(return_map);
                             window.onpopstate = (event) => {
                                 location.reload();
                             };

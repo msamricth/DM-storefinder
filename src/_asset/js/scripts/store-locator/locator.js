@@ -84,6 +84,9 @@ function startApp2(pushPage = null) {
               var theRecords = response.data.records;
               mapboxgl.accessToken = MBaccessToken;
               var map;
+              
+              preloader.classList.add('hide');
+              preloader.style.display = "none";
               if (mapContainr) {
                 map = new mapboxgl.Map({
                   container: "map",
@@ -127,10 +130,9 @@ function startApp2(pushPage = null) {
               if (mapContainr) {
                 map.on("load", () => {
                   
-                  preloader.classList.add('hide');
-                  preloader.style.display = "none";
                   mainClusters(map, markerIMG, stores);
                   map.addControl(new mapboxgl.NavigationControl());
+                  map.addControl(new mapboxgl.GeolocateControl({positionOptions: { enableHighAccuracy: true }, trackUserLocation: true, showUserHeading: true }));
                   mapUnclusteredClick(map)
                   const markers = {};
                   let markersOnScreen = {};
@@ -260,6 +262,7 @@ function startApp2(pushPage = null) {
                       buildLocationList(stores);
                     }
                   }
+                  
                   function SortListingsOnMapLoc(position) {
                     var usrCoordinates = {
                       type: "Point",
