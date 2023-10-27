@@ -124,7 +124,7 @@
                 font-family: Overpass;
                 font-size: 16px;
                 font-style: normal;
-                font-weight: 700;
+                font-weight: 400;
                 line-height: 27px; /* 168.75% */
                 letter-spacing: 0.228px;
                 //background: #FFE512;
@@ -140,6 +140,9 @@
                 }
 
                 line-height: 1;
+                strong {
+                    font-weight: 700;
+                }
             }
 
             .store-page-details-header {

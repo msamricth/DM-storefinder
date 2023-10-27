@@ -10,7 +10,7 @@
 
 main#main-content {
     background-color: black;
-    
+
     @media screen and (max-width: 768px) {
         padding-top: 0px !important;
     }
@@ -29,28 +29,94 @@ main#main-content {
 .mapCluster.mapboxgl-marker.mapboxgl-marker-anchor-center {
     z-index: 9999;
 }
+
 .map-container {
     position: relative;
     width: 100%;
     background-color: white;
-    color:black;
+    color: black;
+
+
+
+    .mapboxgl-ctrl-top-right {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+    .mapboxgl-ctrl {
+        &.mapboxgl-ctrl-group {
+            box-shadow: none;
+            border-radius: 1px;
+            border: 1px solid #BBB;
+            background: rgba(255, 255, 255, 0.90);
+            button.mapboxgl-ctrl-compass {
+                display: none;
+            }
+            button {
+                width: 36px;
+                height: 38px;
+                &:hover {
+                    background-color: white;
+                }
+                
+                &.mapboxgl-ctrl-geolocate { 
+                    .mapboxgl-ctrl-icon {
+                        background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 0C6.66667 0 6.66667 1.33333 6.66667 1.33333V1.46667C5.38548 1.72796 4.20941 2.36024 3.28482 3.28482C2.36024 4.20941 1.72796 5.38548 1.46667 6.66667H1.33333C1.33333 6.66667 0 6.66667 0 8C0 9.33333 1.33333 9.33333 1.33333 9.33333H1.46667C1.72796 10.6145 2.36024 11.7906 3.28482 12.7152C4.20941 13.6398 5.38548 14.272 6.66667 14.5333V14.6667C6.66667 14.6667 6.66667 16 8 16C9.33333 16 9.33333 14.6667 9.33333 14.6667V14.5333C10.6145 14.272 11.7906 13.6398 12.7152 12.7152C13.6398 11.7906 14.272 10.6145 14.5333 9.33333H14.6667C14.6667 9.33333 16 9.33333 16 8C16 6.66667 14.6667 6.66667 14.6667 6.66667H14.5333C14.272 5.38548 13.6398 4.20941 12.7152 3.28482C11.7906 2.36024 10.6145 1.72796 9.33333 1.46667V1.33333C9.33333 1.33333 9.33333 0 8 0ZM8 3.33333C9.23768 3.33333 10.4247 3.825 11.2998 4.70017C12.175 5.57534 12.6667 6.76232 12.6667 8C12.6667 9.23768 12.175 10.4247 11.2998 11.2998C10.4247 12.175 9.23768 12.6667 8 12.6667C6.76232 12.6667 5.57534 12.175 4.70017 11.2998C3.825 10.4247 3.33333 9.23768 3.33333 8C3.33333 6.76232 3.825 5.57534 4.70017 4.70017C5.57534 3.825 6.76232 3.33333 8 3.33333ZM8 5.73333C7.40924 5.76534 6.85111 6.01442 6.43276 6.43276C6.01442 6.85111 5.76534 7.40924 5.73333 8C5.73239 8.61408 5.96686 9.20516 6.3885 9.6516C6.81014 10.098 7.38687 10.3659 8 10.4C8.63652 10.4 9.24697 10.1471 9.69706 9.69706C10.1471 9.24697 10.4 8.63652 10.4 8C10.3659 7.38687 10.098 6.81014 9.6516 6.3885C9.20516 5.96686 8.61408 5.73239 8 5.73333Z" fill="black" fill-opacity="0.5"/></svg>');
+                        
+                    }
+                    &:hover {
+                        .mapboxgl-ctrl-icon {
+                            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 0C6.66667 0 6.66667 1.33333 6.66667 1.33333V1.46667C5.38548 1.72796 4.20941 2.36024 3.28482 3.28482C2.36024 4.20941 1.72796 5.38548 1.46667 6.66667H1.33333C1.33333 6.66667 0 6.66667 0 8C0 9.33333 1.33333 9.33333 1.33333 9.33333H1.46667C1.72796 10.6145 2.36024 11.7906 3.28482 12.7152C4.20941 13.6398 5.38548 14.272 6.66667 14.5333V14.6667C6.66667 14.6667 6.66667 16 8 16C9.33333 16 9.33333 14.6667 9.33333 14.6667V14.5333C10.6145 14.272 11.7906 13.6398 12.7152 12.7152C13.6398 11.7906 14.272 10.6145 14.5333 9.33333H14.6667C14.6667 9.33333 16 9.33333 16 8C16 6.66667 14.6667 6.66667 14.6667 6.66667H14.5333C14.272 5.38548 13.6398 4.20941 12.7152 3.28482C11.7906 2.36024 10.6145 1.72796 9.33333 1.46667V1.33333C9.33333 1.33333 9.33333 0 8 0ZM8 3.33333C9.23768 3.33333 10.4247 3.825 11.2998 4.70017C12.175 5.57534 12.6667 6.76232 12.6667 8C12.6667 9.23768 12.175 10.4247 11.2998 11.2998C10.4247 12.175 9.23768 12.6667 8 12.6667C6.76232 12.6667 5.57534 12.175 4.70017 11.2998C3.825 10.4247 3.33333 9.23768 3.33333 8C3.33333 6.76232 3.825 5.57534 4.70017 4.70017C5.57534 3.825 6.76232 3.33333 8 3.33333ZM8 5.73333C7.40924 5.76534 6.85111 6.01442 6.43276 6.43276C6.01442 6.85111 5.76534 7.40924 5.73333 8C5.73239 8.61408 5.96686 9.20516 6.3885 9.6516C6.81014 10.098 7.38687 10.3659 8 10.4C8.63652 10.4 9.24697 10.1471 9.69706 9.69706C10.1471 9.24697 10.4 8.63652 10.4 8C10.3659 7.38687 10.098 6.81014 9.6516 6.3885C9.20516 5.96686 8.61408 5.73239 8 5.73333Z" fill="black" fill-opacity="1"/></svg>');
+                            
+                        }
+
+                    }
+                }
+                &.mapboxgl-ctrl-zoom-in .mapboxgl-ctrl-icon {
+                    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 0C5.25 0 4.5 0.75 4.5 1.5V4.5H1.5C0.75 4.5 0 5.25 0 6C0 6.75 0.75 7.5 1.5 7.5H4.5V10.5C4.5 11.25 5.25 12 6 12C6.75 12 7.5 11.25 7.5 10.5V7.5H10.5C11.25 7.5 12 6.75 12 6C12 5.25 11.25 4.5 10.5 4.5H7.5V1.5C7.5 0.75 6.75 0 6 0Z" fill="black" fill-opacity="0.5"/></svg>');
+
+                    &:hover {
+                        background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 0C5.25 0 4.5 0.75 4.5 1.5V4.5H1.5C0.75 4.5 0 5.25 0 6C0 6.75 0.75 7.5 1.5 7.5H4.5V10.5C4.5 11.25 5.25 12 6 12C6.75 12 7.5 11.25 7.5 10.5V7.5H10.5C11.25 7.5 12 6.75 12 6C12 5.25 11.25 4.5 10.5 4.5H7.5V1.5C7.5 0.75 6.75 0 6 0Z" fill="black" fill-opacity="1"/></svg>');
+                    }
+                }
+
+                &.mapboxgl-ctrl-zoom-out .mapboxgl-ctrl-icon {
+                    /* fill: black; */
+                    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="3" viewBox="0 0 12 3" fill="none"><path d="M1.5 0C0.75 0 0 0.75 0 1.5C0 2.25 0.75 3 1.5 3H10.5C11.25 3 12 2.25 12 1.5C12 0.75 11.25 0 10.5 0H1.5Z" fill="black" fill-opacity="0.5"/></svg>');
+
+                    &:hover {
+                        background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="3" viewBox="0 0 12 3" fill="none"><path d="M1.5 0C0.75 0 0 0.75 0 1.5C0 2.25 0.75 3 1.5 3H10.5C11.25 3 12 2.25 12 1.5C12 0.75 11.25 0 10.5 0H1.5Z" fill="black" fill-opacity="1"/></svg>');
+                    }
+                }
+            }
+
+            button+button {
+                border-top: 0;
+            }
+        }
+    }
+
     .desktopSearch {
         display: none;
     }
+
     @media screen and (min-width: 768px) {
         @media (orientation: landscape) {
             display: flex;
         }
     }
+
     @media screen and (min-width: 1024px) {
         display: flex;
+
         .mobileSearch {
-        //    display:none;
+            //    display:none;
         }
+
         .desktopSearch {
-       //     display: block;
+            //     display: block;
         }
     }
+
     @media screen and (min-width: 768px) {
         @media (orientation: landscape) {
             .sidebar {
@@ -58,25 +124,29 @@ main#main-content {
             }
         }
     }
+
     .map {
-        height:268px;
+        height: 268px;
         width: 100%;
         overflow: hidden;
         //top: 50px;
         z-index: 1;
+
         @media screen and (min-width: 460px) {
             height: 300px;
         }
+
         @media screen and (min-width: 768px) {
             @media (orientation: landscape) {
                 position: sticky;
                 width: 50%;
-                left:0;
+                left: 0;
                 top: 0;
                 bottom: 0;
-                height:100vh;
+                height: 100vh;
             }
         }
+
         @media screen and (min-width: 1024px) {
             position: -webkit-sticky;
             position: sticky;
@@ -84,9 +154,10 @@ main#main-content {
             left: 0;
             top: 0;
             bottom: 0;
-            height:100vh;
+            height: 100vh;
         }
     }
+
     .marker {
         border: none;
         background-repeat: no-repeat;
@@ -95,22 +166,26 @@ main#main-content {
         height: 25px;
         width: 25px;
     }
+
     .hide-marker {
         opacity: 0 !important;
     }
+
     /* Marker tweaks */
     .mapboxgl-popup {
         padding-bottom: 50px;
     }
-    
+
     .mapboxgl-popup-close-button {
         display: none;
     }
+
     .mapboxgl-popup-content {
         font: 400 15px/22px 'Source Sans Pro', 'Helvetica Neue', sans-serif;
         padding: 0;
         width: 180px;
     }
+
     .mapboxgl-popup-content h3 {
         background: black;
         color: #fff;
@@ -120,68 +195,74 @@ main#main-content {
         font-weight: 700;
         margin-top: -15px;
     }
-    
+
     .mapboxgl-popup-content h4 {
         margin: 0;
         padding: 10px;
         font-weight: 400;
     }
-    
+
     .mapboxgl-popup-content div {
         padding: 10px;
     }
-    
-    .mapboxgl-popup-anchor-top > .mapboxgl-popup-content {
+
+    .mapboxgl-popup-anchor-top>.mapboxgl-popup-content {
         margin-top: 15px;
     }
-    
-    .mapboxgl-popup-anchor-top > .mapboxgl-popup-tip {
+
+    .mapboxgl-popup-anchor-top>.mapboxgl-popup-tip {
         border-bottom-color: #91c949;
     }
-    
-    .mapCluster{
-        cursor:pointer;
+
+    .mapCluster {
+        cursor: pointer;
     }
+
     .mapCluster {
         font-family: 'Oswald';
         font-style: normal;
         font-weight: 400;
-        color:black;
-        background-color:#FFE512;
-        border-radius:90px;
-        min-height:19.46px;
-        min-width:19.46px;
+        color: black;
+        background-color: #FFE512;
+        border-radius: 90px;
+        min-height: 19.46px;
+        min-width: 19.46px;
         font-size: 9px;
-        text-align:center;
+        text-align: center;
         z-index: 0;
         filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.05));
-        
+
         @media screen and (min-width: 768px) {
             font-size: 18px;
             min-height: 38.92px;
             min-width: 38.92px;
             padding: 8px 0;
         }
+
         @media screen and (min-width: 1920px) {
-            padding:30px 0;
-            min-height:84px;
-            min-width:84px;
+            padding: 30px 0;
+            min-height: 84px;
+            min-width: 84px;
             font-size: 36px;
         }
     }
-    
+
 }
+
 .store-page-map-container {
     padding: 0 10px;
+
     @media screen and (min-width: 768px) {
         padding: 0 40px;
     }
-    
+
     #map {
         height: 170px;
+
         @media screen and (min-width: 768px) {
             height: 300px;
         }
+
         @media screen and (min-width: 1024px) {
             height: 488px;
         }

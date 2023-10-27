@@ -42,7 +42,7 @@ function buildMap() {
         //   startApp2('push');
     }, 400);
 }
-function returnToStore(return_map, map) {
+function returnToStore(return_map) {
     var storeLandingURL = window.location.href;
     if (storeLandingURL.indexOf("?") > -1) {
         storeLandingURL = storeLandingURL.split('?')[0];
@@ -165,7 +165,6 @@ function LoadStoreMap(containerLon, containerLat, markerIMG, ctaIcon, return_map
     });
     map.scrollZoom.disable();
 
-    returnToStore(return_map, map)
 }
 
 
