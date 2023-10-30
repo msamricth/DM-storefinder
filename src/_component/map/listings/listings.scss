@@ -1,9 +1,5 @@
 div#app.store-page {
-  padding-top: 80px;
-  
-  @media screen and (min-width: 768px) {
     padding-top: 0;
-  }
 }
 #app {
   .sidebar {
