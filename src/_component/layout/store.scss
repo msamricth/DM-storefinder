@@ -20,7 +20,7 @@
 
 #app {
     &.store-page {
-        min-height: 150vh;
+        min-height: 100vh;
     }
 
     .store-page-container {
@@ -70,7 +70,7 @@
         }
 
         .store-page-details {
-            padding: 20px 10px;
+            padding: 20px 18px;
 
             @media screen and (min-width: 768px) {
                 padding: 45px 40px;
@@ -96,7 +96,7 @@
                 letter-spacing: -0.224px;
                 margin-bottom: 6px;
             }
-            @media screen and (min-width: 1024px) {
+            @media screen and (min-width: 1200px) {
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
@@ -154,7 +154,7 @@
                     margin-bottom: 40px;
                 }
 
-                @media screen and (min-width: 1024px) {
+                @media screen and (min-width: 1200px) {
                     max-width: 530px;
                 }
 
@@ -213,7 +213,10 @@
                 }
 
                 .store-hours-display {
-                    min-width: 300px;
+                     min-width: 100%;
+                     @media screen and (min-width: 568px) {
+                         min-width: 300px;
+                     }
                     @media screen and (min-width: 768px) {
                         max-width: max-content;
                     }
@@ -247,7 +250,7 @@
             }
         }
         .sf-button-group {display: flex;
-            padding: 20px 0;gap:20px;}
+            padding: 20px 0;}
         .store-btn {
             background-color: rgb(255, 230, 0);
             color: #000;
@@ -255,7 +258,7 @@
             justify-content: center;
             align-items: center;
             height: 60px;
-            margin-top: 50px;
+            margin-top: 00px;
 
             @media screen and (min-width: 768px) {
                 margin-top: 75px;
@@ -292,7 +295,12 @@
             background: #FFE512;
             color: black;
             padding: 12px 24px;
-
+            &:last-child {
+                margin-left: auto;
+                @media screen and (min-width: 568px) {
+                    margin-left: 20px;
+                }
+            }
             &:hover {
                 background-color: #FFD909;
                 border-color: #FFD909;
