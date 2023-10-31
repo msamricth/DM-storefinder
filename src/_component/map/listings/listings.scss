@@ -78,10 +78,10 @@ div#app.store-page {
         .listing-details {
           width: 280px;
           @media screen and (min-width: 768px) {
-            width: 200px;
+           // width: 200px;
           }
           @media screen and (min-width: 1440px) {
-            width: 187px;
+            width: auto;
           }
           padding: 10px 0;
           font-size: 16px;

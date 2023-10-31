@@ -3,6 +3,7 @@ import {
   fadeElementsIn, 
   markerCheck, 
   matchZoom, 
+  flyToStore,
   flyToStoreAndChange, 
   decodeEntities,
   mapUnclusteredClick,
