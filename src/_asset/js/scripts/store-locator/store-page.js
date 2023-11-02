@@ -161,7 +161,7 @@ function load_storePage(SP_slug, map = null, historyUpdate = null) {
                             
                             preloader.classList.add('hide');
                             preloader.style.display = "none";
-                            detailsHeader.innerHTML += "<div class='mobile-address-label'>" + address + "</div>";
+                            detailsHeader.innerHTML += "<div class='mobile-address-label'>" + address + "<br>"+phone+"</div>";
                             const directionsContainer = detailsHeader.appendChild(
                                 document.createElement("div")
                             );
