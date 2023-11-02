@@ -172,6 +172,7 @@ function load_storePage(SP_slug, map = null, historyUpdate = null) {
                             directions.className = "map-btn";
                             directions.href = "https://www.google.com/maps/dir/?api=1&destination=" + containerAddress;
                             directions.innerHTML = "get directions";
+                            directions.target = '_blank';
 
                             const callus = directionsContainer.appendChild(
                                 document.createElement("a")
