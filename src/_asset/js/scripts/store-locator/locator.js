@@ -254,7 +254,7 @@ function startApp2(pushPage = null) {
                       `listing-${stores.features[0].properties.id}`
                     );
                     activeListing.classList.add('active');
-                    flyToStore(stores.features[0])
+                    flyToStore(stores.features[0], map)
                     const sidebar = document.querySelector(".sidebar");
                     sidebar.classList.remove("search-suggestions-displayed");
                   });

@@ -88,6 +88,7 @@
                 letter-spacing: 0.231px;
                 margin-bottom: 20px;
             }
+
             .address-label p {
                 font-size: 14px;
                 font-style: normal;
@@ -96,6 +97,7 @@
                 letter-spacing: -0.224px;
                 margin-bottom: 6px;
             }
+
             @media screen and (min-width: 1200px) {
                 display: flex;
                 justify-content: space-between;
@@ -112,11 +114,14 @@
 
             h1 {
                 line-height: 1;
-                margin-bottom: 10px;
-                font-size: 32px;
-
+                margin-bottom: 12px;
+                font-size: 30px;
+                max-width: 200px;
+                @media screen and (min-width: 520px) {
+                    max-width: initial;
+                }
                 @media screen and (min-width: 768px) {
-                    font-size: 58px;
+                    font-size: 40px;
                 }
             }
 
@@ -125,10 +130,11 @@
                 font-size: 16px;
                 font-style: normal;
                 font-weight: 400;
-                line-height: 27px; /* 168.75% */
+                line-height: 27px;
+                /* 168.75% */
                 letter-spacing: 0.228px;
                 //background: #FFE512;
-              
+
                 display: inline-block;
                 margin-bottom: 12px;
                 margin-top: 2px;
@@ -140,6 +146,7 @@
                 }
 
                 line-height: 1;
+
                 strong {
                     font-weight: 700;
                 }
@@ -159,8 +166,9 @@
                 }
 
                 .mobile-address-label {
+                    max-width: 139px;
                     padding-bottom: 10px;
-                    font-size: 16px;
+                    font-size: 14px;
                 }
             }
 
@@ -187,18 +195,15 @@
                     @media screen and (min-width: 768px) {
                         max-width: 200px;
                         padding-right: 50px;
-                        //min-width: 200px;
 
                     }
 
                     @media screen and (max-width: 768px) {
-                        //  width: calc(50% - 40px);
                         font-size: 16px;
                     }
 
                     @media screen and (max-width: 1290px) {
                         @media screen and (min-width: 768px) {
-                            //    width: 33.3%;
                         }
                     }
 
@@ -208,49 +213,73 @@
                 }
 
                 &>div:last-of-type {
-                   // margin-bottom: 0;
+                    // margin-bottom: 0;
                     //margin-right: 40px;
                 }
 
                 .store-hours-display {
-                     min-width: 100%;
-                     @media screen and (min-width: 568px) {
-                         min-width: 300px;
-                     }
+                    width: 100%;
+                    max-width: 330px;
+
+                    @media screen and (min-width: 568px) {
+                        min-width: 300px;
+                    }
+
                     @media screen and (min-width: 768px) {
                         max-width: max-content;
                     }
+
                     &>span.small {
                         color: rgba(29, 29, 31, 0.50);
                         font-family: Overpass;
                         font-size: 12px;
                         font-style: normal;
                         font-weight: 400;
-                        line-height: 20px; /* 166.667% */
+                        line-height: 20px;
+                        /* 166.667% */
                         letter-spacing: -0.224px;
                     }
+
                     .store-hours-display-row {
                         margin-right: 0px;
                         display: flex;
                         font-size: 14px;
                         margin-bottom: 6px;
+                        flex-wrap: wrap;
+
                         &.holiday {
                             color: #BF2E00;
                         }
+
                         span:first-child {
                             min-width: 79px;
+                            @media screen and (min-width: 768px) {
+                                min-width: 78px;
+                            }
                         }
 
                         span:last-child {
-                            margin-left: auto;
+                            min-width: 100%;
+                            @media screen and (min-width: 364px) {
+                                min-width: auto;
+                                margin-left: auto;
+                            }
                         }
                     }
                 }
 
             }
         }
-        .sf-button-group {display: flex;
-            padding: 20px 0;}
+        .sf-button-group {
+            padding: 20px 0;
+            .map-btn {
+                display: block;
+            }
+            @media screen and (min-width: 383px) {
+                display: flex;
+                flex-wrap: wrap;
+            }
+        }
         .store-btn {
             background-color: rgb(255, 230, 0);
             color: #000;
@@ -283,6 +312,7 @@
                 letter-spacing: 0.05em;
             }
         }
+
         .map-btn {
             font-family: 'Oswald';
             font-weight: 600;
@@ -295,20 +325,20 @@
             background: #FFE512;
             color: black;
             padding: 12px 24px;
+
             &:last-child {
-                margin-left: auto;
-                @media screen and (min-width: 568px) {
+                margin-top: 20px;
+
+                @media screen and (min-width: 383px) {
+                    margin-top: 0px;
                     margin-left: 20px;
                 }
             }
+
             &:hover {
                 background-color: #FFD909;
                 border-color: #FFD909;
                 text-decoration: none;
-            }
-
-            @media screen and (min-width: 768px) {
-                //  top: 62%;
             }
 
             @media screen and (min-width: 1024px) {
@@ -324,6 +354,7 @@
         display: none !important;
     }
 }
+
 @media screen and (min-width: 1440px) {
 
     .store-page-map-container,
