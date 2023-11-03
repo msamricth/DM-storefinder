@@ -4,6 +4,7 @@ import {
   markerCheck, 
   matchZoom, 
   flyToStore,
+  createPopUp,
   flyToStoreAndChange, 
   decodeEntities,
   mapUnclusteredClick,
@@ -340,7 +341,7 @@ function startApp2(pushPage = null) {
                       activeListing.classList.add('active');
                       // closeAlrt();
                       if (stores.features[0]) {
-                        flyToStore(stores.features[0])
+                        flyToStore(stores.features[0], map)
                         createPopUp(stores.features[0]);
                       }
 
