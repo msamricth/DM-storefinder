@@ -22,38 +22,6 @@ html(lang="en")
 		link(rel='dns-prefetch' href='https://static.klaviyo.com')
 		link(rel='dns-prefetch' href='https://static.srcspot.com')
 		link(rel='dns-prefetch' href='https://cdn.media.amplience.net')
-		script.
-			(function(){"use strict";var c=[],f={},a,e,d,b;if(!window.jQuery){a=function(g){c.push(g)};f.ready=function(g){a(g)};e=window.jQuery=window.$=function(g){if(typeof g=="function"){a(g)}return f};window.checkJQ=function(){if(!d()){b=setTimeout(checkJQ,100)}};b=setTimeout(checkJQ,100);d=function(){if(window.jQuery!==e){clearTimeout(b);var g=c.shift();while(g){jQuery(g);g=c.shift()}b=f=a=e=d=window.checkJQ=null;return true}return false}}})();
-		script.
-			window.dataLayer = window.dataLayer || [];
-		script.
-			var g4SiteAndUserData = {"site":{"country":"US","currency":"USD","language":"en","version":"1676652096495"},"user":{"email":"anonymous","hasOrder":true,"returning":true}};
-		script(src='https://www.googleoptimize.com/optimize.js?id=GTM-WLZLJBH')
-		script(type='text/javascript').
-			var googleAnalyticsDelayedGtmStartMiliseconds=1000;
-			function start_gtm_no_params(){
-			start_gtm(window,document,'script','dataLayer','GTM-KXTQ62');
-			}
-			function start_gtm(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-			new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-			}
-			$(document).ready(function () {
-			ACC.track.pushPageLoadEvent(document.location, document.title);
-			if(googleAnalyticsDelayedGtmStartMiliseconds<=0){
-			start_gtm_no_params();
-			} else {
-			setTimeout(start_gtm_no_params, googleAnalyticsDelayedGtmStartMiliseconds);
-			}
-			});
-		link(rel='alternate' hreflang='en-us' href='https://www.drmartens.com/us/en/store-locator')
-		meta(name='p:domain_verify' content='b873486b220976b00e63fa989f7275f0')
-		meta(name='msvalidate.01' content='52FA30FD37202DFC184F378D866F6A5A')
-		meta(name='msvalidate.01' content='62CE72169B013F48E6207DD9A1010490')
-		meta(name='msvalidate.01' content='1E4E3D674C3C8494692060D0D336B776')
-		script
-			include preview-head.js
 		style.
 			html { box-sizing: border-box; font-size: 16px; } 
 			*, *:before, *:after { box-sizing: border-box; text-decoration: none; } 
@@ -93,12 +61,4 @@ html(lang="en")
 			
 			include preview/footer
 		script(src='bundle.js')
-		script
-			include preview.js
-		
-		script(type='text/javascript' src=`${baseUrl}preview.js`)
-		script(type='application/javascript' async='' src='https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=SGWRc2')
 
-		
-		script(async='async' src='https://static.srcspot.com/libs/blythe.js' type='application/javascript')
-		script(defer='' src='https://static.cloudflareinsights.com/beacon.min.js/v8b253dfea2ab4077af8c6f58422dfbfd1689876627854' integrity='sha512-bjgnUKX4azu3dLTVtie9u6TKqgx29RBwfj3QXYt5EKfWM/9hPSAI/4qcV5NACjwAo8UtTeWefx6Zq5PHcMm7Tg==' data-cf-beacon='{"rayId":"8149773d9bbf05f5","token":"5207a4d1ac924826bac40f86896b1756","version":"2023.8.0","si":100}' crossorigin='anonymous')
