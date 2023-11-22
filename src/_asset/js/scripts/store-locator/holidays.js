@@ -140,7 +140,7 @@ function storeHoursDisplay(storeRecord, parentDiv) {
                         date.setTime(date.getTime() + hoursToAdd);
                         return date;
                     }
-                    holidayDate = addHours(holidayDate, 4);
+                    holidayDate = addHours(holidayDate, 8);
                     holidayDate = holidayDate.toLocaleDateString('en-us', { weekday: "long", month: "short", day: "numeric" });
                     if (holiday.record_id.includes(storeRecord.id)) {
                         if (storeDateForComparison == holidayDate) {

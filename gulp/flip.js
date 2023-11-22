@@ -13,7 +13,6 @@ const flip = ({ gulp, taskTarget, config, plugins, args, browserSync }) => {
     if (fs.existsSync(dir.production)) {
       fs.renameSync(dir.production, `${dir.production}-${newName}`);
     }
-
     fs.renameSync(`${dir.production}-haha`, dir.production);
     done();
   });
