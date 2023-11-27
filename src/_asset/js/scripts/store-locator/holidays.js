@@ -92,10 +92,18 @@ function storeHoursDisplay(storeRecord, parentDiv) {
                 document.createElement("h2")
             );
             hourTitle.innerHTML += "Store Hours";
+            let monthVerb = month;
+            
             for (const day of dayIterations) {
                 let storedatefull = '', storeDateForComparison = '';
-                let storeDate = currentDate + i;
-                if(i==0){
+                var storeDate = new Date();
+                storeDate.setDate(storeDate.getDate() + i);
+                
+                monthVerb = months[storeDate.getMonth()];
+                storeDate = storeDate.getDate();
+;
+
+                if (i == 0) {
                     storedatefull = dt;
                 } else {
 
@@ -125,9 +133,9 @@ function storeHoursDisplay(storeRecord, parentDiv) {
                     document.createElement("span")
                 );
                 if (day == 0) {
-                    hourDisplayRowDate.innerHTML = month + ' ' + currentDate;
+                    hourDisplayRowDate.innerHTML = monthVerb + ' ' + currentDate;
                 } else {
-                    hourDisplayRowDate.innerHTML = month + ' ' + storeDate;
+                    hourDisplayRowDate.innerHTML = monthVerb + ' ' + storeDate;
                 }
                 const hourDisplayRowHours = hourDisplayRow.appendChild(
                     document.createElement("span")
