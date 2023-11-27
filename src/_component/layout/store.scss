@@ -55,15 +55,6 @@
                 animation: fade-in 0.9s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
             }
 
-            @media screen and (min-width: 768px) {
-
-                //     height: 320px;
-            }
-
-            @media screen and (min-width: 1440px) {
-                //   height: 540px;
-            }
-
             .store-image {
                 max-width: 100%;
             }
@@ -101,7 +92,6 @@
             @media screen and (min-width: 1200px) {
                 display: flex;
                 justify-content: space-between;
-                align-items: center;
             }
 
             @media screen and (min-width: 769px) {
@@ -116,7 +106,7 @@
                 line-height: 1;
                 margin-bottom: 12px;
                 font-size: 30px;
-                max-width: 200px;
+                max-width: 270px;
 
                 @media screen and (min-width: 520px) {
                     max-width: initial;
@@ -164,6 +154,10 @@
 
                 @media screen and (min-width: 1200px) {
                     max-width: 530px;
+                }
+                
+                @media screen and (min-width: 1290px) {
+                    padding-top: 20px;
                 }
                 .mobile-address-label {
                     max-width: 139px;
