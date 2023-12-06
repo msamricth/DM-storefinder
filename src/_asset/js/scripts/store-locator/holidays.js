@@ -64,7 +64,8 @@ function storeHoursDisplay(storeRecord, parentDiv) {
             {
                 headers: {
                     Authorization:
-                        "Bearer patH2pzfuG2mbHzqd.18833d9077176b68bdf8f7c436376fc5d4962b4df98e82ffb1cf0ed3cedd64e5"
+                     
+                // Airtable Bearer code here
                 }
             }
         )
