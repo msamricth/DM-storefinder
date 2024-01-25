@@ -1,4 +1,4 @@
-import { app, preloader } from "./identifiers.js";
+import { app, preloader, API_headers } from "./identifiers.js";
 import { updateStorePage, LoadStoreMap, returnToStore } from "./store-functions.js";
 import { closingTimeDisplay } from "./hours.js";
 import { storeHoursDisplay } from "./holidays.js";
@@ -26,9 +26,10 @@ function load_storePage(SP_slug, map = null, historyUpdate = null) {
         .get(
             "https://api.airtable.com/v0/app7o6tSJG6UICys8/Settings?view=API",
             {
+
                 headers: {
                     Authorization:
-                // Airtable Bearer code here
+                    API_headers
                 }
             }
         )
@@ -56,7 +57,7 @@ function load_storePage(SP_slug, map = null, historyUpdate = null) {
                     {
                         headers: {
                             Authorization:
-                            // Airtable Bearer code here
+                            API_headers
                         }
                     }
                 )
@@ -158,10 +159,10 @@ function load_storePage(SP_slug, map = null, historyUpdate = null) {
                             if (closing_time_display) {
                                 detailsHeader.innerHTML += "<h3 class='closing-time'>" + closing_time_display; + "</h3>";
                             }
-                            
+
                             preloader.classList.add('hide');
                             preloader.style.display = "none";
-                            detailsHeader.innerHTML += "<div class='mobile-address-label'>" + address + "<br>"+phone+"</div>";
+                            detailsHeader.innerHTML += "<div class='mobile-address-label'>" + address + "<br>" + phone + "</div>";
                             const directionsContainer = detailsHeader.appendChild(
                                 document.createElement("div")
                             );
@@ -200,7 +201,7 @@ function load_storePage(SP_slug, map = null, historyUpdate = null) {
 
                             mapContainer.className = "store-page-map-container";
                             app.classList.add("map-container-added");
-                            
+
                             LoadStoreMap(storeFields.lon, storeFields.lat, markerIMG, ctaIcon, return_map);
                             const eventContainer = storePage.appendChild(
                                 document.createElement("div")
@@ -211,7 +212,7 @@ function load_storePage(SP_slug, map = null, historyUpdate = null) {
                             get_events();
                             eventContainer.setAttribute('data-name', storeFields.Name);
                             eventContainer.setAttribute('data-address', storeFields.full_address);
-                            
+
                             returnToStore(return_map);
                             window.onpopstate = (event) => {
                                 location.reload();
@@ -221,5 +222,5 @@ function load_storePage(SP_slug, map = null, historyUpdate = null) {
 
                 })
         })
-    }
-    export { load_storePage };
+}
+export { load_storePage };

@@ -1,4 +1,4 @@
-import { SMZoom, SMMZoom, mapContainr, preloader, bounds, MBaccessToken, listings } from "./identifiers.js";
+import { SMZoom, SMMZoom, mapContainr, preloader, bounds, MBaccessToken, listings, API_headers } from "./identifiers.js";
 import { 
   fadeElementsIn, 
   markerCheck, 
@@ -35,8 +35,7 @@ function startApp2(pushPage = null) {
           {
             headers: {
               Authorization:
-               
-                // Airtable Bearer code here
+              API_headers
             }
           }
         )
@@ -79,8 +78,7 @@ function startApp2(pushPage = null) {
               {
                 headers: {
                   Authorization:
-                    
-                // Airtable Bearer code here
+                  API_headers
                 }
               }
             )

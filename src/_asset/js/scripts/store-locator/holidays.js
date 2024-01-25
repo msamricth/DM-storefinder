@@ -5,7 +5,8 @@ import {
     weekdaySH,
     months,
     month,
-    currentDate
+    currentDate,
+    API_headers
 } from "./identifiers.js";
 function storeHours(day, storeRecord) {
     let opens_time, closes_time;
@@ -64,8 +65,8 @@ function storeHoursDisplay(storeRecord, parentDiv) {
             {
                 headers: {
                     Authorization:
-                     
-                // Airtable Bearer code here
+                    API_headers
+                    // Airtable Bearer code here
                 }
             }
         )
@@ -94,15 +95,15 @@ function storeHoursDisplay(storeRecord, parentDiv) {
             );
             hourTitle.innerHTML += "Store Hours";
             let monthVerb = month;
-            
+
             for (const day of dayIterations) {
                 let storedatefull = '', storeDateForComparison = '';
                 var storeDate = new Date();
                 storeDate.setDate(storeDate.getDate() + i);
-                
+
                 monthVerb = months[storeDate.getMonth()];
                 storeDate = storeDate.getDate();
-;
+                ;
 
                 if (i == 0) {
                     storedatefull = dt;

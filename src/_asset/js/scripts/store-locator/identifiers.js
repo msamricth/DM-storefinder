@@ -38,6 +38,7 @@ const pageURL = window.location.href;
 const mapContainr = document.getElementById('map');
 const preloader = document.querySelector('.storemap-preloader');
 const storePageClass = document.querySelector('.store-page-container');
+const API_headers = "Bearer patOcxRffYNEVNHdt.3d368fe49ec357c5ff98b9ab2905afe4a82c54d9776499e6b22cbc6b0319ff8c";
 const appClassList = app.classList;
 export { 
   app, 
@@ -57,5 +58,6 @@ export {
   weekdaySH,
   months,
   month,
-  currentDate 
+  currentDate,
+  API_headers
 }
